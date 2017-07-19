@@ -1,8 +1,8 @@
-title: Hexo
-subtitle: "A fast, simple & powerful blog framework powered by Node.js."
-description: "Hexo is a fast, simple & powerful blog framework powered by Node.js."
-author: Hexo
-language: en
+title: Zephyr中文网
+subtitle: "Zephyr OS 中文网站"
+description: "Zephyr Project, a IoT RTOS"
+author: tidyjiang@163.com
+language: zh-cn
 timezone: UTC
 
 url: https://hexo.io
@@ -36,5 +36,6 @@ algolia:
   zh-cn:
     api_key: cdea7d4e47d84f6145b77e7f68689f35
     index_name: hexo_zh-cn
-twitter: hexojs
-github: hexojs/hexo
+twitter: zephyriot
+weibo: hexojs
+github: zephyrproject-rtos/zephyr
