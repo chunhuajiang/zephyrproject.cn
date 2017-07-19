@@ -1,9 +1,9 @@
 menu:
   docs: 文档
   api: API
+  plugins: 入门教程
+  themes: 开源项目
   news: 新闻
-  plugins: 插件
-  themes: 主题
   search: 搜索
 
 index:
