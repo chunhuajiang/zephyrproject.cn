@@ -1,6 +1,8 @@
 title: 新闻
 data: news
 layout: plugins
-partial: plugin
+partial: news
 comments: false
 ---
+
+data: themes

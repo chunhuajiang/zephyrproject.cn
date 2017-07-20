@@ -1,21 +1,11 @@
-- name: hexo include markdown
-  description: This plugin for Hexo can easily load markdown files in Markdown.
-  link: ./test.html
+- name: v180
+  time: 456
+  description: Zephyr OS 重磅推出1.8版本，源代码迁往GitHub
+  link: ./v180
+  preview: ./v180
   tags:
-    - markdown
-    - import
-    - include
-    - partial
-    - load
-    - template
-- name: hexo-asset-pipeline
-  description: A hexo plugin to minify/optimize HTML, CSS, JS and images. Supports revisioning of assets.
-  link: https://github.com/bhaskarmelkani/hexo-asset-pipeline
-  tags:
-    - filter
-    - imagemin
-    - html-minifier
-    - uglify
-    - clean-css
-    - revisioning
-    - versioning
+    - material design
+    - mdui
+    - google plus
+    - responsive
+    - gallery
