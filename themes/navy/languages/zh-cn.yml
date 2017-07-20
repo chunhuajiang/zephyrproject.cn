@@ -1,8 +1,9 @@
 menu:
   docs: 文档
-  api: API
-  plugins: 入门教程
-  themes: 开源项目
+  tutorial_guide: 入门教程
+  tutorial_deep: 进阶教程
+  opensource: 开源项目
+  blog: 博客
   news: 新闻
   search: 搜索
 
