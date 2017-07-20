@@ -17,7 +17,8 @@ per_page: 0
 theme: navy
 deploy:
   type: git
-  repo: git@github.com:hexojs/hexojs.github.io.git
+  repo:
+    github: git@github.com:tidyjiang8/tidyjiang8.github.io.git,master
 
 highlight:
   enable: true
