@@ -1,30 +1,24 @@
 docs:
+  introduce:
+    zephyr_introduce: 
   getting_started:
-    overview: index.html
-    setup: setup.html
-    configuration: configuration.html
-    commands: commands.html
-    migration: migration.html
-  basic_usage:
-    writing: writing.html
-    front_matter: front-matter.html
-    tag_plugins: tag-plugins.html
-    asset_folders: asset-folders.html
-    data_files: data-files.html
-    server: server.html
-    generating: generating.html
-    deployment: deployment.html
-  customization:
-    permalinks: permalinks.html
-    themes: themes.html
-    templates: templates.html
-    variables: variables.html
-    helpers: helpers.html
-    internationalization: internationalization.html
-    plugins: plugins.html
-  miscellaneous:
-    troubleshooting: troubleshooting.html
-    contributing: contributing.html
+    getting_started_all:
+    win:
+    macos:
+    linux:
+  kernel_primer:
+    kernel_overview:
+  app_primer:
+    app_overview:
+  porting_guide:
+    port_overview:
+  device_driver:
+    device_driver_overview:
+  device_tree:
+    device_tree_overview:
+  subsystem:
+    subsystem_overview:
+
 
 api:
   core:

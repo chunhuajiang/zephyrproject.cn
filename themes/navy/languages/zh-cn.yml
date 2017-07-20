@@ -20,33 +20,25 @@ page:
 
 sidebar:
   docs:
-    getting_started: 开始使用
-    overview: 概述
-    setup: 建站
-    configuration: 配置
-    commands: 命令
-    migration: 迁移
-    basic_usage: 基本操作
-    writing: 写作
-    front_matter: Front-matter
-    tag_plugins: 标签插件
-    asset_folders: 资源文件夹
-    data_files: 数据文件夹
-    server: 服务器
-    generating: 生成器
-    deployment: 部署
-    customization: 自定义
-    permalinks: 永久链接
-    themes: 主题
-    structure: 结构
-    templates: 模版
-    variables: 变量
-    helpers: 辅助函数
-    internationalization: 国际化 (i18n)
-    plugins: 插件
-    miscellaneous: 其他
-    troubleshooting: 问题解答
-    contributing: 贡献
+    introduce: 前言
+    zephyr_introduce: 简介
+    getting_started: 入门指导
+    getting_started_all: 概述
+    win: win
+    macos: mac
+    linux: linux
+    kernel_primer: 内核入门
+    kernel_overview: 概述
+    app_primer: 应用程序开发入门
+    app_overview: 概述
+    porting_guide: 移植指导
+    port_overview: 概述
+    device_driver: 设备驱动和设备模型
+    device_driver_overview: 概述
+    device_tree: 设备树
+    device_tree_overview: 概述
+    subsystem: 子系统
+    subsystem_overview: 概述
   api:
     core: 核心
     overview: 概述
