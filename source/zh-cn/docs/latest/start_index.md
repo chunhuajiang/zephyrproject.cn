@@ -1,6 +1,7 @@
 title: Zephyr 入门指导
 ---
 
+> 翻译：[tidyjiang8](http://github.com/tidyjiang8/)
 
 Zephyr 项目支持如下操作系统：
 - Linux

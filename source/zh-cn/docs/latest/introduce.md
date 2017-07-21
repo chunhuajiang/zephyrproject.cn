@@ -1,6 +1,8 @@
 title: Zephyr 简介
 ---
 
+> 翻译：[tidyjiang8](http://github.com/tidyjiang8/)
+
 Zephyr 内核是一个内存占用极低的内核，它主要设计用于资源受限系统：从简单的嵌入式环境传感器、LED 可穿戴设备，到复杂的智能手表、IoT 无线网关。
 
 Zephyr 在被设计时就支持多架构，包括 ARM Cortex-M，Intel x86，ARC，NIOS II 和 RISC V。您可以在[这里]()查看 Zephyr 所支持的所有开发板。
