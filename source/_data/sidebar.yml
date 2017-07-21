@@ -2,10 +2,10 @@ docs:
   introduce:
     zephyr_introduce:  introduce.html
   getting_started:
-    getting_started_all:
-    win:
-    macos:
-    linux:
+    start_index: start_index.html
+    linux: start_linux.html
+    macos: start_mac.html
+    win: start_win.html
   kernel_primer:
     kernel_overview:
   app_primer:

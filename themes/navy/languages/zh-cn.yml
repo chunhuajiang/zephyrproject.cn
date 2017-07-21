@@ -23,10 +23,10 @@ sidebar:
     introduce: 前言
     zephyr_introduce: 简介
     getting_started: 入门指导
-    getting_started_all: 概述
-    win: win
-    macos: mac
-    linux: linux
+    start_index: 搭建开发环境
+    win: Win
+    macos: Mac
+    linux: Linux
     kernel_primer: 内核入门
     kernel_overview: 概述
     app_primer: 应用程序开发入门

@@ -8,3 +8,7 @@ title: 文档
 --- 
 
 - [Zephyr 简介](introduce.html)
+- [Zephyr 入门指导](start_index.html)
+  - [在 Linux 下搭建开发环境](start_linux.html)
+  - [在 Mac 下搭建开发环境](start_mac.html)
+  - [在 Win 下搭建开发环境](start_win.html)
