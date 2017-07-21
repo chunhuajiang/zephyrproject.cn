@@ -1,7 +1,7 @@
 <header id="header" class="wrapper">
   <div id="header-inner" class="inner">
     <h1 id="logo-wrap">
-      <a href="{{ url_for_lang('') }}" id="logo">Zephyr中文网</a>
+      <a href="{{ url_for_lang('') }}" id="logo">Zephyr中文社区</a>
     </h1>
     <nav id="main-nav">
       {{ header_menu('main-nav') }}
