@@ -5,7 +5,7 @@ author: tidyjiang@163.com
 language: zh-cn
 timezone: UTC
 
-url: https://hexo.io
+url: http://zephyrproject.cn
 root: /
 permalink: blog/:year/:month/:day/:title/
 archive_dir: blog
@@ -18,13 +18,14 @@ theme: navy
 deploy:
   type: git
   repo:
-    github: git@github.com:tidyjiang8/tidyjiang8.github.io.git,master
+    github: git@github.com:tidyjiang8/zephyrproject.cn.git,gh-pages
+#github: git@github.com:tidyjiang8/tidyjiang8.github.io.git,master
 
 highlight:
   enable: true
   line_number: false
 
-disqus_shortname: hexojs
+disqus_shortname: zephyrproject
 google_analytics: UA-48498357-3
 fb_admins: 100000247608790
 algolia:
