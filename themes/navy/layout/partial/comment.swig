@@ -2,17 +2,22 @@
 <section id="comments">
   <div id="disqus_thread"></div>
 </section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-  var disqus_shortname = '{{ config.disqus_shortname }}';
-  var disqus_url = '{{ url }}';
-  var disqus_title = {{ JSON.stringify(page.title) }};
-  var disqus_config = function(){
-    this.language = '{{ disqus_lang() }}';
-  };
-  (function(){
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'https://go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+var gitment = new Gitment({
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
 </script>
 {% endif %}
