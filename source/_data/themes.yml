@@ -8,6 +8,7 @@
     - google plus
     - responsive
     - gallery
+<<<<<<< HEAD
 - name: Vexo
   description: Vexo is a Hexo theme inspired by Vue's official website.
   link: https://github.com/yanm1ng/hexo-theme-vexo
@@ -1450,3 +1451,5 @@
     - One page
     - responsive
     - vuejs
+=======
+>>>>>>> 326036d... init

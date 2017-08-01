@@ -12,3 +12,8 @@ title: 文档
   - [在 Linux 下搭建开发环境](start_linux.html)
   - [在 Mac 下搭建开发环境](start_mac.html)
   - [在 Win 下搭建开发环境](start_win.html)
+- [内核开发入门](k_overview.html)
+  - [概述](k_overview_index.html)
+    - [源码树结构](k_overview_tree.html)
+    - [与第 1 版内核的改动](k_overview_change.html)
+  - []()

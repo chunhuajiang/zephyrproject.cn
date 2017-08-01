@@ -7,7 +7,13 @@ docs:
     macos: start_mac.html
     win: start_win.html
   kernel_primer:
-    kernel_overview:
+    kernel_overview: k_overview.html
+    kernel_thread: k_thread.html
+    kernel_timing: k_timing.html
+    kernel_memory: k_memory.html
+    kernel_sync: k_sync.html
+    kernel_datapassing: k_datapassing.html
+    kernel_other: k_other.html
   app_primer:
     app_overview:
   porting_guide:
@@ -18,7 +24,6 @@ docs:
     device_tree_overview:
   subsystem:
     subsystem_overview:
-
 
 t_guide:
   env:

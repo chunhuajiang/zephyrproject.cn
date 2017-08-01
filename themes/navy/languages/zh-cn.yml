@@ -1,5 +1,6 @@
 menu:
   docs: 文档
+  topic: 专题教程
   tutorial_guide: 入门教程
   tutorial_deep: 进阶教程
   opensource: 开源项目
@@ -21,7 +22,7 @@ page:
 sidebar:
   docs:
     introduce: 前言
-    zephyr_introduce: 简介
+    zephyr_introduce: Zephyr简介
     getting_started: 入门指导
     start_index: 搭建开发环境
     win: Win
@@ -29,6 +30,12 @@ sidebar:
     linux: Linux
     kernel_primer: 内核入门
     kernel_overview: 概述
+    kernel_thread: 线程
+    kernel_timing: 定时
+    kernel_memory: 内存分配
+    kernel_sync: 同步
+    kernel_datapassing: 数据传递
+    kernel_other: 其它服务
     app_primer: 应用程序开发入门
     app_overview: 概述
     porting_guide: 移植指导
