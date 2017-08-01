@@ -20,24 +20,27 @@ docs:
     subsystem_overview:
 
 
-api:
-  core:
-    overview: index.html
-    events: events.html
-    locals: locals.html
-    router: router.html
-    box: box.html
-    rendering: rendering.html
-    posts: posts.html
-    scaffolds: scaffolds.html
-    themes: themes.html
-  extensions:
-    console: console.html
-    deployer: deployer.html
-    filter: filter.html
-    generator: generator.html
-    helper: helper.html
-    migrator: migrator.html
-    processor: processor.html
-    renderer: renderer.html
-    tag: tag.html
+t_guide:
+  env:
+    Ubuntu: ubuntu.html
+    pre-install: pre-install.html
+    Mac: mac.html
+    win10-wsl: win10-wsl.html
+    Windows: windows.html
+  boards:
+    overview: overview.html
+    gdbserver: gdbserver.html
+    eclipse-qemu: eclipse.html
+    arduino_101: arduino_101.html
+    arduino_due: arduino_due.html
+    k64f: k64f.html
+    kw41z: kw41z.html
+    nrf51: nrf51.html
+    nrf52: nrf52.html
+    stm32: stm32.html
+    cc3200: cc3200.html
+    cc2650: cc2650.html
+    96b_carbon: 96b_carbon.html
+    esp32: esp32.html
+
+
