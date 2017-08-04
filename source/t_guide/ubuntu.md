@@ -51,7 +51,7 @@ EOF
 ## Git 下载
 
 ```bash
-$ https://github.com/zephyrproject-rtos/zephyr.git
+$ git clone https://github.com/zephyrproject-rtos/zephyr.git
 ```
 
 # 编译 hello-world
