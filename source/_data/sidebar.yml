@@ -34,8 +34,7 @@ t_guide:
     Windows: windows.html
   boards:
     overview: overview.html
-    gdbserver: gdbserver.html
-    eclipse-qemu: eclipse.html
+    eclipse-qemu: qemu.html
     arduino_101: arduino_101.html
     arduino_due: arduino_due.html
     k64f: k64f.html

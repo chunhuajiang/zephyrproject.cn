@@ -55,8 +55,7 @@ sidebar:
     Windows: 使用Windows
     boards: 单步调试
     overview: 概述
-    gdbserver: GDB Server
-    eclipse-qemu: eclipse
+    eclipse-qemu: qemu
     arduino_101: arduino 101
     arduino_due: arduino due
     k64f: k64f
