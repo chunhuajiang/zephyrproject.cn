@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>FRDM-K64F 单步调试 | Zephyr中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/t_guide/k64f.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/t_guide/k64f.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/t_guide/k64f.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="作者：tidyjiang8  frdm-k64f 是 zephyr 最早支持的两块开发板之一（另一块是 Arduino 101），因此 zephyr 对它的支持已经比较完善了。如果你想学习 Zephyr，又没有合适的开发板的话，这是我向你推荐的开发板之一。 使用 frdm-k64f 的主要好处：  frdm-k64f 是 Zephyr 官方支持得最好的开发板之一 frdm-k64f 的烧写、调试">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FRDM-K64F 单步调试">
+<meta property="og:url" content="http://zephyrproject.cn/t_guide/k64f.html">
+<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:description" content="作者：tidyjiang8  frdm-k64f 是 zephyr 最早支持的两块开发板之一（另一块是 Arduino 101），因此 zephyr 对它的支持已经比较完善了。如果你想学习 Zephyr，又没有合适的开发板的话，这是我向你推荐的开发板之一。 使用 frdm-k64f 的主要好处：  frdm-k64f 是 Zephyr 官方支持得最好的开发板之一 frdm-k64f 的烧写、调试">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/frdm_k64f.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/target.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/pyOCD.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/pyocd-gdbserver.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/debug-conf-1.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/debug-conf-2.jpg">
+<meta property="og:image" content="http://zephyrproject.cn/t_guide/k64f/debug-conf-3.jpg">
+<meta property="og:updated_time" content="2017-08-04T16:19:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FRDM-K64F 单步调试">
+<meta name="twitter:description" content="作者：tidyjiang8  frdm-k64f 是 zephyr 最早支持的两块开发板之一（另一块是 Arduino 101），因此 zephyr 对它的支持已经比较完善了。如果你想学习 Zephyr，又没有合适的开发板的话，这是我向你推荐的开发板之一。 使用 frdm-k64f 的主要好处：  frdm-k64f 是 Zephyr 官方支持得最好的开发板之一 frdm-k64f 的烧写、调试">
+<meta name="twitter:image" content="http://zephyrproject.cn/t_guide/k64f/frdm_k64f.jpg">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">FRDM-K64F 单步调试</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/t_guide/k64f.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>作者：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
+</blockquote>
+<p>frdm-k64f 是 zephyr 最早支持的两块开发板之一（另一块是 Arduino 101），因此 zephyr 对它的支持已经比较完善了。如果你想学习 Zephyr，又没有合适的开发板的话，这是我向你推荐的开发板之一。</p>
+<p>使用 frdm-k64f 的主要好处：</p>
+<ul>
+<li>frdm-k64f 是 Zephyr 官方支持得最好的开发板之一</li>
+<li>frdm-k64f 的烧写、调试都非常方便</li>
+<li>直接用 frdm-k64f 就能完成大部分基础实验</li>
+<li>直接用 frdm-k64f 就能完成大部分网络实验(自带以太网卡，但是不能进行 ieee 802.15.4 相关实验)</li>
+<li>直接用 frdm-k64f 就能完成大部分蓝牙实验</li>
+<li>直接用 frdm-k64f 就能完成 JavaScript 实验</li>
+<li>直接用 frdm-k64f 就能完成 MicroPython 实验</li>
+</ul>
+<blockquote>
+<p>建议在阅读本文前，先阅读并理解 <a href="qemu.html">QEMU+Eclipse+Ubuntu 进行单步调试</a> 这一篇文章。</p>
+</blockquote>
+<h1 id="预装软件" class="article-heading"><a href="#预装软件" class="headerlink" title="预装软件"></a>预装软件<a class="article-anchor" href="#预装软件" aria-hidden="true"></a></h1><p>我们需要预装 pyOCD 这个软件。pyOCD 是为烧写和调试使用 CMSIS-DAP 的 ARM Cortex-M 系列微控制器而设计的是一块开源的基于 python 2.7 库的软件。它支持 Linux、OSX 和 Windows 三大平台。</p>
+<blockquote>
+<p>pyOCD 的开源仓库是：<a href="https://github.com/mbedmicro/pyOCD" target="_blank" rel="external">https://github.com/mbedmicro/pyOCD</a></p>
+</blockquote>
+<p>使用下面的命令安装最新的稳定版：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ pip install --pre -U pyocd</div></pre></td></tr></table></figure></p>
+<h1 id="烧写程序" class="article-heading"><a href="#烧写程序" class="headerlink" title="烧写程序"></a>烧写程序<a class="article-anchor" href="#烧写程序" aria-hidden="true"></a></h1><p>对于 frdm-k64f 来说，烧写程序非常简单。只需要一条 microUSB 数据线就既可以完成程序的烧写，还可以当做串口线使用，还可以用来进行调试。</p>
+<center><br><br><img src="k64f/frdm_k64f.jpg" width="90%"><br><br></center>
+
+<p>用数据线将板子与 PC 连接在一起（板子上的接口为上图的左上角的 USB 口），PC 上面会识别出一个 USB 存储设备，直接将 .bin 文件拷贝到该设备的根目录，然后复位板子，就自动完成烧写了。</p>
+<p>此外，PC 上面还会识别出一个 COM 口（Linux 平台是 /dev/ttyACM0），我们可以通过它来查看串口输出。</p>
+<h1 id="hello-world" class="article-heading"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world<a class="article-anchor" href="#hello-world" aria-hidden="true"></a></h1><p>进入 hello_world 目录，进行编译：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> samples/hello_world</div><div class="line">$ make BOARD=frdm_k64f</div></pre></td></tr></table></figure></p>
+<p>除了上面所述的烧写方法外，zephyr 还单独提供了另一种烧写方法（利用 pyOCD），现将板子通过数据线接入 PC 中，然后执行命令：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ make BOARD=frdm_k64f flash</div></pre></td></tr></table></figure></p>
+<p>然后就会自动完成烧写。</p>
+<p>然后打开串口终端，就可以看到输出的 “Hello World” 了。</p>
+<h1 id="使用命令行调试" class="article-heading"><a href="#使用命令行调试" class="headerlink" title="使用命令行调试"></a>使用命令行调试<a class="article-anchor" href="#使用命令行调试" aria-hidden="true"></a></h1><p>借助于 pyOCD，对 frdm-k64f 进行调试也非常非常方便。</p>
+<p>在 hello_world 目录下，执行如下命令，就可以直接使用命令行进行调试了：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ make BOARD=frdm_k64f debug</div></pre></td></tr></table></figure></p>
+<p>上面这条命令会自动将编译生成的二进制镜像烧写到 frdm_k64f 中，然后启动 debug server，然后启动 gdb client 来连接这个 gdb server，然后我们就可以开始输入 gdb 的命令进行调试：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">b main   ### 在main函数入口处设置断电</div><div class="line">c        ### 让板子运行至main函数</div><div class="line">n        ### 单步调试</div></pre></td></tr></table></figure></p>
+<p>虽然看上去非常简单的样子，但是这内部其实还隐藏了一些细节。这个过程主要涉及两个命令：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ pyocd-gdbserver -p 3333 -t k64f</div><div class="line">$ /opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/arm-zephyr-eabi/arm-zephyr-eabi-gdb outdir/frdm_k64f/zephyr.elf -ex <span class="string">'target remote :3333'</span> -ex load -ex <span class="string">'monitor reset halt'</span></div></pre></td></tr></table></figure></p>
+<p>第 1 个命令的作用是通过 pyOCD 的工具启动 gdbserver，该 server 的端口是 3333。</p>
+<p>第 2 个命令的作用是运行 gdb client，启动后执行了 gdb 三个命令：</p>
+<ul>
+<li>target remote:3333</li>
+<li>load</li>
+<li>monitor reset halt</li>
+</ul>
+<p>因此，我们后面的主要工作，就是将这两个命令移植到 Eclipse 里面。</p>
+<h1 id="安装-Eclipse-IDT" class="article-heading"><a href="#安装-Eclipse-IDT" class="headerlink" title="安装 Eclipse IDT"></a>安装 Eclipse IDT<a class="article-anchor" href="#安装-Eclipse-IDT" aria-hidden="true"></a></h1><p>参考 <a href="qemu.html#安装-Eclipse-CDT">QEMU+Eclipse+Ubuntu 进行单步调试</a>。</p>
+<h1 id="创建工程。" class="article-heading"><a href="#创建工程。" class="headerlink" title="创建工程。"></a>创建工程。<a class="article-anchor" href="#创建工程。" aria-hidden="true"></a></h1><p>参考 <a href="qemu.html#创建工程">QEMU+Eclipse+Ubuntu 进行单步调试</a>。</p>
+<h1 id="编译" class="article-heading"><a href="#编译" class="headerlink" title="编译"></a>编译<a class="article-anchor" href="#编译" aria-hidden="true"></a></h1><p>参考 <a href="qemu.html#编译">QEMU+Eclipse+Ubuntu 进行单步调试</a> 创建一个 target，该 target 的配置如下：</p>
+<center><br><br><img src="k64f/target.jpg" width="40%"><br><br></center>
+
+<h1 id="调试" class="article-heading"><a href="#调试" class="headerlink" title="调试"></a>调试<a class="article-anchor" href="#调试" aria-hidden="true"></a></h1><h2 id="设置外部工具" class="article-heading"><a href="#设置外部工具" class="headerlink" title="设置外部工具"></a>设置外部工具<a class="article-anchor" href="#设置外部工具" aria-hidden="true"></a></h2><p>我们前面说了，调试的过程主要包括两个命令。第 1 个命令 <code>pyocd-gdbserver -p 3333 -t k64f</code> 用于启动 gdbserver，我们可以按照 QEMU+Eclipse+Ubuntu 进行单步调试 所述方法在控制台运行这个命令，不过这里我们尝试在 Eclipse 里面运行这个命令。要完成该功能，需要借助于 Eclipse 的外部工具功能。</p>
+<p>在 Eclipse 里面，依次选择 Run -&gt; External Tools -&gt; External Tools Configuations，在弹出的对话框中，新建一个 Programe 并按照如下方式进行填写：</p>
+<center><br><br><img src="k64f/pyOCD.jpg" width="80%"><br><br></center>
+
+<ul>
+<li>在 Location 处填写 pyocd-gdbserver 的完整路径</li>
+<li>在 Arguments 处填写传递给程序 pyocd-gdbserver 的参数</li>
+</ul>
+<p>然后点击 Apply 进行保存，点击 Run 运行该命令。</p>
+<p>运行完后，我们可以在 Console 窗口中看到如下消息。</p>
+<center><br><br><img src="k64f/pyocd-gdbserver.jpg" width="85%"><br><br></center>
+
+<p>我们可以看到，该窗口中的消息与我们在命令行运行 <code>make BOARD=frdm_k64f debug</code> 时打印的部分消息是一致的。</p>
+<h2 id="配置调试环境" class="article-heading"><a href="#配置调试环境" class="headerlink" title="配置调试环境"></a>配置调试环境<a class="article-anchor" href="#配置调试环境" aria-hidden="true"></a></h2><p>依次在菜单栏中选择 run-&gt;debug configuration，然后在弹出的界面中，双击 C/C++ remote Application 新建一个调试项目，并将其命名为 hello-world，然后再选择下面的 Select Other，在新弹出的界面中选择 Manual 这一项，然后保存。</p>
+<p>然后按下图所示进行填充。</p>
+<center><br><br><img src="k64f/debug-conf-1.jpg" width="85%"><br><br><img src="k64f/debug-conf-2.jpg" width="85%"><br><br><img src="k64f/debug-conf-3.jpg" width="85%"><br><br></center>
+
+<p>上面的 Debugger 选项卡就是与我们之前的命令行一一对应的。</p>
+<p>然后点击 apply 按钮保存(close 和 debug 两个按钮先不要动)。</p>
+<h2 id="开始调试" class="article-heading"><a href="#开始调试" class="headerlink" title="开始调试"></a>开始调试<a class="article-anchor" href="#开始调试" aria-hidden="true"></a></h2><p>在 Eclipse 里面点击调试按钮进行调试。在弹出的对话框中选择 Proceed 和 Yes 按钮。然后，终于可以了：</p>
+<h2 id="额外的设置" class="article-heading"><a href="#额外的设置" class="headerlink" title="额外的设置"></a>额外的设置<a class="article-anchor" href="#额外的设置" aria-hidden="true"></a></h2><p># </p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-04T16:19:46.000Z" itemprop="dateModified">上次更新：2017-08-04</time>
+                <a href="arduino_due.html" class="article-footer-prev" title="arduino due"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="kw41z.html" class="article-footer-next" title="kw41z"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#预装软件"><span class="toc-text">预装软件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#烧写程序"><span class="toc-text">烧写程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hello-world"><span class="toc-text">hello world</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用命令行调试"><span class="toc-text">使用命令行调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-Eclipse-IDT"><span class="toc-text">安装 Eclipse IDT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建工程。"><span class="toc-text">创建工程。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调试"><span class="toc-text">调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#设置外部工具"><span class="toc-text">设置外部工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置调试环境"><span class="toc-text">配置调试环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始调试"><span class="toc-text">开始调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#额外的设置"><span class="toc-text">额外的设置</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">搭建开发环境</strong><a href="ubuntu.html" class="sidebar-link">使用Ubuntu</a><a href="pre-install.html" class="sidebar-link">使用预安装版</a><a href="mac.html" class="sidebar-link">使用Mac</a><a href="win10-wsl.html" class="sidebar-link">使用Win10 Linux子系统</a><a href="windows.html" class="sidebar-link">使用Windows</a><strong class="sidebar-title">单步调试</strong><a href="overview.html" class="sidebar-link">概述</a><a href="qemu.html" class="sidebar-link">qemu</a><a href="arduino_101.html" class="sidebar-link">arduino 101</a><a href="arduino_due.html" class="sidebar-link">arduino due</a><a href="k64f.html" class="sidebar-link current">k64f</a><a href="kw41z.html" class="sidebar-link">kw41z</a><a href="nrf51.html" class="sidebar-link">nrf51</a><a href="nrf52.html" class="sidebar-link">nrf52</a><a href="stm32.html" class="sidebar-link">stm32</a><a href="cc3200.html" class="sidebar-link">cc3200</a><a href="cc2650.html" class="sidebar-link">cc2650</a><a href="96b_carbon.html" class="sidebar-link">96b carbon</a><a href="esp32.html" class="sidebar-link">esp32</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">搭建开发环境</strong><a href="ubuntu.html" class="mobile-nav-link">使用Ubuntu</a><a href="pre-install.html" class="mobile-nav-link">使用预安装版</a><a href="mac.html" class="mobile-nav-link">使用Mac</a><a href="win10-wsl.html" class="mobile-nav-link">使用Win10 Linux子系统</a><a href="windows.html" class="mobile-nav-link">使用Windows</a><strong class="mobile-nav-title">单步调试</strong><a href="overview.html" class="mobile-nav-link">概述</a><a href="qemu.html" class="mobile-nav-link">qemu</a><a href="arduino_101.html" class="mobile-nav-link">arduino 101</a><a href="arduino_due.html" class="mobile-nav-link">arduino due</a><a href="k64f.html" class="mobile-nav-link current">k64f</a><a href="kw41z.html" class="mobile-nav-link">kw41z</a><a href="nrf51.html" class="mobile-nav-link">nrf51</a><a href="nrf52.html" class="mobile-nav-link">nrf52</a><a href="stm32.html" class="mobile-nav-link">stm32</a><a href="cc3200.html" class="mobile-nav-link">cc3200</a><a href="cc2650.html" class="mobile-nav-link">cc2650</a><a href="96b_carbon.html" class="mobile-nav-link">96b carbon</a><a href="esp32.html" class="mobile-nav-link">esp32</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
