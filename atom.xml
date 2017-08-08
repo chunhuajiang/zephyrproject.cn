@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Zephyr中文社区</title>
+  <subtitle>Zephyr OS 中文社区</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://zephyrproject.cn/"/>
+  <updated>2017-08-08T09:51:27.805Z</updated>
+  <id>http://zephyrproject.cn/</id>
+  
+  <author>
+    <name>tidyjiang8@github</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>What&#39;s New</title>
+    <link href="http://zephyrproject.cn/blog/2223/10/23/news/"/>
+    <id>http://zephyrproject.cn/blog/2223/10/23/news/</id>
+    <published>2223-10-22T22:22:22.000Z</published>
+    <updated>2017-08-08T09:51:27.805Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

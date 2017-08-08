@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>生命周期 | Zephyr中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_thread_lifecycle.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+<meta property="og:type" content="website">
+<meta property="og:title" content="生命周期">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html">
+<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-08T09:57:41.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生命周期">
+<meta name="twitter:description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_thread_lifecycle.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">生命周期</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_thread_lifecycle.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
+</blockquote>
+<p><em>线程（thread）</em> 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 <em>线程标识符（thread id）</em> 来引用该线程。</p>
+<p>线程的注关键属性包括：</p>
+<ul>
+<li><strong>栈区域</strong>：一段用于线程控制块（<code>struct k_thread</code>）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。</li>
+<li><strong>入口点函数</strong>：线程启动时调用的函数。该函数最多能接收 3 个参数。</li>
+<li><strong>调度优先级</strong>：指示内核的调度器如何给该线程分配 CPU 时间。（参考 <a href="">调度</a>。）</li>
+<li><strong>线程选项</strong>：允许内核在特定场景中对该线程做某种特殊处理。（参考 <a href="">线程的选项</a>。）</li>
+<li><strong>启动时延</strong>： 指定线程在启动前需要等待的时间。</li>
+</ul>
+<h2 id="线程的创建" class="article-heading"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建<a class="article-anchor" href="#线程的创建" aria-hidden="true"></a></h2><p>线程必须先创建、再使用。创建线程时，内核将初始化线程栈区域的控制块区域以及栈的尾部。栈区域的其它部分通常都是未初始化的。</p>
+<p>如果指定的启动时延是 <code>K_NO_WAIT</code>，内核将立即启动线程。您也可以指定一个超时时间，让内核延迟启动该线程。例如，让线程需要使用的设备就绪后再启动线程。</p>
+<p>如果延迟启动的线程还未启动，内核可以取消该线程。如果线程已经启动了，则内核在尝试取消它时不会有如何效果。如果延迟启动的线程被成功地取消了，它必须被再次创建后才能再次使用。</p>
+<h2 id="线程的正常终止" class="article-heading"><a href="#线程的正常终止" class="headerlink" title="线程的正常终止"></a>线程的正常终止<a class="article-anchor" href="#线程的正常终止" aria-hidden="true"></a></h2><p>线程一旦启动，它通常会一直运行下去。不过，线程也可以从它的入口点函数中返回，从而同步结束执行。这种结束方式叫做 <strong>正常终止（terminaltion）</strong>。</p>
+<p>正常终止的线程需要在返回前释放它所拥有的共享资源（例如互斥量、动态分配的内存）。内核 不会 自动回收这些资源。</p>
+<blockquote>
+<p>Note: 当前内核不会做任何补偿。应用程序可以重新创建正常结束的线程。</p>
+</blockquote>
+<h2 id="线程的异常终止" class="article-heading"><a href="#线程的异常终止" class="headerlink" title="线程的异常终止"></a>线程的异常终止<a class="article-anchor" href="#线程的异常终止" aria-hidden="true"></a></h2><p>线程可以通过 <strong>异常终止 （aborting）</strong> 异步结束其执行。如果线程触发了一个致命错误（例如引用了空指针），内核将自动终止该线程。</p>
+<p>其它线程（或线程自己）可以调用 <code>k_thread_abort()</code> 终止一个线程。不过，更优雅的做法是向线程发送一个信号，让该线程自己结束执行。</p>
+<p>线程终止时，内核不会自动回收该线程拥有的共享资源。</p>
+<blockquote>
+<p>Note: 当前内核不会做任何补偿。应用程序可以重新创建异常终止的线程。</p>
+</blockquote>
+<h2 id="线程的挂起" class="article-heading"><a href="#线程的挂起" class="headerlink" title="线程的挂起"></a>线程的挂起<a class="article-anchor" href="#线程的挂起" aria-hidden="true"></a></h2><p>如果一个线程被挂起，它将在一段不确定的时间内暂停执行。函数 <code>k_thread_suspend()</code> 可以用于挂起包括调用线程在内的所有线程。对已经挂起的线程再次挂起时不会产生任何效果。</p>
+<p>线程一旦被挂起，它将一直不能被调度，除非另一个线程调用 <code>k_thread_resume()</code> 取消挂起。</p>
+<blockquote>
+<p>Note: 线程可以使用 <code>k_sleep()</code> 睡眠一段指定的时间。不过，这与挂起不同，睡眠线程在睡眠时间完成后会自动运行。</p>
+</blockquote>
+<h2 id="线程的选项" class="article-heading"><a href="#线程的选项" class="headerlink" title="线程的选项"></a>线程的选项<a class="article-anchor" href="#线程的选项" aria-hidden="true"></a></h2><p>内核支持一系列 线程选项（thread options），以允许线程在特殊情况下被特殊对待。这些与线程关联的选项在线程创建时就被指定了。</p>
+<p>不需要任何线程选项的线程的选项值是零。如果线程需要选项，您可以通过选项名指定。如果需要多个选项，使用符号 | 作为分隔符。（即按位或操作符）。</p>
+<p>支持如下选项：</p>
+<p><strong><em><code>K_ESSENTIAL</code></em></strong></p>
+<p>　　该选项将线程标记为 必须线程（essential thread），表示当该线程正常结束或异常终止时，内核将认为产生了一个致命的系统错误。</p>
+<p>　　默认情况下，一般线程都不是必须线程。</p>
+<p><strong><em><code>K_FP_REGS</code></em></strong> 和 <strong><em><code>K_SSE_REGS</code></em></strong></p>
+<p>　　这两个选项是 x86 相关的选项，分别表示线程使用 CPU 的浮点寄存器和 SSE 寄存器，指示内核在调度线程进行时需要采取额外的步骤来保存/恢复这些寄存器的上下文。（更多信息请参考 浮点服务）。<br>　　<br>　　默认情况下，内核在调度线程时不会保存/恢复这些寄存器的上下文。</p>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="创建一个线程" class="article-heading"><a href="#创建一个线程" class="headerlink" title="创建一个线程"></a>创建一个线程<a class="article-anchor" href="#创建一个线程" aria-hidden="true"></a></h2><p>您可以通过定义线程的栈区域并调用 <code>k_thread_spawn()</code> 创建一个线程。栈区域是一个由字节构成的数组，且其大小必须等于 <code>K_THREAD_SIZEOF</code> 加上线程栈大小之和。栈区域必须使用属性 <code>__stack</code> 进行定义，以确保被正确对齐。</p>
+<p>创建线程的函数会返回该线程的标识符（ID），您可以使用该标识符来引用该线程。</p>
+<p>下面的代码创建了一个立即启动的线程。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#define MY_STACK_SIZE 500</div><div class="line">#define MY_PRIORITY 5</div><div class="line"></div><div class="line">extern void my_entry_point(void *, void *, void *);</div><div class="line"></div><div class="line">K_THREAD_STACK_DEFINE(my_stack_area, MY_STACK_SIZE);</div><div class="line">struct k_thread my_thread_data;</div><div class="line"></div><div class="line">k_tid_t my_tid = k_thread_create(&amp;my_thread_data, my_stack_area,</div><div class="line">                                 K_THREAD_STACK_SIZEOF(my_stack_area),</div><div class="line">                                 my_entry_point,</div><div class="line">                                 NULL, NULL, NULL,</div><div class="line">                                 MY_PRIORITY, 0, K_NO_WAIT);</div></pre></td></tr></table></figure>
+<p>您也可以调用 ｀K_THREAD_DEFINE｀ 在编译时创建线程。需要注意的是，这个宏自动定义了一个栈区域以及一个线程标识符变量。</p>
+<p>下面的代码与上面的代码具有相同的效果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#define MY_STACK_SIZE 500</div><div class="line">#define MY_PRIORITY 5</div><div class="line"></div><div class="line">extern void my_entry_point(void *, void *, void *);</div><div class="line"></div><div class="line">K_THREAD_DEFINE(my_tid, MY_STACK_SIZE,</div><div class="line">                my_entry_point, NULL, NULL, NULL,</div><div class="line">                MY_PRIORITY, 0, K_NO_WAIT);</div></pre></td></tr></table></figure>
+<h2 id="结束一个线程" class="article-heading"><a href="#结束一个线程" class="headerlink" title="结束一个线程"></a>结束一个线程<a class="article-anchor" href="#结束一个线程" aria-hidden="true"></a></h2><p>线程可以从它的入口点函数中返回，以正常结束其运行。</p>
+<p>下面的代码描述了线程正常结束的方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void my_entry_point(int unused1, int unused2, int unused3)</div><div class="line">&#123;</div><div class="line">    while (1) &#123;</div><div class="line">        ...</div><div class="line">        if (&lt;some condition&gt;) &#123;</div><div class="line">            return; /* thread terminates from mid-entry point function */</div><div class="line">        &#125;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /* thread terminates at end of entry point function */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>建议使用线程来处理不便于在终端服务例程中处理的任务。</p>
+<p>建议为每个在逻辑上有差异的任务创建一个独立的线程，让它们并行执行。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li>无。</li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p>头文件 <code>kernel.h</code> 提供了如下的线程生命周期 API：</p>
+<ul>
+<li><code>K_THREAD_DEFINE</code></li>
+<li><code>k_thread_spawn()</code></li>
+<li><code>k_thread_cancel()</code></li>
+<li><code>k_thread_abort()</code></li>
+<li><code>k_thread_suspend()</code></li>
+<li><code>k_thread_resume()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-08T09:57:41.785Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                <a href="introduce.html" class="article-footer-next" title="Zephyr简介"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的创建"><span class="toc-text">线程的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的正常终止"><span class="toc-text">线程的正常终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的异常终止"><span class="toc-text">线程的异常终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的挂起"><span class="toc-text">线程的挂起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的选项"><span class="toc-text">线程的选项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个线程"><span class="toc-text">创建一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束一个线程"><span class="toc-text">结束一个线程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">Linux</a><a href="start_mac.html" class="sidebar-link">Mac</a><a href="start_win.html" class="sidebar-link">Win</a><strong class="sidebar-title">内核入门</strong><a href="k_overview.html" class="sidebar-link">概述</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">Linux</a><a href="start_mac.html" class="mobile-nav-link">Mac</a><a href="start_win.html" class="mobile-nav-link">Win</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview.html" class="mobile-nav-link">概述</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_thread_lifecycle.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

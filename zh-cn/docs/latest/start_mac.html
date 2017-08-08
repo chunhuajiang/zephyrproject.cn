@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>在 Mac OS 下搭建开发环境 | Zephyr中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/start_mac.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/start_mac.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/start_mac.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="翻译：tidyjiang8  本节描述如何搭建 Mac OS 开发环境。 完成这些操作后，您将能够在如下版本的 Mac OS 下编译、运行 Zephyr 应用程序。  Mac OS X 10.11 (El Capitan) macOS Sierra 10.12  在 OS X 上开发 Zephyr 需要您自己编译工具链。不过，如果您的目标架构已经有 OS X 的工具链了，您可以直接使用它。 使用">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在 Mac OS 下搭建开发环境">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/start_mac.html">
+<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:description" content="翻译：tidyjiang8  本节描述如何搭建 Mac OS 开发环境。 完成这些操作后，您将能够在如下版本的 Mac OS 下编译、运行 Zephyr 应用程序。  Mac OS X 10.11 (El Capitan) macOS Sierra 10.12  在 OS X 上开发 Zephyr 需要您自己编译工具链。不过，如果您的目标架构已经有 OS X 的工具链了，您可以直接使用它。 使用">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-08T09:56:27.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Mac OS 下搭建开发环境">
+<meta name="twitter:description" content="翻译：tidyjiang8  本节描述如何搭建 Mac OS 开发环境。 完成这些操作后，您将能够在如下版本的 Mac OS 下编译、运行 Zephyr 应用程序。  Mac OS X 10.11 (El Capitan) macOS Sierra 10.12  在 OS X 上开发 Zephyr 需要您自己编译工具链。不过，如果您的目标架构已经有 OS X 的工具链了，您可以直接使用它。 使用">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/start_mac.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">在 Mac OS 下搭建开发环境</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/start_mac.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
+</blockquote>
+<p>本节描述如何搭建 Mac OS 开发环境。</p>
+<p>完成这些操作后，您将能够在如下版本的 Mac OS 下编译、运行 Zephyr 应用程序。</p>
+<ul>
+<li>Mac OS X 10.11 (El Capitan)</li>
+<li>macOS Sierra 10.12</li>
+</ul>
+<p>在 OS X 上开发 Zephyr 需要您自己编译工具链。不过，如果您的目标架构已经有 OS X 的工具链了，您可以直接使用它。</p>
+<h1 id="使用三方工具链" class="article-heading"><a href="#使用三方工具链" class="headerlink" title="使用三方工具链"></a>使用三方工具链<a class="article-anchor" href="#使用三方工具链" aria-hidden="true"></a></h1><p>如果您想使用的架构已经有工具链，您可以参考<a href="start_index.html#使用自定义-三方交叉编译器">使用自定义/三方交叉编译器</a>使用它。</p>
+<p>例如，如果是以 Coretex-M 家族为核心的开发板，您可以直接使用三方工具链 GCC ARM Embedded。</p>
+<h1 id="安装需求和依赖" class="article-heading"><a href="#安装需求和依赖" class="headerlink" title="安装需求和依赖"></a>安装需求和依赖<a class="article-anchor" href="#安装需求和依赖" aria-hidden="true"></a></h1><p>要在 Mac 上安装编译 Zephyr 内核的软件组件，您需要为使用编译系统的目标设备编译一个交叉编译器。</p>
+<blockquote>
+<p>对下面列举的所需的软件包的镜像版进行更行应该也能工作。</p>
+</blockquote>
+<p>在进行编译前，请先确保您的系统已经更新到最新了。</p>
+<p>首先，您需要安装 Homebrew （OS X 默认未安装该包）。Homebrew 是一个免费、开源的软件包管理系统，能简化苹果 OS X 操作系统上安装软件的过程。</p>
+<p>请访问 <a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a> 并按照该网站的安装指示安装 Homebrew。</p>
+<p>在安装 Homebrew 的过程中，系统可能会提示您安装一些缺失的依赖，请按照指示进行安装。</p>
+<p>安装完 Homebrew 后，请使用 brew 的命令行安装如下工具。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ brew install dfu-util qemu dtc python3</div><div class="line">$ pip3 install ply pyyaml</div></pre></td></tr></table></figure>
+<p>安装编译工具链所需工具（如果有需要）：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ brew install gettext help2man mpfr gmp coreutils wget</div><div class="line">$ brew tap homebrew/dupes</div><div class="line">$ brew install grep --with-default-names</div></pre></td></tr></table></figure></p>
+<p>要编译工具链，您必须安装最新版的 crosstool-ng（1.23）。在编写本文档时，该版本还不能使用 brew 安装，不过你可以自己试一下。<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ brew install crosstool-ng</div></pre></td></tr></table></figure></p>
+<p>您也可以从源码安装最新版的 <a href="http://crosstool-ng.org/" target="_blank" rel="external">crosstool-ng</a>。最新版通常支持最新发布的编译器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2</div><div class="line">$ tar xvf crosstool-ng-1.23.0.tar.bz2</div><div class="line">$ <span class="built_in">cd</span> crosstool-ng-1.23.0/</div><div class="line">$ ./configure</div><div class="line">$ make</div><div class="line">$ make install</div></pre></td></tr></table></figure>
+<h1 id="设置工具链" class="article-heading"><a href="#设置工具链" class="headerlink" title="设置工具链"></a>设置工具链<a class="article-anchor" href="#设置工具链" aria-hidden="true"></a></h1><h2 id="创建一个大小写敏感的文件系统" class="article-heading"><a href="#创建一个大小写敏感的文件系统" class="headerlink" title="创建一个大小写敏感的文件系统"></a>创建一个大小写敏感的文件系统<a class="article-anchor" href="#创建一个大小写敏感的文件系统" aria-hidden="true"></a></h2><p>编译编译器需要一个大小写敏感的文件系统。您可以使用程序 diskutil 创建一个 8 GB 的空白镜像，且选择大小写敏感的文件系统（OS X 扩展（大小写敏感，日志式）），然后挂载它。</p>
+<p>您也可以直接使用下面的脚本创建镜像：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">ImageName=CrossToolNG</div><div class="line">ImageNameExt=<span class="variable">$&#123;ImageName&#125;</span>.sparseimage</div><div class="line">diskutil umount force /Volumes/<span class="variable">$&#123;ImageName&#125;</span> &amp;&amp; <span class="literal">true</span></div><div class="line">rm -f <span class="variable">$&#123;ImageNameExt&#125;</span> &amp;&amp; <span class="literal">true</span></div><div class="line">hdiutil create <span class="variable">$&#123;ImageName&#125;</span> -volname <span class="variable">$&#123;ImageName&#125;</span> -<span class="built_in">type</span> SPARSE -size 8g -fs HFSX</div><div class="line">hdiutil mount <span class="variable">$&#123;ImageNameExt&#125;</span></div><div class="line"><span class="built_in">cd</span> /Volumes/<span class="variable">$ImageName</span></div></pre></td></tr></table></figure></p>
+<p>镜像被挂载后，它将位于目录 /Volumes 下。进入该目录：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ cd /Volumes/CrossToolNG</div><div class="line">$ mkdir build</div><div class="line">$ cd build</div></pre></td></tr></table></figure></p>
+<h2 id="设置工具链选项" class="article-heading"><a href="#设置工具链选项" class="headerlink" title="设置工具链选项"></a>设置工具链选项<a class="article-anchor" href="#设置工具链选项" aria-hidden="true"></a></h2><p>在 Zephyr 内核源码树下，我们为 ARM 和 X86 提供了两种配置，可用于预选择编译工具链的选项。配置文件位于 <code>$ZEPHYR_BASE/scripts/cross_compiler/</code>。</p>
+<p>当前提供了如下配置：</p>
+<ul>
+<li>i586.config：用于标准的 ABI，例如用于 Galileo 和 qemu_x86</li>
+<li>iamcu.config：用于 IAMCU ABI，例如用于 Arduino 101</li>
+<li>nios2.config：用于 Nios II 开发板</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ cp <span class="variable">$&#123;ZEPHYR_BASE&#125;</span>/scripts/cross_compiler/i586.config .config</div></pre></td></tr></table></figure>
+<p>您可以使用配置菜单创建一个新的配置或者基于已有的配置进行修改：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">export</span> CT_PREFIX=/Volumes/CrossToolNG</div><div class="line">$ ct-ng menuconfig</div></pre></td></tr></table></figure></p>
+<h2 id="验证工具链的配置" class="article-heading"><a href="#验证工具链的配置" class="headerlink" title="验证工具链的配置"></a>验证工具链的配置<a class="article-anchor" href="#验证工具链的配置" aria-hidden="true"></a></h2><p>建议在编译工具链前对配置进行一个快速校验。</p>
+<ol>
+<li>打开生成的配置文件 <code>.config</code>。</li>
+<li>假设镜像被挂载到目录 /Volumes/CrossToolNG 下。确认存在以下代码：<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">...</div><div class="line">CT_LOCAL_TARBALLS_DIR=<span class="string">"/Volumes/CrossToolNG/src"</span></div><div class="line"><span class="comment"># CT_SAVE_TARBALLS is not set</span></div><div class="line">CT_WORK_DIR=<span class="string">"<span class="variable">$&#123;CT_TOP_DIR&#125;</span>/.build"</span></div><div class="line">CT_PREFIX_DIR=<span class="string">"/Volumes/CrossToolNG/x-tools/<span class="variable">$&#123;CT_TARGET&#125;</span>"</span></div><div class="line">CT_INSTALL_DIR=<span class="string">"<span class="variable">$&#123;CT_PREFIX_DIR&#125;</span>"</span></div><div class="line"><span class="comment"># Following options prevent link errors</span></div><div class="line">CT_WANTS_STATIC_LINK=n</div><div class="line">CT_CC_STATIC_LIBSTDCXX=n</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="编译工具链" class="article-heading"><a href="#编译工具链" class="headerlink" title="编译工具链"></a>编译工具链<a class="article-anchor" href="#编译工具链" aria-hidden="true"></a></h2><p>输入如下命令编译工具链：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ ct-ng build</div></pre></td></tr></table></figure></p>
+<p>上面的过程需要一定的时间。当编译完成后，生成的工具链将位于 <code>/Volumes/CrossToolNG/x-tools</code> 目录下。</p>
+<p>如果您还需要在您的环境中支持其它架构，请重复上面的步骤。</p>
+<p>要在 Zephyr 中使用工具链，您还需要 export 下面的环境变量，指明工具链的安装路径：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">export</span> ZEPHYR_GCC_VARIANT=xtools</div><div class="line">$ <span class="built_in">export</span> XTOOLS_TOOLCHAIN_PATH=/Volumes/CrossToolNG/x-tools</div></pre></td></tr></table></figure></p>
+<p>如果您希望将来新在的会话中也是使用该工具链，您可以上面的设置添加到文件 <code>$HOME/.zephyrrc</code> 中，例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ cat &lt;&lt;EOF &gt; ~/.zephyrrc</div><div class="line">export XTOOLS_TOOLCHAIN_PATH=/Volumes/CrossToolNG/x-tools</div><div class="line">export ZEPHYR_GCC_VARIANT=xtools</div><div class="line">EOF</div></pre></td></tr></table></figure></p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-08T09:56:27.537Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                <a href="start_linux.html" class="article-footer-prev" title="Linux"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="start_win.html" class="article-footer-next" title="Win"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用三方工具链"><span class="toc-text">使用三方工具链</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装需求和依赖"><span class="toc-text">安装需求和依赖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#设置工具链"><span class="toc-text">设置工具链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个大小写敏感的文件系统"><span class="toc-text">创建一个大小写敏感的文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置工具链选项"><span class="toc-text">设置工具链选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证工具链的配置"><span class="toc-text">验证工具链的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译工具链"><span class="toc-text">编译工具链</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">Linux</a><a href="start_mac.html" class="sidebar-link current">Mac</a><a href="start_win.html" class="sidebar-link">Win</a><strong class="sidebar-title">内核入门</strong><a href="k_overview.html" class="sidebar-link">概述</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">Linux</a><a href="start_mac.html" class="mobile-nav-link current">Mac</a><a href="start_win.html" class="mobile-nav-link">Win</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview.html" class="mobile-nav-link">概述</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/start_mac.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

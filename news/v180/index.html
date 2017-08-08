@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Zephyr OS 重磅推出1.8版本，源代码迁往GitHub | Zephyr中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/news/v180/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/news/v180/index.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/news/v180/index.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="专为资源受限设备开发的 Zephyr 物联网操作系统宣布推出最新的 1.8 版本，对比上一版本，v1.8 的主要更新包括以下几点：  Tickless 内核 BT 5.0 功能 生态系统：支持通过第三方工具 Tracing 和 Debugging 改进的 Build 和 Debug 第三方编译器支持 Xtensa GCC 支持 改进的 Build on Mac / Windows MMU / MP">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zephyr OS 重磅推出1.8版本，源代码迁往GitHub">
+<meta property="og:url" content="http://zephyrproject.cn/news/v180/index.html">
+<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:description" content="专为资源受限设备开发的 Zephyr 物联网操作系统宣布推出最新的 1.8 版本，对比上一版本，v1.8 的主要更新包括以下几点：  Tickless 内核 BT 5.0 功能 生态系统：支持通过第三方工具 Tracing 和 Debugging 改进的 Build 和 Debug 第三方编译器支持 Xtensa GCC 支持 改进的 Build on Mac / Windows MMU / MP">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://zephyrproject.cn/news/v180/github.jpg">
+<meta property="og:updated_time" content="2017-08-08T09:53:16.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zephyr OS 重磅推出1.8版本，源代码迁往GitHub">
+<meta name="twitter:description" content="专为资源受限设备开发的 Zephyr 物联网操作系统宣布推出最新的 1.8 版本，对比上一版本，v1.8 的主要更新包括以下几点：  Tickless 内核 BT 5.0 功能 生态系统：支持通过第三方工具 Tracing 和 Debugging 改进的 Build 和 Debug 第三方编译器支持 Xtensa GCC 支持 改进的 Build on Mac / Windows MMU / MP">
+<meta name="twitter:image" content="http://zephyrproject.cn/news/v180/github.jpg">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Zephyr OS 重磅推出1.8版本，源代码迁往GitHub</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/news/v180/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>专为资源受限设备开发的 Zephyr 物联网操作系统宣布推出最新的 <strong>1.8 版本</strong>，对比上一版本，v1.8 的主要更新包括以下几点：</p>
+<ul>
+<li>Tickless 内核</li>
+<li>BT 5.0 功能</li>
+<li>生态系统：支持通过第三方工具 Tracing 和 Debugging</li>
+<li>改进的 Build 和 Debug</li>
+<li>第三方编译器支持</li>
+<li>Xtensa GCC 支持</li>
+<li>改进的 Build on Mac / Windows</li>
+<li>MMU / MPU： 初步支持（WIP）</li>
+<li>扩展设备支持</li>
+</ul>
+<p>这次发布是开源项目研发的一个重要里程碑： <strong>将主要的源代码迁移到 GitHub ，从而进一步促进社区贡献和协作</strong> 。</p>
+<a id="more"></a>
+<p><img src="github.jpg" alt=""></p>
+<p>通过实施这一改变，开发者和贡献者可以通过提交 Pull 请求进行修改和添加，简化了审查和验收流程。随着过渡工作完成，300 多个 Pull 请求已经合并到 Zephyr 源代码中，Zephyr 项目欢迎更多代码或者文档贡献到代码库中。<br>除了在 Gitub 上托管外， Zephyr 资源可以轻松地在 Microsoft Windows 上构建：从 MinGW 向 MSYS2 的过渡允许用户轻松地在该平台上进行编译，不用担心之前在 Windows 构建环境中出现的稳定性问题。</p>
+<p>此外，Windows 完全支持目前需要 Device Tree 支持的目标平台，从而可以采用微软操作系统来使用、开发，并贡献到 Zephyr 项目。</p>
+<p>但是核心的实时操作系统自上次发布以来也看到了大量改变。<strong>新的 tickless 内核优化推出，在电源管理中引入了一个“race to idle”方法，允许内核不中断地休眠，直到需要系统关注的事件唤醒它，而不需要定期的基于 tick 的中断</strong>。另外，可以在某些平台支持和启用内存保护单元 (MPU)，这进一步加强了 Zephyr 项目对安全的承诺, 这也是项目理念的基本宗旨之一。不同执行代码之间的内存保护可以防止干扰甚至恶意篡改，而这只是个开始，Zephyr 会不断努力在后续版本中加强内核及子系统。</p>
+<p>如今网络子系统配有一个 HTTP 客户端和服务器库，这允许嵌入式系统使用最流行的网络协议，并且不需要第三方软件，再加上最新的网络线程模型优化（由新内核的轮询API支持）和基于分组的接口进一步增强了 Zephyr 的内置原生IP堆栈，实现比以往更强大的 IoT 应用程序和使用案例。</p>
+<p>最后，<strong>蓝牙子系统已经从最近推出的蓝牙 5 规范中获得新的和令人兴奋的功能的支持</strong>。Nordic 半导体公司某些 IC 运行 Zephyr 操作系统，现在能够超越蓝牙低功耗，以 2Mbit/s PHY 的速度进行数据传输，超过1.3 Mbit / s 的应用吞吐量，并且可以使用 nRF52 系列微控制器最新的 nRF52840 的编码PHY功能实现长距离通信。这只是迈向全面支持蓝牙 5 的第一步，这将继续到下版本，一个带有标志性的功能推出：广播协议扩展。</p>
+<p>衷心地感谢所有对社区做出贡献的人们，新版本的发布离不开你们的贡献。欢迎开发者下载并使用 Zephyr OS 1.8，同时欢迎将意见和建议反馈到社区。</p>
+<p>开发者可以通过点击阅读原文下载 Zephyr OS 1.8，或者进入 Zephyr 官网下载。</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-08T09:53:16.209Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <strong class="sidebar-title">目录</strong>
+              
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
