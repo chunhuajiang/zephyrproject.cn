@@ -25,12 +25,19 @@ sidebar:
     zephyr_introduce: Zephyr简介
     getting_started: 入门指导
     start_index: 搭建开发环境
-    win: Win
-    macos: Mac
-    linux: Linux
+    win: '　>Win平台'
+    macos: '　>Mac平台'
+    linux: '　>Linux平台'
     kernel_primer: 内核入门
-    kernel_overview: 概述
-    kernel_thread: 线程
+    kernel_overview: '概述'
+    k_overview_change: '　>源代码目录结构'
+    k_overview_tree: '　>与第1版内核的改动'
+    kernel_thread: '线程'
+    k_thread_lifecycle: '　>生命周期'
+    k_thread_scheduling: '　>调度' 
+    k_thread_customdata: '　>自定义数据'
+    k_thread_systhread:  '　>系统线程'
+    k_thread_workqueue:  '　>工作队列线程'
     kernel_timing: 定时
     kernel_memory: 内存分配
     kernel_sync: 同步

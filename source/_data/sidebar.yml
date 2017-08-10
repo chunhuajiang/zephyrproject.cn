@@ -7,8 +7,15 @@ docs:
     macos: start_mac.html
     win: start_win.html
   kernel_primer:
-    kernel_overview: k_overview.html
+    kernel_overview: k_overview_index.html
+    k_overview_change: k_overview_change.html
+    k_overview_tree: k_overview_tree.html
     kernel_thread: k_thread.html
+    k_thread_lifecycle: k_thread_lifecycle.html
+    k_thread_scheduling: k_thread_scheduling.html
+    k_thread_customdata: k_thread_customdata.html
+    k_thread_systhread: k_thread_systhread.html
+    k_thread_workqueue: k_thread_workqueue.html
     kernel_timing: k_timing.html
     kernel_memory: k_memory.html
     kernel_sync: k_sync.html
