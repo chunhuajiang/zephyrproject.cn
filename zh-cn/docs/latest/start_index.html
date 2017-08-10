@@ -48,7 +48,7 @@
 <meta property="og:site_name" content="Zephyr中文社区">
 <meta property="og:description" content="翻译：tidyjiang8  Zephyr 项目支持如下操作系统：  Linux Mac OS Windows  请先按照下面的步骤搭建一个开发环境，然后再继续后续的操作。  在 Linux 下搭建开发环境 在 Mac OS 下搭建开发环境 在 Windows 下设置开发环境  下载源代码Zephyr 的源代码托管在 GitHub 的仓库上，您可以通过 git 工具进行匿名克隆。 要匿名克隆 Z">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-08T09:56:27.533Z">
+<meta property="og:updated_time" content="2017-08-10T08:53:35.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zephyr 入门指导">
 <meta name="twitter:description" content="翻译：tidyjiang8  Zephyr 项目支持如下操作系统：  Linux Mac OS Windows  请先按照下面的步骤搭建一个开发环境，然后再继续后续的操作。  在 Linux 下搭建开发环境 在 Mac OS 下搭建开发环境 在 Windows 下设置开发环境  下载源代码Zephyr 的源代码托管在 GitHub 的仓库上，您可以通过 git 工具进行匿名克隆。 要匿名克隆 Z">
@@ -132,57 +132,57 @@
 </ul>
 <h1 id="下载源代码" class="article-heading"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码<a class="article-anchor" href="#下载源代码" aria-hidden="true"></a></h1><p>Zephyr 的源代码托管在 GitHub 的仓库上，您可以通过 git 工具进行匿名克隆。</p>
 <p>要匿名克隆 Zephyr 的代码仓库，请输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/zephyrproject-rtos/zephyr.git</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/zephyrproject-rtos/zephyr.git</div></pre></td></tr></table></figure>
 <p>然后，您将在您的本地机器上成功地检出源代码的一份副本。</p>
 <h1 id="编译、运行应用程序" class="article-heading"><a href="#编译、运行应用程序" class="headerlink" title="编译、运行应用程序"></a>编译、运行应用程序<a class="article-anchor" href="#编译、运行应用程序" aria-hidden="true"></a></h1><p>下面的章节将利用一个简单的 “Hello World” 作为基础模型，向您展示创建一个 Zephyr 应用程序所涉及到的内容。</p>
 <p>各种操作系统上编译、运行 Zephyr 应用程序的过程是类似的。尽管如此，不同操作系统的命令终究会略有区别。本节所有的命令都是基于 Linux 开发环境的，如果您使用的是其它操作系统，请使用该操作系统所对应的命令。</p>
 <h2 id="编译一个简单的应用程序" class="article-heading"><a href="#编译一个简单的应用程序" class="headerlink" title="编译一个简单的应用程序"></a>编译一个简单的应用程序<a class="article-anchor" href="#编译一个简单的应用程序" aria-hidden="true"></a></h2><p>请按照下面的步骤编译一个简单的应用程序例程：</p>
 <ol>
 <li><p>export 下列环境变量，以确保您的环境被正确地设置。以 Linux 为例，输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> ZEPHYR_GCC_VARIANT=zephyr</div><div class="line"><span class="built_in">export</span> ZEPHYR_SDK_INSTALL_DIR=&lt;sdk installation directory&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">export</span> ZEPHYR_GCC_VARIANT=zephyr</div><div class="line">$ <span class="built_in">export</span> ZEPHYR_SDK_INSTALL_DIR=&lt;sdk installation directory&gt;</div></pre></td></tr></table></figure>
 </li>
 <li><p>进入项目主目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span> zephyr</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> zephyr</div></pre></td></tr></table></figure>
 </li>
 <li><p>对环境变量文件执行 source 操作，使其生效：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">source</span> zephyr-env.sh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">source</span> zephyr-env.sh</div></pre></td></tr></table></figure>
 </li>
 <li><p>以编译 <a href="https://www.zephyrproject.org/doc/samples/hello_world/README.html#hello-world" target="_blank" rel="external">Hello World</a> 为例，输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">make</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">$ make</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>上面的 make 命令将使用在应用程序 Makefile 中的定义来编译 <a href="https://www.zephyrproject.org/doc/samples/hello_world/README.html#hello-world" target="_blank" rel="external">Hello World</a> 例程。您可以通过指定变量 BOARD 为不同的开发板编译不同的程序，例如：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">make BOARD=arduino_101</div></pre></td></tr></table></figure></p>
-<p>关于 Zephyr 所支持的开发板，请参考<a href="https://www.zephyrproject.org/doc/boards/boards.html" target="_blank" rel="external">这里</a>。您也可以输入以下命令查看 Zephyr 所支持的开发板。<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">make <span class="built_in">help</span></div></pre></td></tr></table></figure></p>
+<p>上面的 make 命令将使用在应用程序 Makefile 中的定义来编译 <a href="https://www.zephyrproject.org/doc/samples/hello_world/README.html#hello-world" target="_blank" rel="external">Hello World</a> 例程。您可以通过指定变量 BOARD 为不同的开发板编译不同的程序，例如：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ make BOARD=arduino_101</div></pre></td></tr></table></figure></p>
+<p>关于 Zephyr 所支持的开发板，请参考<a href="https://www.zephyrproject.org/doc/boards/boards.html" target="_blank" rel="external">这里</a>。您也可以输入以下命令查看 Zephyr 所支持的开发板。<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ make <span class="built_in">help</span></div></pre></td></tr></table></figure></p>
 <p>目录 <code>$ZEPHYR_BASE/samples</code> 下包含了 Zephyr 各种功能特性的例程工程。当应用程序编译成功后，您可以在应用程序根目录下的 <code>outdir</code> 子目录中看到编译生成的文件。</p>
 <p>编译系统默认会生成名为 <code>zephyr.elf</code> 的可执行文件。您也可以在应用程序的配置文件中进行配置，为不同的硬件和开发板指定不同的可执行文件名字。</p>
 <h2 id="使用自定义-三方交叉编译器" class="article-heading"><a href="#使用自定义-三方交叉编译器" class="headerlink" title="使用自定义/三方交叉编译器"></a>使用自定义/三方交叉编译器<a class="article-anchor" href="#使用自定义-三方交叉编译器" aria-hidden="true"></a></h2><p>为了便于使用，Zephyr 提供了一套软件开发工具（SDK）。Zephyr SDK 为所有所支持的操作系统都提供了交叉编译器，因此您无需进行额外的配置。</p>
 <p>如果您想使用自定义的交叉编译器，或者如果您想使用厂家提供的 SDK，您可以按照下列步骤进行设置。</p>
 <ol>
 <li><p>为了避免与 Zephyr SDK 冲突，先输入如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">unset</span> ZEPHYR_GCC_VARIANT</div><div class="line"><span class="built_in">unset</span> ZEPHYR_SDK_INSTALL_DIR</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">unset</span> ZEPHYR_GCC_VARIANT</div><div class="line">$ <span class="built_in">unset</span> ZEPHYR_SDK_INSTALL_DIR</div></pre></td></tr></table></figure>
 </li>
 <li><p>我们以 <a href="https://launchpad.net/gcc-arm-embedded" target="_blank" rel="external">GCC ARM Embedded</a> 编译器为例。从 <a href="https://launchpad.net/gcc-arm-embedded" target="_blank" rel="external">GCC ARM Embedded</a> 下载一个适合您的操作系统的软件包，然后将其解压到您的文件系统中。假设该编译器被解压到： <code>~/gcc-arm-none-eabi-5_3-2016q1/</code>。</p>
 </li>
 <li><p>进入项目主目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">cd</span> zephyr</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> zephyr</div></pre></td></tr></table></figure>
 </li>
 <li><p>对项目环境文件执行 source 操作：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">source</span> zephyr-env.sh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">source</span> zephyr-env.sh</div></pre></td></tr></table></figure>
 </li>
 <li><p>以编译 <a href="https://www.zephyrproject.org/doc/samples/hello_world/README.html#hello-world" target="_blank" rel="external">Hello World</a> 为例，依次执行（注，编译时在命令行中指明了变量 CROSS_COMPILE 的值）：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> GCCARMEMB_TOOLCHAIN_PATH=<span class="string">"~/gcc-arm-none-eabi-5_3-2016q1/"</span></div><div class="line"><span class="built_in">export</span> ZEPHYR_GCC_VARIANT=gccarmemb</div><div class="line"><span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">make CROSS_COMPILE=~/gcc-arm-none-eabi-5_3-2016q1/bin/arm-none-eabi- BOARD=arduino_due</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">export</span> GCCARMEMB_TOOLCHAIN_PATH=<span class="string">"~/gcc-arm-none-eabi-5_3-2016q1/"</span></div><div class="line">$ <span class="built_in">export</span> ZEPHYR_GCC_VARIANT=gccarmemb</div><div class="line">$ <span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">$ make CROSS_COMPILE=~/gcc-arm-none-eabi-5_3-2016q1/bin/arm-none-eabi- BOARD=arduino_due</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>上面的命令将使用您从 <a href="https://launchpad.net/gcc-arm-embedded" target="_blank" rel="external">GCC ARM Embedded</a> 下载的工具链编译应用例程。</p>
-<p>另外，您也可以使用已存在的支持 GCC ARM Embedded 的工具链：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> GCCARMEMB_TOOLCHAIN_PATH=<span class="string">"~/gcc-arm-none-eabi-5_3-2016q1/"</span></div><div class="line"><span class="built_in">export</span> ZEPHYR_GCC_VARIANT=gccarmemb</div><div class="line"><span class="built_in">cd</span> zephyr</div><div class="line"><span class="built_in">source</span> zephyr-env.sh</div><div class="line"><span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">make BOARD=arduino_due</div></pre></td></tr></table></figure></p>
+<p>另外，您也可以使用已存在的支持 GCC ARM Embedded 的工具链：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ <span class="built_in">export</span> GCCARMEMB_TOOLCHAIN_PATH=<span class="string">"~/gcc-arm-none-eabi-5_3-2016q1/"</span></div><div class="line">$ <span class="built_in">export</span> ZEPHYR_GCC_VARIANT=gccarmemb</div><div class="line">$ <span class="built_in">cd</span> zephyr</div><div class="line">$ <span class="built_in">source</span> zephyr-env.sh</div><div class="line">$ <span class="built_in">cd</span> <span class="variable">$ZEPHYR_BASE</span>/samples/hello_world</div><div class="line">$ make BOARD=arduino_due</div></pre></td></tr></table></figure></p>
 <h2 id="在-QEMU-中运行应用程序例程" class="article-heading"><a href="#在-QEMU-中运行应用程序例程" class="headerlink" title="在 QEMU 中运行应用程序例程"></a>在 QEMU 中运行应用程序例程<a class="article-anchor" href="#在-QEMU-中运行应用程序例程" aria-hidden="true"></a></h2><p>为了在开发环境中进行快速测试，您可以使用 qemu 仿真器。qemu 仿真器支持 x86 和 ARM Cortex-M3 等架构。进行 qemu 仿真非常简单，您只需要在编译应用程序时指定一个目标，编译系统会自动调用 QEMU 进行编译。</p>
-<p>如果要使用 x86 qemu 仿真开发板配置(qemu_x86)编译应用程序，输入：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">make BOARD=qemu_x86 run</div></pre></td></tr></table></figure></p>
-<p>如果要使用 ARM qemu_cortex_m3 开发板配置编译应用程序，输入：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">make BOARD=qemu_cortex_m3 run</div></pre></td></tr></table></figure></p>
+<p>如果要使用 x86 qemu 仿真开发板配置(qemu_x86)编译应用程序，输入：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ make BOARD=qemu_x86 run</div></pre></td></tr></table></figure></p>
+<p>如果要使用 ARM qemu_cortex_m3 开发板配置编译应用程序，输入：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ make BOARD=qemu_cortex_m3 run</div></pre></td></tr></table></figure></p>
 <p>QEMU 并非支持所有的开发板和 SoC。当为一个特定硬件开发应用时，您需要在实际的硬件平台上进行测试，而不要仅仅依赖于 QEMU 仿真环境。</p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-08T09:56:27.533Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                <time class="article-footer-updated" datetime="2017-08-10T08:53:35.705Z" itemprop="dateModified">上次更新：2017-08-10</time>
                 <a href="introduce.html" class="article-footer-prev" title="Zephyr简介"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="start_linux.html" class="article-footer-next" title="　>Linux平台"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -213,7 +213,6 @@ gitment.render('disqus_thread')
           </div>
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
-              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
               <strong class="sidebar-title">目录</strong>
               <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#下载源代码"><span class="toc-text">下载源代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译、运行应用程序"><span class="toc-text">编译、运行应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译一个简单的应用程序"><span class="toc-text">编译一个简单的应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用自定义-三方交叉编译器"><span class="toc-text">使用自定义/三方交叉编译器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在-QEMU-中运行应用程序例程"><span class="toc-text">在 QEMU 中运行应用程序例程</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">回到顶部</a>
