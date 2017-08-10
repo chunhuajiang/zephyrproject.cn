@@ -81,7 +81,7 @@ title: 生命周期
 
 下面的代码创建了一个立即启动的线程。
 
-```
+``` C
 #define MY_STACK_SIZE 500
 #define MY_PRIORITY 5
 
@@ -101,7 +101,7 @@ k_tid_t my_tid = k_thread_create(&my_thread_data, my_stack_area,
 
 下面的代码与上面的代码具有相同的效果。
 
-```
+```C
 #define MY_STACK_SIZE 500
 #define MY_PRIORITY 5
 
@@ -118,7 +118,7 @@ K_THREAD_DEFINE(my_tid, MY_STACK_SIZE,
 
 下面的代码描述了线程正常结束的方法。
 
-```
+``` C
 void my_entry_point(int unused1, int unused2, int unused3)
 {
     while (1) {
