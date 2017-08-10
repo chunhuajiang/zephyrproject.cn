@@ -48,7 +48,7 @@
 <meta property="og:site_name" content="Zephyr中文社区">
 <meta property="og:description" content="翻译：tidyjiang8  本节描述如何搭建一个 Linux 开发环境。 完成这些操作后，您将能够在如下 Linux 发行版上编译、运行您的 Zephyr 应用程序：  Ubuntu 16.04 LTS 64-bit Fedora 25 64-bit  您应该根据需要选择 Ubuntu 或者 Fedora 的指令。 安装主机操作系统Zephyr 项目的软件组件（包括内核）已经在 Ubuntu">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-10T08:55:09.850Z">
+<meta property="og:updated_time" content="2017-08-10T09:21:09.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Linux 下搭建开发环境">
 <meta name="twitter:description" content="翻译：tidyjiang8  本节描述如何搭建一个 Linux 开发环境。 完成这些操作后，您将能够在如下 Linux 发行版上编译、运行您的 Zephyr 应用程序：  Ubuntu 16.04 LTS 64-bit Fedora 25 64-bit  您应该根据需要选择 Ubuntu 或者 Fedora 的指令。 安装主机操作系统Zephyr 项目的软件组件（包括内核）已经在 Ubuntu">
@@ -131,6 +131,7 @@
 <h1 id="安装需求和依赖" class="article-heading"><a href="#安装需求和依赖" class="headerlink" title="安装需求和依赖"></a>安装需求和依赖<a class="article-anchor" href="#安装需求和依赖" aria-hidden="true"></a></h1><p>请按照下面的方法使用 apt-get 或者 dnf 进行安装。</p>
 <p>对于 Ubuntu：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ sudo apt-get install git make gcc g++ python3-ply ncurses-dev \</div><div class="line">      python3-yaml dfu-util device-tree-compiler</div></pre></td></tr></table></figure></p>
 <p>对于 Fedora：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ sudo dnf group install <span class="string">"Development Tools"</span></div><div class="line">$ sudo dnf install git make gcc glibc-static \</div><div class="line">      libstdc++-static python3-ply ncurses-devel \</div><div class="line">      python-yaml dfu-util dtc</div></pre></td></tr></table></figure></p>
+<p>然后，再使用 pip3 工具安装开发 Zephyr 所需的依赖软件包：<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ pip3 install --user -r scripts/requirements.txt</div></pre></td></tr></table></figure></p>
 <h2 id="安装-Zephyr-软件开发套件（SDK）" class="article-heading"><a href="#安装-Zephyr-软件开发套件（SDK）" class="headerlink" title="安装 Zephyr 软件开发套件（SDK）"></a>安装 Zephyr 软件开发套件（SDK）<a class="article-anchor" href="#安装-Zephyr-软件开发套件（SDK）" aria-hidden="true"></a></h2><p>Zephyr 的 SDK 中包含为其支持的所有架构编译内核所需的工具和交叉编译器。此外，它还包括主机上的工具，例如定制的 QEMU 以及编译主机工具的主机编译器。SDK 支持如下架构：</p>
 <ul>
 <li>X86</li>
@@ -164,7 +165,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-10T08:55:09.850Z" itemprop="dateModified">上次更新：2017-08-10</time>
+                <time class="article-footer-updated" datetime="2017-08-10T09:21:09.584Z" itemprop="dateModified">上次更新：2017-08-10</time>
                 <a href="start_index.html" class="article-footer-prev" title="搭建开发环境"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="start_mac.html" class="article-footer-next" title="　>Mac平台"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
