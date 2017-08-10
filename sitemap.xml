@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zephyrproject.cn/t_deep/index.html</loc>
+    
+    <lastmod>2017-08-10T02:31:39.609Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zephyrproject.cn/zh-cn/index.html</loc>
     
     <lastmod>2017-08-08T10:03:43.716Z</lastmod>
@@ -44,28 +51,7 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/opensource/index.html</loc>
-    
-    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_overview_tree.html</loc>
-    
-    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/t_deep/index.html</loc>
-    
-    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_overview.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
@@ -87,6 +73,20 @@
   
   <url>
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html</loc>
+    
+    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/opensource/index.html</loc>
+    
+    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_overview.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_win.html</loc>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_mac.html</loc>
     
     <lastmod>2017-08-08T09:56:27.537Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_mac.html</loc>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_win.html</loc>
     
     <lastmod>2017-08-08T09:56:27.537Z</lastmod>
     
