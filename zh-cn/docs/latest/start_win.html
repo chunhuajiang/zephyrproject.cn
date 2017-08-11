@@ -41,17 +41,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
   <!-- Open Graph -->
-  <meta name="description" content="翻译：tidyjiang8  本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MS">
+  <meta name="description" content="本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MSYS2。MSYS2 是 Wind">
 <meta property="og:type" content="website">
 <meta property="og:title" content="在 Windows 下搭建开发环境">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/start_win.html">
 <meta property="og:site_name" content="Zephyr中文社区">
-<meta property="og:description" content="翻译：tidyjiang8  本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MS">
+<meta property="og:description" content="本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MSYS2。MSYS2 是 Wind">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-08T09:56:27.537Z">
+<meta property="og:updated_time" content="2017-08-11T13:54:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Windows 下搭建开发环境">
-<meta name="twitter:description" content="翻译：tidyjiang8  本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MS">
+<meta name="twitter:description" content="本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。 我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。 更新您的操作系统在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。 安装需求和依赖使用 MSYS2Windows 上面的 Zephyr 开发环境依赖于 MSYS2。MSYS2 是 Wind">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -115,10 +115,7 @@
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/start_win.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <blockquote>
-<p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
-</blockquote>
-<p>本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。</p>
+                <p>本节描述如何在微软的 Windows 环境下配置您的开发环境并编译 Zephyr 应用程序。</p>
 <p>我们在 Win7、Win8.1 和 Win10 上面测试过示例程序 Hello World。</p>
 <h1 id="更新您的操作系统" class="article-heading"><a href="#更新您的操作系统" class="headerlink" title="更新您的操作系统"></a>更新您的操作系统<a class="article-anchor" href="#更新您的操作系统" aria-hidden="true"></a></h1><p>在编译之前，请确保您所运行的 Windows 系统已经安装了最新的更新包。</p>
 <h1 id="安装需求和依赖" class="article-heading"><a href="#安装需求和依赖" class="headerlink" title="安装需求和依赖"></a>安装需求和依赖<a class="article-anchor" href="#安装需求和依赖" aria-hidden="true"></a></h1><h2 id="使用-MSYS2" class="article-heading"><a href="#使用-MSYS2" class="headerlink" title="使用 MSYS2"></a>使用 MSYS2<a class="article-anchor" href="#使用-MSYS2" aria-hidden="true"></a></h2><p>Windows 上面的 Zephyr 开发环境依赖于 MSYS2。MSYS2 是 Windows 平台模拟 UNIX 环境的一个软件。请按照下面的步骤安装并设置 MSYS2。</p>
@@ -208,7 +205,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-08T09:56:27.537Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                <time class="article-footer-updated" datetime="2017-08-11T13:54:43.000Z" itemprop="dateModified">上次更新：2017-08-11</time>
                 <a href="start_mac.html" class="article-footer-prev" title="　>Mac平台"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_overview_index.html" class="article-footer-next" title="概述"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

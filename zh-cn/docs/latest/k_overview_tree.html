@@ -41,17 +41,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
   <!-- Open Graph -->
-  <meta name="description" content="翻译：tidyjiang8  理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头">
+  <meta name="description" content="理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头文件和私有 API　　　- So">
 <meta property="og:type" content="website">
 <meta property="og:title" content="源码树结构">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_overview_tree.html">
 <meta property="og:site_name" content="Zephyr中文社区">
-<meta property="og:description" content="翻译：tidyjiang8  理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头">
+<meta property="og:description" content="理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头文件和私有 API　　　- So">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-08T09:57:41.785Z">
+<meta property="og:updated_time" content="2017-08-11T13:53:33.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="源码树结构">
-<meta name="twitter:description" content="翻译：tidyjiang8  理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头">
+<meta name="twitter:description" content="理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。 Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录： arch　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：　　　- 架构相关的内核源文件　　　- 架构相关的内核头文件和私有 API　　　- So">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -115,10 +115,7 @@
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_overview_tree.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <blockquote>
-<p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
-</blockquote>
-<p>理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。</p>
+                <p>理解 Zephyr 源码树的结构有助于快速定位 Zephyr 相关功能的代码。</p>
 <p>Zephyr 源码树提供了如下顶层目录，且每个目录可能还包括一个或多个子目录：</p>
 <p><strong><code>arch</code></strong><br>　　架构相关的内核以及 SoC 相关的代码。每个所支持的架构（例如 x86 和 ARM）都有一个自己的子目录。每个子目录还包括如下功能的子目录：<br>　　　- 架构相关的内核源文件<br>　　　- 架构相关的内核头文件和私有 API<br>　　　- SoC 相关的代码<br></p>
 <p><strong><code>boards</code></strong><br>　　开发板相关的代码和配置文件。</p>
@@ -137,7 +134,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-08T09:57:41.785Z" itemprop="dateModified">上次更新：2017-08-08</time>
+                <time class="article-footer-updated" datetime="2017-08-11T13:53:33.142Z" itemprop="dateModified">上次更新：2017-08-11</time>
                 <a href="k_overview_change.html" class="article-footer-prev" title="　>源代码目录结构"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_thread.html" class="article-footer-next" title="线程"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

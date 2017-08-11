@@ -41,17 +41,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
   <!-- Open Graph -->
-  <meta name="description" content="翻译：tidyjiang8  内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就">
+  <meta name="description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta property="og:type" content="website">
 <meta property="og:title" content="调度">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_scheduling.html">
 <meta property="og:site_name" content="Zephyr中文社区">
-<meta property="og:description" content="翻译：tidyjiang8  内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就">
+<meta property="og:description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-11T07:50:46.000Z">
+<meta property="og:updated_time" content="2017-08-11T13:54:01.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="调度">
-<meta name="twitter:description" content="翻译：tidyjiang8  内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就">
+<meta name="twitter:description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -115,10 +115,7 @@
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_thread_scheduling.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <blockquote>
-<p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
-</blockquote>
-<p>内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。</p>
+                <p>内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。</p>
 <h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 <strong>当前线程</strong>。</p>
 <p>无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。</p>
 <h2 id="线程状态" class="article-heading"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态<a class="article-anchor" href="#线程状态" aria-hidden="true"></a></h2><p>如果一个线程没有阻碍其执行的因子，就被认为是 <strong>就绪的</strong>。就绪的线程可以被选择作为当前线程。</p>
@@ -194,7 +191,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-11T07:50:46.000Z" itemprop="dateModified">上次更新：2017-08-11</time>
+                <time class="article-footer-updated" datetime="2017-08-11T13:54:01.126Z" itemprop="dateModified">上次更新：2017-08-11</time>
                 <a href="k_thread_lifecycle.html" class="article-footer-prev" title="　>生命周期"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_thread_customdata.html" class="article-footer-next" title="　>自定义数据"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>工作队列线程 | Zephyr中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_workqueue.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_thread_workqueue.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_workqueue.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="工作队列（workqueue） 是一个内核对象，它使用专用的线程以先入先出方式处理工作项（work item）。每个工作项由它所指定的函数进行处理。工作队列通常用于 ISR 或者高优先级线程将非紧急的处理任务移交给低优先级线程，因此它不会影响时间敏感的处理任务。 概念可以定义任意数量的工作队列。每个工作队列使用其内存地址进行引用。 工作队列的关键属性如下：  队列：包含若干已经被添加、且还未被处理">
+<meta property="og:type" content="website">
+<meta property="og:title" content="工作队列线程">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_workqueue.html">
+<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:description" content="工作队列（workqueue） 是一个内核对象，它使用专用的线程以先入先出方式处理工作项（work item）。每个工作项由它所指定的函数进行处理。工作队列通常用于 ISR 或者高优先级线程将非紧急的处理任务移交给低优先级线程，因此它不会影响时间敏感的处理任务。 概念可以定义任意数量的工作队列。每个工作队列使用其内存地址进行引用。 工作队列的关键属性如下：  队列：包含若干已经被添加、且还未被处理">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-11T13:54:17.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作队列线程">
+<meta name="twitter:description" content="工作队列（workqueue） 是一个内核对象，它使用专用的线程以先入先出方式处理工作项（work item）。每个工作项由它所指定的函数进行处理。工作队列通常用于 ISR 或者高优先级线程将非紧急的处理任务移交给低优先级线程，因此它不会影响时间敏感的处理任务。 概念可以定义任意数量的工作队列。每个工作队列使用其内存地址进行引用。 工作队列的关键属性如下：  队列：包含若干已经被添加、且还未被处理">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_thread_workqueue.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">工作队列线程</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_thread_workqueue.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p><em>工作队列（workqueue）</em> 是一个内核对象，它使用专用的线程以先入先出方式处理工作项（work item）。每个工作项由它所指定的函数进行处理。工作队列通常用于 ISR 或者高优先级线程将非紧急的处理任务移交给低优先级线程，因此它不会影响时间敏感的处理任务。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>可以定义任意数量的工作队列。每个工作队列使用其内存地址进行引用。</p>
+<p>工作队列的关键属性如下：</p>
+<ul>
+<li><strong>队列</strong>：包含若干已经被添加、且还未被处理（译注：在本节后面叫做“挂起的”）工作项。</li>
+<li><strong>线程</strong>：用于处理队列中的工作项。该线程的优先级是可配置的，既可以是协作式也可以是抢占式。</li>
+</ul>
+<p>工作队列必须先初始化再使用。初始化时会清空该队列，并创建一个工作队列线程。</p>
+<h2 id="工作项的生命周期" class="article-heading"><a href="#工作项的生命周期" class="headerlink" title="工作项的生命周期"></a>工作项的生命周期<a class="article-anchor" href="#工作项的生命周期" aria-hidden="true"></a></h2><p>可以定义任意数量的 <strong>工作项</strong>。每个工作项通过其内存地址进行引用。</p>
+<p>工作项的关键属性如下：</p>
+<ul>
+<li><strong>处理函数</strong>：当工作项被处理时，工作队列线程会执行该函数。该函数接收一个参数 —— 工作项自身的地址。</li>
+<li><strong>挂起标志</strong>：内核使用该标志表示该工作项当前是否是一个工作队列的队列中的一个成员。</li>
+<li><strong>队列链接</strong>：内核使用该链接将其链接到工作队列的队列中的下一个工作项。</li>
+</ul>
+<p>工作项必须先初始化再使用。初始化时会记录该工作项的处理函数，并将其标记为非挂起。</p>
+<p>ISR 或者线程可以将某个工作项 <strong>提交</strong> 到某个工作队列中。提交工作项时，会将其追加到工作队列的队列中去。当工作队列的线程处理完它队列里面的所有工作项后，该线程会移除一个挂起工作项，并调用该工作项的处理函数。一个挂起的工作项可能很快就会被处理，也可能会在队列中保留一段时间，这依赖于工作队列线程的调度优先级和队列中其它项的工作需求。</p>
+<p>处理函数可以利用任何可用的内核 API。不过，使用可能引起阻塞的操作（例如拿取一个信号量）时一定要当心，因为工作队列在它的上一个处理函数完成前不能处理其队列中的其它工作项。</p>
+<p>如果处理函数不需要参数，可以将接收到的参数直接忽略。如果处理函数需要额外的信息，可以将工作项内嵌到一个更大的数据结构当中。处理函数可以使用这个参数值计算封装后的地址，以此访问额外的信息。</p>
+<p>一个工作项通常会被初始化一次，然后当它的工作需要执行的时候会被提交到工作队列中。如果 ISR 或者线程尝试提交一个已经挂起的工作项，不会有任何效果；提交后，工作项会停留在工作队列中的当前位置，且只会被执行一次。</p>
+<p>处理函数可以将工作项重新提交到工作队列中（因为此时工作项已经不再是挂起状态）。这样做的好处是，处理函数可以分阶段执行工作，而不会导致延迟处理工作队列的队列中的其它工作项。</p>
+<blockquote>
+<p><strong>Important:</strong><br>一个挂起的工作项在被工作队列线程处理前 <strong>不能</strong> 被改变。这意味着，当工作项处于挂起状态时，它不能被再次初始化。此外，在处理函数执行完成前，处理函数需要的额外信息也不能被改变。</p>
+</blockquote>
+<h2 id="延迟的工作" class="article-heading"><a href="#延迟的工作" class="headerlink" title="延迟的工作"></a>延迟的工作<a class="article-anchor" href="#延迟的工作" aria-hidden="true"></a></h2><p>ISR 或者线程可能需要延迟一段指定的事时间后（而不是立即）再调度一个工作项。向工作队列中提交一个 <strong>延迟的工作项</strong> （而不是标准工作项）就能达到此目的。</p>
+<p>延迟工作项比标准工作项新增了如下属性：</p>
+<ul>
+<li><strong>延迟时间</strong>：指明需要延迟多久才将工作项提交到工作队列的队列中。</li>
+<li><strong>工作队列指示器</strong>：用于标识需要提交到的工作队列。</li>
+</ul>
+<p>延迟工作项的初始化和提交过程与标准的工作项是类似的，只是所使用的内核 API 略有区别。当发出提交请求时，内核会初始化一个超时机制，当指定的延迟达到时就会触发它。当超时发送时，内核会将延迟工作项提交到指定的工作队列中。之后，它会保持挂起状态，知道被以标准方式处理。</p>
+<p>ISR 或者线程可以 <strong>取消</strong> 它提交的延迟工作项，但是前提是该工作项的超时计数扔在继续。取消后，超时计数将停止计数，指定的工作也不会被执行。</p>
+<p>取消已经到期的延时工作项不会有任何效果；除非工作项被移除并被工作队列的线程处理了，否它将一直保持挂起状态。因此，当工作项的超时服务到期后，它已经被处理过了，所以不能被取消。</p>
+<h2 id="系统工作队列" class="article-heading"><a href="#系统工作队列" class="headerlink" title="系统工作队列"></a>系统工作队列<a class="article-anchor" href="#系统工作队列" aria-hidden="true"></a></h2><p>内核定义了一个叫做 系统工作队列 的工作队列。所有的应用程序或者内核代码都可以使用该工作队列。系统工作队列是可选的，且只有当应用程序使用时才存在。</p>
+<blockquote>
+<p><strong>Important:</strong><br>只有当无法向系统工作队列提交新的工作项时，才去创建额外的工作队列。因为每个新的工作队列都会花费可观的内存占用。如果新工作队列中的工作项无法与系统工作队列中已存在的工作项共存时，可以调整新的工作队列。例如，新的工作项执行了阻塞操作导致其它系统工作队列被延迟到一个不可接受的程序。</p>
+</blockquote>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="定义一个工作队列" class="article-heading"><a href="#定义一个工作队列" class="headerlink" title="定义一个工作队列"></a>定义一个工作队列<a class="article-anchor" href="#定义一个工作队列" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_work_q</code> 的变量可以定义一个工作队列。初始化工作队列时，需要先定义一个栈区，然后调用函数 <code>k_work_q_start()</code>。栈区是一个数组，其大小（字节）必须等于 <code>K_THREAD_SIZEOF</code> 加线程的栈大小之和。定义栈区时必须使用属性 <code>__stack</code>，以确保它被正确地对齐。</p>
+<p>下面的代码定义并初始化了一个工作队列。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_STACK_SIZE 512</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_PRIORITY 5</span></div><div class="line"></div><div class="line">K_THREAD_STACK_DEFINE(my_stack_area, MY_STACK_SIZE);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">k_work_q</span> <span class="title">my_work_q</span>;</span></div><div class="line"></div><div class="line">k_work_q_start(&amp;my_work_q, my_stack_area,</div><div class="line">               K_THREAD_STACK_SIZEOF(my_stack_area), MY_PRIORITY);</div></pre></td></tr></table></figure>
+<h2 id="提交工作项" class="article-heading"><a href="#提交工作项" class="headerlink" title="提交工作项"></a>提交工作项<a class="article-anchor" href="#提交工作项" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_work</code> 的变量可以定义一个工作项。工作项必须使用函数 <code>k_work_init()</code> 进行初始化。</p>
+<p>调用函数 <code>k_work_submit()</code> 可以将已初始化的工作项提交到系统工作队列中；调用函数 <code>k_work_submit_to_queue()</code> 可以将已初始化的工作项提交到指定的工作队列中。</p>
+<p>下面的代码展示了 ISR 是如何将打印错误消息移交给系统工作队列的过程。注意，如果 ISR 重新提交了一个还处于挂起状态的工作项，该工作项将不会更改，且关联的错误消息不会被打印。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">device_info</span> &#123;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_work</span> <span class="title">work</span>;</span></div><div class="line">    <span class="keyword">char</span> name[<span class="number">16</span>]</div><div class="line">&#125; my_device;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_isr</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="keyword">if</span> (error detected) &#123;</div><div class="line">        k_work_submit(&amp;my_device.work);</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_error</span><span class="params">(struct k_work *item)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">device_info</span> *<span class="title">the_device</span> =</span></div><div class="line"><span class="class">        <span class="title">CONTAINER_OF</span>(<span class="title">item</span>, <span class="title">struct</span> <span class="title">device_info</span>, <span class="title">work</span>);</span></div><div class="line">    printk(<span class="string">"Got error on device %s\n"</span>, the_device-&gt;name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* initialize name info for a device */</span></div><div class="line"><span class="built_in">strcpy</span>(my_device.name, <span class="string">"FOO_dev"</span>);</div><div class="line"></div><div class="line"><span class="comment">/* initialize work item for printing device's error messages */</span></div><div class="line">k_work_init(&amp;my_device.work, print_error);</div><div class="line"></div><div class="line"><span class="comment">/* install my_isr() as interrupt handler for the device (not shown) */</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="提交一个延迟的工作项" class="article-heading"><a href="#提交一个延迟的工作项" class="headerlink" title="提交一个延迟的工作项"></a>提交一个延迟的工作项<a class="article-anchor" href="#提交一个延迟的工作项" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_delayed_work</code> 的变量可以定义一个延迟工作项。延迟工作项必须使用函数 <code>k_delayed_work_init()</code> 初始化。</p>
+<p>调用函数 <code>k_delayed_work_submit()</code> 可以将已初始化的延迟工作项提交到系统工作队列中；调用函数 <code>k_delayed_work_submit_to_queue()</code> 可以将已初始化的延迟工作项提交到指定工作队列中。调用函数 <code>k_delayed_work_cancel()</code> 可以取消一个已提交到工作队列但还未处理的延迟工作项。.</p>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>建议使用系统工作队列推迟处理 ISR 或者协作式线程中的复杂任务，这样的好处是不需要牺牲系统的功能就能响应随后的中断，且不需要应用程序定义额外的任务处理线程。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li><code>CONFIG_SYSTEM_WORKQUEUE_STACK_SIZE</code></li>
+<li><code>CONFIG_SYSTEM_WORKQUEUE_PRIORITY</code></li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><ul>
+<li><code>k_work_q_start()</code></li>
+<li><code>k_work_init()</code></li>
+<li><code>k_work_submit()</code></li>
+<li><code>k_work_submit_to_queue()</code></li>
+<li><code>k_delayed_work_init()</code></li>
+<li><code>k_delayed_work_submit()</code></li>
+<li><code>k_delayed_work_submit_to_queue()</code></li>
+<li><code>k_delayed_work_cancel()</code></li>
+<li><code>k_work_pending()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T13:54:17.822Z" itemprop="dateModified">上次更新：2017-08-11</time>
+                <a href="k_thread_systhread.html" class="article-footer-prev" title="　>系统线程"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_timing.html" class="article-footer-next" title="定时"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作项的生命周期"><span class="toc-text">工作项的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#延迟的工作"><span class="toc-text">延迟的工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统工作队列"><span class="toc-text">系统工作队列</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义一个工作队列"><span class="toc-text">定义一个工作队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交工作项"><span class="toc-text">提交工作项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提交一个延迟的工作项"><span class="toc-text">提交一个延迟的工作项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link current">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link current">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_thread_workqueue.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
