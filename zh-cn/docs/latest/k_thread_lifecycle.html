@@ -41,17 +41,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
   <!-- Open Graph -->
-  <meta name="description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+  <meta name="description" content="翻译：tidyjiang8  线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关">
 <meta property="og:type" content="website">
 <meta property="og:title" content="生命周期">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html">
 <meta property="og:site_name" content="Zephyr中文社区">
-<meta property="og:description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+<meta property="og:description" content="翻译：tidyjiang8  线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-10T08:33:16.366Z">
+<meta property="og:updated_time" content="2017-08-11T06:58:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生命周期">
-<meta name="twitter:description" content="翻译：tidyjiang8  线程（thread） 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的注关键属性包括：  栈区域：一段用于线程控制块（struct k_thread）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线">
+<meta name="twitter:description" content="翻译：tidyjiang8  线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -118,11 +118,12 @@
                 <blockquote>
 <p>翻译：<a href="http://github.com/tidyjiang8/" target="_blank" rel="external">tidyjiang8</a></p>
 </blockquote>
-<p><em>线程（thread）</em> 是一个用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。</p>
+<p><em>线程（thread）</em> 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。</p>
 <h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 <em>线程标识符（thread id）</em> 来引用该线程。</p>
-<p>线程的注关键属性包括：</p>
+<p>线程的关键属性包括：</p>
 <ul>
-<li><strong>栈区域</strong>：一段用于线程控制块（<code>struct k_thread</code>）和线程栈的内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。</li>
+<li><strong>栈区域</strong>：线程栈所使用的一段内存区域。 栈空间的 <strong>大小</strong> 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关的宏来创建、使用栈的内存区域。</li>
+<li><strong>线程控制块</strong>：它是内核私有的，用于记录线程元数据。线程控制块是结构体 <code>struct k_thread</code> 的一个实例。</li>
 <li><strong>入口点函数</strong>：线程启动时调用的函数。该函数最多能接收 3 个参数。</li>
 <li><strong>调度优先级</strong>：指示内核的调度器如何给该线程分配 CPU 时间。（参考 <a href="">调度</a>。）</li>
 <li><strong>线程选项</strong>：允许内核在特定场景中对该线程做某种特殊处理。（参考 <a href="">线程的选项</a>。）</li>
@@ -132,7 +133,7 @@
 <p>如果指定的启动时延是 <code>K_NO_WAIT</code>，内核将立即启动线程。您也可以指定一个超时时间，让内核延迟启动该线程。例如，让线程需要使用的设备就绪后再启动线程。</p>
 <p>如果延迟启动的线程还未启动，内核可以取消该线程。如果线程已经启动了，则内核在尝试取消它时不会有如何效果。如果延迟启动的线程被成功地取消了，它必须被再次创建后才能再次使用。</p>
 <h2 id="线程的正常终止" class="article-heading"><a href="#线程的正常终止" class="headerlink" title="线程的正常终止"></a>线程的正常终止<a class="article-anchor" href="#线程的正常终止" aria-hidden="true"></a></h2><p>线程一旦启动，它通常会一直运行下去。不过，线程也可以从它的入口点函数中返回，从而同步结束执行。这种结束方式叫做 <strong>正常终止（terminaltion）</strong>。</p>
-<p>正常终止的线程需要在返回前释放它所拥有的共享资源（例如互斥量、动态分配的内存）。内核 不会 自动回收这些资源。</p>
+<p>正常终止的线程需要在返回前释放它所拥有的共享资源（例如互斥量、动态分配的内存）。内核 <em>不会</em> 自动回收这些资源。</p>
 <blockquote>
 <p>Note: 当前内核不会做任何补偿。应用程序可以重新创建正常结束的线程。</p>
 </blockquote>
@@ -183,7 +184,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-10T08:33:16.366Z" itemprop="dateModified">上次更新：2017-08-10</time>
+                <time class="article-footer-updated" datetime="2017-08-11T06:58:45.000Z" itemprop="dateModified">上次更新：2017-08-11</time>
                 <a href="k_thread.html" class="article-footer-prev" title="线程"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_thread_scheduling.html" class="article-footer-next" title="　>调度"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -195,6 +196,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
+  id: window.location.pathname,
   owner: 'tidyjiang8',
   repo: 'zephyrproject.cn.comments',
   oauth: {
