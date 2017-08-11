@@ -1,0 +1,24 @@
+#!/bin/sh
+
+
+cp zephyr.png apple-touch-icon-114x114.png
+cp zephyr.png apple-touch-icon-120x120.png
+cp zephyr.png apple-touch-icon-144x144.png
+cp zephyr.png apple-touch-icon-152x152.png
+cp zephyr.png apple-touch-icon-57x57.png
+cp zephyr.png apple-touch-icon-60x60.png
+cp zephyr.png apple-touch-icon-72x72.png
+cp zephyr.png apple-touch-icon-76x76.png
+cp zephyr.png apple-touch-icon.png
+cp zephyr.png apple-touch-icon-precomposed.png
+cp zephyr.png favicon-160x160.png.png
+cp zephyr.png favicon-16x16.png
+cp zephyr.png favicon-196x196.png
+cp zephyr.png favicon-32x32.png
+cp zephyr.png favicon-96x96.png
+cp zephyr.png favicon.ico
+cp zephyr.png mstile-144x144.png
+cp zephyr.png mstile-150x150.png
+cp zephyr.png mstile-310x150.png
+cp zephyr.png mstile-310x310.png
+cp zephyr.png mstile-70x70.png
