@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zephyrproject.cn/index.html</loc>
+    
+    <lastmod>2017-08-12T23:40:50.280Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/index.html</loc>
+    
+    <lastmod>2017-08-12T23:40:50.280Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_timing_timers.html</loc>
     
     <lastmod>2017-08-12T14:00:11.000Z</lastmod>
@@ -142,20 +156,6 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/index.html</loc>
-    
-    <lastmod>2017-08-08T10:03:43.716Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/index.html</loc>
-    
-    <lastmod>2017-08-08T10:03:43.716Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zephyrproject.cn/t_guide/ubuntu.html</loc>
     
     <lastmod>2017-08-08T10:02:21.017Z</lastmod>
@@ -163,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/overview.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
     
     <lastmod>2017-08-08T10:02:12.773Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/overview.html</loc>
     
     <lastmod>2017-08-08T10:02:12.773Z</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/opensource/index.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
+    <loc>http://zephyrproject.cn/opensource/index.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/about/index.html</loc>
+    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
+    <loc>http://zephyrproject.cn/about/index.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     
