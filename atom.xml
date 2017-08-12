@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Zephyr中文社区</title>
+  <title>Zephyr Project 中文社区</title>
   <subtitle>Zephyr OS 中文社区</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -9,7 +9,7 @@
   <id>http://zephyrproject.cn/</id>
   
   <author>
-    <name>tidyjiang8@github</name>
+    <name>蒋春华&lt;tidyjiang@163.com&gt;</name>
     
   </author>
   

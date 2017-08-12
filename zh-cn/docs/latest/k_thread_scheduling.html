@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>调度 | Zephyr中文社区</title>
+  <title>调度 - Scheduling | Zephyr Project 中文社区</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
@@ -39,18 +39,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
   <!-- RSS -->
-  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
   <!-- Open Graph -->
   <meta name="description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta property="og:type" content="website">
-<meta property="og:title" content="调度">
+<meta property="og:title" content="调度 - Scheduling">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_scheduling.html">
-<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
 <meta property="og:description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-11T13:54:01.126Z">
+<meta property="og:updated_time" content="2017-08-12T13:44:07.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="调度">
+<meta name="twitter:title" content="调度 - Scheduling">
 <meta name="twitter:description" content="内核的调度器是基于优先级的，它允许应用程序的多个线程共享 CPU。 概念调度器的主要作用是判断将要执行哪个线程。被调度器选定的线程叫做 当前线程。 无论什么时候，当调度器改变当前线程的标识符，或者当前线程被 ISR 替代时，内核都会先保存当前线程的 CPU 寄存器值。当这个线程在之后恢复执行时，这些寄存器的值就会被恢复。 线程状态如果一个线程没有阻碍其执行的因子，就被认为是 就绪的。就绪的线程可以">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
@@ -68,6 +68,7 @@
 
 </head>
 
+<a href="https://github.com/tidyjiang8/zephyrproject.cn"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <body>
   <div id="container">
     <header id="header" class="wrapper">
@@ -111,7 +112,7 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">调度</h1>
+                <h1 class="article-title" itemprop="name">调度 - Scheduling</h1>
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_thread_scheduling.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
@@ -143,7 +144,7 @@
 <p>例如，将协作式和抢占式线程的优先级数配置为 5 和 10，其对应有优先级范围是 -5 到 -1、0 到 9。</p>
 <h2 id="调度算法" class="article-heading"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法<a class="article-anchor" href="#调度算法" aria-hidden="true"></a></h2><p>内核的调度器总是选择优先级最高的就绪线程作为当前线程。当多个线程具有相同的优先级时，调度器选择等待时间最久的线程。</p>
 <blockquote>
-<p>Note: ISR 优先于线程，因此当前线程可能会在任何时刻被非屏蔽中的的 ISR 代替。该规则适用于协作式线程和抢占式线程。</p>
+<p>ISR 优先于线程，因此当前线程可能会在任何时刻被非屏蔽中的的 ISR 代替。该规则适用于协作式线程和抢占式线程。</p>
 </blockquote>
 <h2 id="协作式时间片" class="article-heading"><a href="#协作式时间片" class="headerlink" title="协作式时间片"></a>协作式时间片<a class="article-anchor" href="#协作式时间片" aria-hidden="true"></a></h2><p>协作式线程一旦成为了当前线程，它将一直执行下去，直到它采取的某种动作导致自己变为非就绪线程。这种方式其实有一个缺陷，即如果协作式线程需要执行长时间的计算，将导致包括优先级高于或等于该线程在内的其它所有线程的调度被延迟到一个不可接受的时间之后。</p>
 <p>为了解决这个问题，协作式线程可以自身间或性地放弃 CPU，让其它线程得以执行。线程放弃 CPU 的方法有两种：</p>
@@ -157,7 +158,7 @@
 <p>在每个时间片结束时，调度器会检查当前线程是否是可抢占的。如果是，它将对该线程隐式地调用 <code>k_yield()</code>，让其它同优先级的就绪线程在该线程被再次调度前得以执行；否则，当前线程继续执行。</p>
 <p>优先级高于指定极限的线程不用实现抢占式时间片，且不能被同优先级的其它线程抢占。应用程序只有当处理优先级更低且对时间不敏感的线程时采用抢占式时间片。</p>
 <blockquote>
-<p>Note: 内核的时间片算法 不 确保同等优先级的所有线程占用的 CPU 时间完全相同，因为它不会测量线程的实际执行时间。例如，某个线程可能在时间片快完的时候才刚刚执行，但是时间片到后会立即释放 CPU。尽管如此，该算法将 确保 某个线程的执行时间超过单个时间片的长度后释放 CPU（译注：当然，也可能释放 CPU 后不进行上下文切换而立即再次执行）。</p>
+<p>内核的时间片算法 不 确保同等优先级的所有线程占用的 CPU 时间完全相同，因为它不会测量线程的实际执行时间。例如，某个线程可能在时间片快完的时候才刚刚执行，但是时间片到后会立即释放 CPU。尽管如此，该算法将 确保 某个线程的执行时间超过单个时间片的长度后释放 CPU（译注：当然，也可能释放 CPU 后不进行上下文切换而立即再次执行）。</p>
 </blockquote>
 <h2 id="调度器锁" class="article-heading"><a href="#调度器锁" class="headerlink" title="调度器锁"></a>调度器锁<a class="article-anchor" href="#调度器锁" aria-hidden="true"></a></h2><p>如果抢占式线程希望在执行某个特殊的操作时不被抢占，它可以调用 <code>k_sched_lock()</code>，让调度器将其临时当做协作式线程，从而避免被抢占。</p>
 <p>一旦完成特殊操作，该线程必须调用 <code>k_sched_unlock()</code>，以恢复其可抢占特性。</p>
@@ -191,7 +192,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-11T13:54:01.126Z" itemprop="dateModified">上次更新：2017-08-11</time>
+                <time class="article-footer-updated" datetime="2017-08-12T13:44:07.995Z" itemprop="dateModified">上次更新：2017-08-12</time>
                 <a href="k_thread_lifecycle.html" class="article-footer-prev" title="　>生命周期"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_thread_customdata.html" class="article-footer-next" title="　>自定义数据"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -232,7 +233,7 @@ gitment.render('disqus_thread')
       </article>
       <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link current">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link current">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
   </div>
 </aside>
     </div>
@@ -242,7 +243,7 @@ gitment.render('disqus_thread')
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
       Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
     </div>
     <div id="footer-links">
@@ -263,7 +264,7 @@ gitment.render('disqus_thread')
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link current">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link current">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

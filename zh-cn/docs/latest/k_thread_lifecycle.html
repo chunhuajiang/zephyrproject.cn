@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>生命周期 | Zephyr中文社区</title>
+  <title>生命周期 - Lifecycle | Zephyr Project 中文社区</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
@@ -39,18 +39,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
   <!-- RSS -->
-  <link rel="alternate" href="/atom.xml" title="Zephyr中文社区">
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
   <!-- Open Graph -->
   <meta name="description" content="线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关的宏来创建、使用栈的内存区域。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="生命周期">
+<meta property="og:title" content="生命周期 - Lifecycle">
 <meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html">
-<meta property="og:site_name" content="Zephyr中文社区">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
 <meta property="og:description" content="线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关的宏来创建、使用栈的内存区域。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-11T13:53:56.174Z">
+<meta property="og:updated_time" content="2017-08-12T13:43:56.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生命周期">
+<meta name="twitter:title" content="生命周期 - Lifecycle">
 <meta name="twitter:description" content="线程（thread） 是应用程序用于处理由于太复杂或耗时太长而不便于在 ISR 内完成的工作的内核对象。 概念应用程序可以定义任意数量的线程，且可以使用线程创建时分配给该线程的 线程标识符（thread id） 来引用该线程。 线程的关键属性包括：  栈区域：线程栈所使用的一段内存区域。 栈空间的 大小 可以被裁剪，以适应线程处理的实际需求。Zephyr 提供了相关的宏来创建、使用栈的内存区域。">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
@@ -68,6 +68,7 @@
 
 </head>
 
+<a href="https://github.com/tidyjiang8/zephyrproject.cn"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <body>
   <div id="container">
     <header id="header" class="wrapper">
@@ -111,7 +112,7 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">生命周期</h1>
+                <h1 class="article-title" itemprop="name">生命周期 - Lifecycle</h1>
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_thread_lifecycle.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
@@ -132,18 +133,18 @@
 <h2 id="线程的正常终止" class="article-heading"><a href="#线程的正常终止" class="headerlink" title="线程的正常终止"></a>线程的正常终止<a class="article-anchor" href="#线程的正常终止" aria-hidden="true"></a></h2><p>线程一旦启动，它通常会一直运行下去。不过，线程也可以从它的入口点函数中返回，从而同步结束执行。这种结束方式叫做 <strong>正常终止（terminaltion）</strong>。</p>
 <p>正常终止的线程需要在返回前释放它所拥有的共享资源（例如互斥量、动态分配的内存）。内核 <em>不会</em> 自动回收这些资源。</p>
 <blockquote>
-<p>Note: 当前内核不会做任何补偿。应用程序可以重新创建正常结束的线程。</p>
+<p>当前内核不会做任何补偿。应用程序可以重新创建正常结束的线程。</p>
 </blockquote>
 <h2 id="线程的异常终止" class="article-heading"><a href="#线程的异常终止" class="headerlink" title="线程的异常终止"></a>线程的异常终止<a class="article-anchor" href="#线程的异常终止" aria-hidden="true"></a></h2><p>线程可以通过 <strong>异常终止 （aborting）</strong> 异步结束其执行。如果线程触发了一个致命错误（例如引用了空指针），内核将自动终止该线程。</p>
 <p>其它线程（或线程自己）可以调用 <code>k_thread_abort()</code> 终止一个线程。不过，更优雅的做法是向线程发送一个信号，让该线程自己结束执行。</p>
 <p>线程终止时，内核不会自动回收该线程拥有的共享资源。</p>
 <blockquote>
-<p>Note: 当前内核不会做任何补偿。应用程序可以重新创建异常终止的线程。</p>
+<p>当前内核不会做任何补偿。应用程序可以重新创建异常终止的线程。</p>
 </blockquote>
 <h2 id="线程的挂起" class="article-heading"><a href="#线程的挂起" class="headerlink" title="线程的挂起"></a>线程的挂起<a class="article-anchor" href="#线程的挂起" aria-hidden="true"></a></h2><p>如果一个线程被挂起，它将在一段不确定的时间内暂停执行。函数 <code>k_thread_suspend()</code> 可以用于挂起包括调用线程在内的所有线程。对已经挂起的线程再次挂起时不会产生任何效果。</p>
 <p>线程一旦被挂起，它将一直不能被调度，除非另一个线程调用 <code>k_thread_resume()</code> 取消挂起。</p>
 <blockquote>
-<p>Note: 线程可以使用 <code>k_sleep()</code> 睡眠一段指定的时间。不过，这与挂起不同，睡眠线程在睡眠时间完成后会自动运行。</p>
+<p>线程可以使用 <code>k_sleep()</code> 睡眠一段指定的时间。不过，这与挂起不同，睡眠线程在睡眠时间完成后会自动运行。</p>
 </blockquote>
 <h2 id="线程的选项" class="article-heading"><a href="#线程的选项" class="headerlink" title="线程的选项"></a>线程的选项<a class="article-anchor" href="#线程的选项" aria-hidden="true"></a></h2><p>内核支持一系列 线程选项（thread options），以允许线程在特殊情况下被特殊对待。这些与线程关联的选项在线程创建时就被指定了。</p>
 <p>不需要任何线程选项的线程的选项值是零。如果线程需要选项，您可以通过选项名指定。如果需要多个选项，使用符号 | 作为分隔符。（即按位或操作符）。</p>
@@ -181,7 +182,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-11T13:53:56.174Z" itemprop="dateModified">上次更新：2017-08-11</time>
+                <time class="article-footer-updated" datetime="2017-08-12T13:43:56.215Z" itemprop="dateModified">上次更新：2017-08-12</time>
                 <a href="k_thread.html" class="article-footer-prev" title="线程"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_thread_scheduling.html" class="article-footer-next" title="　>调度"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -222,7 +223,7 @@ gitment.render('disqus_thread')
       </article>
       <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link current">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link current">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
   </div>
 </aside>
     </div>
@@ -232,7 +233,7 @@ gitment.render('disqus_thread')
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">tidyjiang8@github</a><br>
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
       Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
     </div>
     <div id="footer-links">
@@ -253,7 +254,7 @@ gitment.render('disqus_thread')
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link current">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link current">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

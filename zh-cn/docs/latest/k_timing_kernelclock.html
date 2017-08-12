@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>内核时钟 - Kernel Clocks | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_timing_kernelclock.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_timing_kernelclock.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_timing_kernelclock.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="翻译：ianhom  内核时钟是所有时间相关服务的基础。 概念内核支持两种不同精度的时钟。  32位的 硬时钟（hardware clock） 是一个高精度的计数器，该计数器通过一种称为 周期（cycles） 的单位来度量时间。一个周期的长度取决于内核所使用的板卡硬件，其典型的时间长度为纳秒。 64位的 系统时钟（system clock） 是一个通过 嘀嗒（ticks） 来测量内核自初始化以来">
+<meta property="og:type" content="website">
+<meta property="og:title" content="内核时钟 - Kernel Clocks">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_timing_kernelclock.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="翻译：ianhom  内核时钟是所有时间相关服务的基础。 概念内核支持两种不同精度的时钟。  32位的 硬时钟（hardware clock） 是一个高精度的计数器，该计数器通过一种称为 周期（cycles） 的单位来度量时间。一个周期的长度取决于内核所使用的板卡硬件，其典型的时间长度为纳秒。 64位的 系统时钟（system clock） 是一个通过 嘀嗒（ticks） 来测量内核自初始化以来">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-12T13:44:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内核时钟 - Kernel Clocks">
+<meta name="twitter:description" content="翻译：ianhom  内核时钟是所有时间相关服务的基础。 概念内核支持两种不同精度的时钟。  32位的 硬时钟（hardware clock） 是一个高精度的计数器，该计数器通过一种称为 周期（cycles） 的单位来度量时间。一个周期的长度取决于内核所使用的板卡硬件，其典型的时间长度为纳秒。 64位的 系统时钟（system clock） 是一个通过 嘀嗒（ticks） 来测量内核自初始化以来">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<a href="https://github.com/tidyjiang8/zephyrproject.cn"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_timing_kernelclock.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">内核时钟 - Kernel Clocks</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_timing_kernelclock.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>翻译：<a href="https://github.com/ianhom" target="_blank" rel="external">ianhom</a></p>
+</blockquote>
+<p>内核时钟是所有时间相关服务的基础。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>内核支持两种不同精度的时钟。</p>
+<ul>
+<li>32位的 <strong>硬时钟（hardware clock）</strong> 是一个高精度的计数器，该计数器通过一种称为 <strong>周期（cycles）</strong> 的单位来度量时间。一个周期的长度取决于内核所使用的板卡硬件，其典型的时间长度为纳秒。</li>
+<li>64位的 <strong>系统时钟（system clock）</strong> 是一个通过 <strong>嘀嗒（ticks）</strong> 来测量内核自初始化以来经历了多少时间的计数器，嘀嗒的时长是可配置的，其典型值为 1~100 毫秒。</li>
+</ul>
+<p>内核同时提供了各种变量，可用于将时钟使用的时间单位转换为标准的时间单位（如秒，毫秒，纳秒等等），和可用于两种时钟的时间单位之间的转换。</p>
+<p>系统时钟被内核中大部分时间相关的服务所使用，包括内核定时器对象和其它内核对象类型所支持的超时服务。为了方便使用，内核的API允许使用毫秒来定义时间长度，并自动将毫秒时间转换为对应的嘀嗒数。</p>
+<p>硬时钟可以用于更高精度的计时，精度高于基于系统时钟内核服务。</p>
+<h1 id="时钟的局限性" class="article-heading"><a href="#时钟的局限性" class="headerlink" title="时钟的局限性"></a>时钟的局限性<a class="article-anchor" href="#时钟的局限性" aria-hidden="true"></a></h1><p>系统时钟的嘀嗒计数是从硬时钟的周期数衍生出来的。由内核决定来多少个时钟周期等价于期望的嘀嗒频率，然后配置硬件在设定的周期后产生一个中断；每个中断对应一个嘀嗒。</p>
+<blockquote>
+<p>配置一个较短的嘀嗒时间长度可以保证一个较小时间颗粒度，但同时增加也了大量的工作，让内核处理更高频率的嘀嗒中断。设置嘀嗒时间长度为0，则会关闭 <em>两个</em> 内核时钟及其相关的服务。</p>
+</blockquote>
+<p>任何通过内核 API 指定的毫秒时间间隔会被视为可发生的 最小 延时，所以实际经历的时间可能比设置的要更长。</p>
+<p>例如：当尝试获取一个信号量时，指定一个超时延时 100ms，即内核在这 100ms 结束之前将不会终止该操作并报告错误。但是，该操作可能需要超过100ms的时间才能完成，并且可能在多出的时间里操作成功或失败。</p>
+<p>在一个内核对象操作中，多出的额外时间的长度由如下因素决定：</p>
+<ul>
+<li>在将毫秒转换为嘀嗒数时的舍入，将引入额外的时间。例如：如果使用了一个时长为 10ms 的嘀嗒，则 25ms 的延时将舍入为 30ms。</li>
+<li>因为在延时计时之前需要等待下一次的嘀嗒中断，所以这种情况将引入额外的事件。例如：如果采用了一个时长为 10ms 的嘀嗒，则设定 20ms 的延时需要内核等待3个嘀嗒发生（而不是 2 个），因为第一个嘀嗒可能在任何时刻，而计时点到嘀嗒中断很可能小于 10ms；所以只有在第一个嘀嗒发生之后，内核可以通过后续的两个嘀嗒来确定延时了 20ms。</li>
+</ul>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="标准精度的时间测量" class="article-heading"><a href="#标准精度的时间测量" class="headerlink" title="标准精度的时间测量"></a>标准精度的时间测量<a class="article-anchor" href="#标准精度的时间测量" aria-hidden="true"></a></h2><p>该段代码采用系统时钟来确定两个时间点之间经历了多少时间。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">s64_t</span> time_stamp;</div><div class="line"><span class="keyword">s64_t</span> milliseconds_spent;</div><div class="line"></div><div class="line"><span class="comment">/* capture initial time stamp */</span></div><div class="line">time_stamp = k_uptime_get();</div><div class="line"></div><div class="line"><span class="comment">/* do work for some (extended) period of time */</span></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">/* compute how long the work took (also updates the time stamp) */</span></div><div class="line">milliseconds_spent = k_uptime_delta(&amp;time_stamp);</div></pre></td></tr></table></figure>
+<h2 id="高精度的时间测量" class="article-heading"><a href="#高精度的时间测量" class="headerlink" title="高精度的时间测量"></a>高精度的时间测量<a class="article-anchor" href="#高精度的时间测量" aria-hidden="true"></a></h2><p>该段代码采用硬时钟来确定两个时间点之间经历了多少时间。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">u32_t</span> start_time;</div><div class="line"><span class="keyword">u32_t</span> stop_time;</div><div class="line"><span class="keyword">u32_t</span> cycles_spent;</div><div class="line"><span class="keyword">u32_t</span> nanoseconds_spent;</div><div class="line"></div><div class="line"><span class="comment">/* capture initial time stamp */</span></div><div class="line">start_time = k_cycle_get_32();</div><div class="line"></div><div class="line"><span class="comment">/* do work for some (short) period of time */</span></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">/* capture final time stamp */</span></div><div class="line">stop_time = k_cycle_get_32();</div><div class="line"></div><div class="line"><span class="comment">/* compute how long the work took (assumes no counter rollover) */</span></div><div class="line">cycles_spent = stop_time - start_time;</div><div class="line">nanoseconds_spent = SYS_CLOCK_HW_CYCLES_TO_NS(cycles_spent);</div></pre></td></tr></table></figure>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>请使用基于系统时钟的服务来执行不需要高精度的时间相关处理，如 <a href="k_timing_timers.html">定时器对象</a> 或 <a href="k_thread_scheduling.html#线程睡眠">线程睡眠</a> 。</p>
+<p>请使用基于硬时钟的服务来执行需要精度高于系统时钟的时间相关处理，如 <a href="k_thread_scheduling.html#忙等待">忙等待</a> ，或需要时间颗粒度更小的时间相关处理。</p>
+<blockquote>
+<p>当硬时钟频率很高时，32位计数器更容易计数到最大值并从0开始。所以采用高精度的时间测量时，需要考虑这种超过一个计数周期的情况。</p>
+</blockquote>
+<h1 id="配置" class="article-heading"><a href="#配置" class="headerlink" title="配置"></a>配置<a class="article-anchor" href="#配置" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li><code>CONFIG_SYS_CLOCK_TICKS_PER_SEC</code></li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p><code>kernel.h</code> 文件提供了如下的内核时钟 API:</p>
+<ul>
+<li><code>k_uptime_get()</code></li>
+<li><code>k_uptime_get_32()</code></li>
+<li><code>k_uptime_delta()</code></li>
+<li><code>k_uptime_delta_32()</code></li>
+<li><code>k_cycle_get_32()</code></li>
+<li><code>SYS_CLOCK_HW_CYCLES_TO_NS</code></li>
+<li><code>K_NO_WAIT</code></li>
+<li><code>K_MSEC</code></li>
+<li><code>K_SECONDS</code></li>
+<li><code>K_MINUTES</code></li>
+<li><code>K_HOURS</code></li>
+<li><code>K_FOREVER</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-12T13:44:43.000Z" itemprop="dateModified">上次更新：2017-08-12</time>
+                <a href="k_timing.html" class="article-footer-prev" title="定时"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_timing_timers.html" class="article-footer-next" title="　>定时器"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#时钟的局限性"><span class="toc-text">时钟的局限性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标准精度的时间测量"><span class="toc-text">标准精度的时间测量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高精度的时间测量"><span class="toc-text">高精度的时间测量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link current">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link current">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_timing_kernelclock.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_timing_timers.html</loc>
+    
+    <lastmod>2017-08-12T14:00:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_timing_kernelclock.html</loc>
+    
+    <lastmod>2017-08-12T13:44:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_scheduling.html</loc>
+    
+    <lastmod>2017-08-12T13:44:07.995Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html</loc>
+    
+    <lastmod>2017-08-12T13:43:56.215Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_customdata.html</loc>
+    
+    <lastmod>2017-08-12T13:43:38.399Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_timing.html</loc>
+    
+    <lastmod>2017-08-12T13:28:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_workqueue.html</loc>
+    
+    <lastmod>2017-08-12T13:19:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_systhread.html</loc>
+    
+    <lastmod>2017-08-12T13:17:21.981Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread.html</loc>
+    
+    <lastmod>2017-08-12T13:16:18.466Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_win.html</loc>
     
     <lastmod>2017-08-11T13:54:43.000Z</lastmod>
@@ -26,41 +89,6 @@
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/start_index.html</loc>
     
     <lastmod>2017-08-11T13:54:26.386Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_workqueue.html</loc>
-    
-    <lastmod>2017-08-11T13:54:17.822Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_systhread.html</loc>
-    
-    <lastmod>2017-08-11T13:54:06.454Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_scheduling.html</loc>
-    
-    <lastmod>2017-08-11T13:54:01.126Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_lifecycle.html</loc>
-    
-    <lastmod>2017-08-11T13:53:56.174Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread_customdata.html</loc>
-    
-    <lastmod>2017-08-11T13:53:51.550Z</lastmod>
     
   </url>
   
@@ -135,13 +163,6 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
-    
-    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zephyrproject.cn/t_guide/overview.html</loc>
     
     <lastmod>2017-08-08T10:02:12.773Z</lastmod>
@@ -149,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_overview.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
     
-    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
+    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_thread.html</loc>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_overview.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
@@ -219,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
+    <loc>http://zephyrproject.cn/about/index.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/about/index.html</loc>
+    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     

@@ -2,17 +2,17 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>Zephyr Project 中文社区</title>
+  <title>定时 - Timing | Zephyr Project 中文社区</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://zephyrproject.cn/t_guide/index.html">
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_timing.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/t_guide/index.html">
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_timing.html">
     
-      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/t_guide/index.html">
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_timing.html">
     
   
   <!-- Icon -->
@@ -41,17 +41,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
   <!-- Open Graph -->
-  <meta name="description" content="Zephyr，用于IoT的操作系统，由基金会发布">
+  <meta name="description" content="翻译：ianhom  本节描述了内核中时间相关的服务，如延时一段指定的时间或测量已经历的时间。  内核时钟 定时器">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Zephyr Project 中文社区">
-<meta property="og:url" content="http://zephyrproject.cn/t_guide/index.html">
+<meta property="og:title" content="定时 - Timing">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_timing.html">
 <meta property="og:site_name" content="Zephyr Project 中文社区">
-<meta property="og:description" content="Zephyr，用于IoT的操作系统，由基金会发布">
+<meta property="og:description" content="翻译：ianhom  本节描述了内核中时间相关的服务，如延时一段指定的时间或测量已经历的时间。  内核时钟 定时器">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-08T09:57:41.785Z">
+<meta property="og:updated_time" content="2017-08-12T13:28:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zephyr Project 中文社区">
-<meta name="twitter:description" content="Zephyr，用于IoT的操作系统，由基金会发布">
+<meta name="twitter:title" content="定时 - Timing">
+<meta name="twitter:description" content="翻译：ianhom  本节描述了内核中时间相关的服务，如延时一段指定的时间或测量已经历的时间。  内核时钟 定时器">
 <meta name="twitter:site" content="zephyriot">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -88,7 +88,7 @@
     </nav>
     <div id="lang-select-wrap">
       <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
-      <select id="lang-select" data-canonical="">
+      <select id="lang-select" data-canonical="docs/latest/k_timing.html">
         
           <option value="en">English</option>
         
@@ -112,15 +112,23 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name"></h1>
-                <a href="https://github.com/hexojs/site/edit/master/source/t_guide/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+                <h1 class="article-title" itemprop="name">定时 - Timing</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_timing.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                
+                <blockquote>
+<p>翻译：<a href="https://github.com/ianhom" target="_blank" rel="external">ianhom</a></p>
+</blockquote>
+<p>本节描述了内核中时间相关的服务，如延时一段指定的时间或测量已经历的时间。</p>
+<ul>
+<li><a href="k_timing_kernelclock.html">内核时钟</a></li>
+<li><a href="k_timing_timers.html">定时器</a></li>
+</ul>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-08-08T09:57:41.785Z" itemprop="dateModified">上次更新：2017-08-08</time>
-                <a href="ubuntu.html" class="article-footer-next" title="使用Ubuntu"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2017-08-12T13:28:23.000Z" itemprop="dateModified">上次更新：2017-08-12</time>
+                <a href="k_thread_workqueue.html" class="article-footer-prev" title="　>工作队列线程"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_timing_kernelclock.html" class="article-footer-next" title="　>内核时钟"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
 <section id="comments">
@@ -160,7 +168,7 @@ gitment.render('disqus_thread')
       </article>
       <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">搭建开发环境</strong><a href="ubuntu.html" class="sidebar-link">使用Ubuntu</a><a href="pre-install.html" class="sidebar-link">使用预安装版</a><a href="mac.html" class="sidebar-link">使用Mac</a><a href="win10-wsl.html" class="sidebar-link">使用Win10 Linux子系统</a><a href="windows.html" class="sidebar-link">使用Windows</a><strong class="sidebar-title">单步调试</strong><a href="overview.html" class="sidebar-link">概述</a><a href="qemu.html" class="sidebar-link">qemu</a><a href="arduino_101.html" class="sidebar-link">arduino 101</a><a href="arduino_due.html" class="sidebar-link">arduino due</a><a href="k64f.html" class="sidebar-link">k64f</a><a href="kw41z.html" class="sidebar-link">kw41z</a><a href="nrf51.html" class="sidebar-link">nrf51</a><a href="nrf52.html" class="sidebar-link">nrf52</a><a href="stm32.html" class="sidebar-link">stm32</a><a href="cc3200.html" class="sidebar-link">cc3200</a><a href="cc2650.html" class="sidebar-link">cc2650</a><a href="96b_carbon.html" class="sidebar-link">96b carbon</a><a href="esp32.html" class="sidebar-link">esp32</a>
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link current">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
   </div>
 </aside>
     </div>
@@ -191,12 +199,12 @@ gitment.render('disqus_thread')
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">搭建开发环境</strong><a href="ubuntu.html" class="mobile-nav-link">使用Ubuntu</a><a href="pre-install.html" class="mobile-nav-link">使用预安装版</a><a href="mac.html" class="mobile-nav-link">使用Mac</a><a href="win10-wsl.html" class="mobile-nav-link">使用Win10 Linux子系统</a><a href="windows.html" class="mobile-nav-link">使用Windows</a><strong class="mobile-nav-title">单步调试</strong><a href="overview.html" class="mobile-nav-link">概述</a><a href="qemu.html" class="mobile-nav-link">qemu</a><a href="arduino_101.html" class="mobile-nav-link">arduino 101</a><a href="arduino_due.html" class="mobile-nav-link">arduino due</a><a href="k64f.html" class="mobile-nav-link">k64f</a><a href="kw41z.html" class="mobile-nav-link">kw41z</a><a href="nrf51.html" class="mobile-nav-link">nrf51</a><a href="nrf52.html" class="mobile-nav-link">nrf52</a><a href="stm32.html" class="mobile-nav-link">stm32</a><a href="cc3200.html" class="mobile-nav-link">cc3200</a><a href="cc2650.html" class="mobile-nav-link">cc2650</a><a href="96b_carbon.html" class="mobile-nav-link">96b carbon</a><a href="esp32.html" class="mobile-nav-link">esp32</a>
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link current">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
-    <select id="mobile-lang-select" data-canonical="">
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_timing.html">
       
         <option value="en">English</option>
       
