@@ -17,7 +17,12 @@ docs:
     k_thread_systhread: k_thread_systhread.html
     k_thread_workqueue: k_thread_workqueue.html
     kernel_timing: k_timing.html
+    k_timing_kernelclock: k_timing_kernelclock.html
+    k_timing_timers: k_timing_timers.html
     kernel_memory: k_memory.html
+    k_memory_slab: k_memory_slab.html
+    k_memory_pool: k_memory_pool.html
+    k_memory_heap: k_memory_heap.html
     kernel_sync: k_sync.html
     kernel_datapassing: k_datapassing.html
     kernel_other: k_other.html
@@ -54,4 +59,6 @@ t_guide:
     96b_carbon: 96b_carbon.html
     esp32: esp32.html
 
+t_deep:
+  
 

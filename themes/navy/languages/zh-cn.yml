@@ -39,7 +39,12 @@ sidebar:
     k_thread_systhread:  '　>系统线程'
     k_thread_workqueue:  '　>工作队列线程'
     kernel_timing: 定时
+    k_timing_kernelclock: '　>内核时钟'
+    k_timing_timers: '　>定时器'
     kernel_memory: 内存分配
+    k_memory_slab: '　>内存片'
+    k_memory_pool: '　>内存池'
+    k_memory_heap: '　>堆内存池'
     kernel_sync: 同步
     kernel_datapassing: 数据传递
     kernel_other: 其它服务
