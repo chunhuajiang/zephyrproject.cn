@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>堆内存池 | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_memory_heap.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_memory_heap.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_memory_heap.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="堆内存池(heap memory pool) 是一个预定义的内存池对象，它允许线程像使用 malloc() 那样从一段通用内存区动态地申请内存。 概念堆内存池只能定义一个。与其它内存池不同的是，堆内存池不能通过内存地址对其引用。 堆内存池的大小是可配置的，支持如下大小：256 字节，1024 字节，4096 字节和 16384 字节。 线程可以调用函数 k_malloc() 来动态申请一大块堆内存">
+<meta property="og:type" content="website">
+<meta property="og:title" content="堆内存池">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_memory_heap.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="堆内存池(heap memory pool) 是一个预定义的内存池对象，它允许线程像使用 malloc() 那样从一段通用内存区动态地申请内存。 概念堆内存池只能定义一个。与其它内存池不同的是，堆内存池不能通过内存地址对其引用。 堆内存池的大小是可配置的，支持如下大小：256 字节，1024 字节，4096 字节和 16384 字节。 线程可以调用函数 k_malloc() 来动态申请一大块堆内存">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-13T02:38:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="堆内存池">
+<meta name="twitter:description" content="堆内存池(heap memory pool) 是一个预定义的内存池对象，它允许线程像使用 malloc() 那样从一段通用内存区动态地申请内存。 概念堆内存池只能定义一个。与其它内存池不同的是，堆内存池不能通过内存地址对其引用。 堆内存池的大小是可配置的，支持如下大小：256 字节，1024 字节，4096 字节和 16384 字节。 线程可以调用函数 k_malloc() 来动态申请一大块堆内存">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_memory_heap.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">堆内存池</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_memory_heap.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p><strong>堆内存池(heap memory pool)</strong> 是一个预定义的内存池对象，它允许线程像使用 <code>malloc()</code> 那样从一段通用内存区动态地申请内存。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>堆内存池只能定义一个。与其它内存池不同的是，堆内存池不能通过内存地址对其引用。</p>
+<p>堆内存池的大小是可配置的，支持如下大小：256 字节，1024 字节，4096 字节和 16384 字节。</p>
+<p>线程可以调用函数 <code>k_malloc()</code> 来动态申请一大块堆内存。所分配的地址是 4 字节对齐的。如果内核没有找到合适的内存块，将返回一个 <code>NULL</code>。</p>
+<p>当线程使用完堆内存后，它应当调用 <code>k_free()</code> 将其释放到堆内存池中。</p>
+<h2 id="内部操作" class="article-heading"><a href="#内部操作" class="headerlink" title="内部操作"></a>内部操作<a class="article-anchor" href="#内部操作" aria-hidden="true"></a></h2><p>堆内存池定义了一个包含整个堆的单一的最大尺寸块；即单一块的大小是 256、1024、4096 或 16384 字节。堆内存池也定义了一个最小尺寸块 —— 64 字节。下表展示了堆内存池在每种块尺寸下所能支持的块的数量。</p>
+<table>
+<thead>
+<tr>
+<th>堆尺寸</th>
+<th>64字节的块</th>
+<th>256字节的块</th>
+<th>1025字节的块</th>
+<th>4096字节的块</th>
+<th>16384字节的块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>256</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>16</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4096</td>
+<td>64</td>
+<td>16</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>16384</td>
+<td>256</td>
+<td>64</td>
+<td>16</td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>对于某个给定的尺寸的内存块，能同时分配到的数量通常小于上面的表所列举的结果。例如，每当从大小为 1024 字节的堆内存中分配一个大小为 256 字节的块后，所能分配到的大小为 64 字节的块的数量就会减 4。内存池 buffer 中的碎片也会进一步减小可用块的数量。</p>
+</blockquote>
+<p>内存块被分配后，它的前 16 个字节将被内核用于记录块描述符。内核随后会使用该描述符释放块。因此，如果应用程序请求的堆内存大小是 N 字节，实际至少会使用 N+16 字节。</p>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="定义堆内存池" class="article-heading"><a href="#定义堆内存池" class="headerlink" title="定义堆内存池"></a>定义堆内存池<a class="article-anchor" href="#定义堆内存池" aria-hidden="true"></a></h2><p>配置选项 <code>CONFIG_HEAP_MEM_POOL_SIZE</code> 用于指定堆内存池的大小。</p>
+<p>默认情况下，堆内存池的大小是零字节，它指示内核不要去定义堆内存池对象。</p>
+<h2 id="分配内存" class="article-heading"><a href="#分配内存" class="headerlink" title="分配内存"></a>分配内存<a class="article-anchor" href="#分配内存" aria-hidden="true"></a></h2><p>函数 <code>k_malloc()</code> 用于分配一块堆内存。</p>
+<p>下面的代码先申请了 200 字节的堆内存空间，然后将其填充为零。如果没有获取到所需的空间，它将打印一条警告消息。</p>
+<p>注意，应用程序实际会接收到一个大小为 256 字节的内存块，因为这是堆内存池所支持的最接近的尺寸。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">char</span> *mem_ptr;</div><div class="line"></div><div class="line">mem_ptr = k_malloc(<span class="number">200</span>);</div><div class="line"><span class="keyword">if</span> (mem_ptr != <span class="literal">NULL</span>)) &#123;</div><div class="line">    <span class="built_in">memset</span>(mem_ptr, <span class="number">0</span>, <span class="number">200</span>);</div><div class="line">    ...</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Memory not allocated"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="释放内存" class="article-heading"><a href="#释放内存" class="headerlink" title="释放内存"></a>释放内存<a class="article-anchor" href="#释放内存" aria-hidden="true"></a></h2><p>函数 <code>k_free()</code> 用于释放一块堆内存。</p>
+<p>下面的代码申请了 75 字节的内存块，并在不再使用时释放。（基于安全考虑，实际上会从堆内存池使用 256 字节的内存块。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">char</span> *mem_ptr;</div><div class="line"></div><div class="line">mem_ptr = k_malloc(<span class="number">75</span>);</div><div class="line">... <span class="comment">/* use memory block */</span></div><div class="line">k_free(mem_ptr);</div></pre></td></tr></table></figure>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>您可以像使用 <code>malloc()</code> 那样使用堆内存池动态地分配内存。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li><code>CONFIG_HEAP_MEM_POOL_SIZE</code></li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p>头文件 <code>kernel.h</code> 中提供了如下的堆内存池 API：</p>
+<ul>
+<li><code>k_malloc()</code></li>
+<li><code>k_free()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-13T02:38:19.000Z" itemprop="dateModified">上次更新：2017-08-13</time>
+                <a href="k_memory_pool.html" class="article-footer-prev" title="　>内存池"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_sync.html" class="article-footer-next" title="同步"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内部操作"><span class="toc-text">内部操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义堆内存池"><span class="toc-text">定义堆内存池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分配内存"><span class="toc-text">分配内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#释放内存"><span class="toc-text">释放内存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_memory_slab.html" class="sidebar-link">　>内存片</a><a href="k_memory_pool.html" class="sidebar-link">　>内存池</a><a href="k_memory_heap.html" class="sidebar-link current">　>堆内存池</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_memory_slab.html" class="mobile-nav-link">　>内存片</a><a href="k_memory_pool.html" class="mobile-nav-link">　>内存池</a><a href="k_memory_heap.html" class="mobile-nav-link current">　>堆内存池</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_memory_heap.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
