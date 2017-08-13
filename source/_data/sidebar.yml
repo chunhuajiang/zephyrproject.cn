@@ -24,6 +24,9 @@ docs:
     k_memory_pool: k_memory_pool.html
     k_memory_heap: k_memory_heap.html
     kernel_sync: k_sync.html
+    k_sync_sem: k_sync_sem.html
+    k_sync_mutex: k_sync_mutex.html
+    k_sync_alert: k_sync_alert.html
     kernel_datapassing: k_datapassing.html
     kernel_other: k_other.html
   app_primer:

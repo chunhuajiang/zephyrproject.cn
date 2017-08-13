@@ -46,6 +46,9 @@ sidebar:
     k_memory_pool: '　>内存池'
     k_memory_heap: '　>堆内存池'
     kernel_sync: 同步
+    k_sync_sem: '　>信号量'
+    k_sync_mutex: '　>互斥量'
+    k_sync_alert: '　>告警'
     kernel_datapassing: 数据传递
     kernel_other: 其它服务
     app_primer: 应用程序开发入门
