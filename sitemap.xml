@@ -268,13 +268,6 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
-    
-    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zephyrproject.cn/t_guide/overview.html</loc>
     
     <lastmod>2017-08-08T10:02:12.773Z</lastmod>
@@ -282,14 +275,21 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
+    
+    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/opensource/index.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/opensource/index.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
     
     <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
