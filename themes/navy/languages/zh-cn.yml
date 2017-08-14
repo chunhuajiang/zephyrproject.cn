@@ -50,6 +50,12 @@ sidebar:
     k_sync_mutex: '　>互斥量'
     k_sync_alert: '　>告警'
     kernel_datapassing: 数据传递
+    k_datapass_fifo: '　>fifo'
+    k_datapass_lifo: '　>lifo'
+    k_datapass_stack: '　>栈'
+    k_datapass_msgqueue: '　>消息队列'
+    k_datapass_mailbox: '　>邮筒'
+    k_datapass_pipe: '　>管道'
     kernel_other: 其它服务
     app_primer: 应用程序开发入门
     app_overview: 概述

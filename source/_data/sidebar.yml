@@ -28,6 +28,12 @@ docs:
     k_sync_mutex: k_sync_mutex.html
     k_sync_alert: k_sync_alert.html
     kernel_datapassing: k_datapassing.html
+    k_datapass_fifo: k_datapass_fifo.html
+    k_datapass_lifo: k_datapass_lifo.html
+    k_datapass_stack: k_datapass_stack.html
+    k_datapass_msgqueue: k_datapass_msgqueue.html
+    k_datapass_mailbox: k_datapass_mailbox.html
+    k_datapass_pipe: k_datapass_pipe.html
     kernel_other: k_other.html
   app_primer:
     app_overview:

@@ -1,0 +1,39 @@
+title: 数据传递
+---
+
+- **[fifo](k_datapass_fifo.html)**
+  - [概念](k_datapass_fifo.html#概念)
+  - [实现](k_datapass_fifo.html#实现)
+  - [建议的用法](k_datapass_fifo.html#建议的用法)
+  - [配置选项](k_datapass_fifo.html#配置选项)
+  - [API](k_datapass_fifo.html#API)
+- **[lifo](k_datapass_lifo.html)**
+  - [概念](k_datapass_lifo.html#概念)
+  - [实现](k_datapass_lifo.html#实现)
+  - [建议的用法](k_datapass_lifo.html#建议的用法)
+  - [配置选项](k_datapass_lifo.html#配置选项)
+  - [API](k_datapass_lifo.html#API)
+- **[栈](k_datapass_stack.html)**
+  - [概念](k_datapass_stack.html#概念)
+  - [实现](k_datapass_stack.html#实现)
+  - [建议的用法](k_datapass_stack.html#建议的用法)
+  - [配置选项](k_datapass_stack.html#配置选项)
+  - [API](k_datapass_stack.html#API)
+- **[消息队列](k_datapass_msgqueue.html)**
+  - [概念](k_datapass_msgqueue.html#概念)
+  - [实现](k_datapass_msgqueue.html#实现)
+  - [建议的用法](k_datapass_msgqueue.html#建议的用法)
+  - [配置选项](k_datapass_msgqueue.html#配置选项)
+  - [API](k_datapass_msgqueue.html#API)
+- **[邮筒](k_datapass_mailbox.html)**
+  - [概念](k_datapass_mailbox.html#概念)
+  - [实现](k_datapass_mailbox.html#实现)
+  - [建议的用法](k_datapass_mailbox.html#建议的用法)
+  - [配置选项](k_datapass_mailbox.html#配置选项)
+  - [API](k_datapass_mailbox.html#API)
+- **[管道](k_datapass_pipe.html)**
+  - [概念](k_datapass_pipe.html#概念)
+  - [实现](k_datapass_pipe.html#实现)
+  - [建议的用法](k_datapass_pipe.html#建议的用法)
+  - [配置选项](k_datapass_pipe.html#配置选项)
+  - [API](k_datapass_pipe.html#API)
