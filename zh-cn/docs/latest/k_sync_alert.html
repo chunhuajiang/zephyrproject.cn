@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>告警 | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_sync_alert.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_sync_alert.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_sync_alert.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="告警（alert） 是一个当用户感兴趣的条件发生时允许应用程序执行一个异步信号的内核对象。 概念可以定义任意数量的告警。每个告警通过其内存地址进行引用。 告警的关键属性如下：  告警处理者(alert handler)：用于指明当捕捉到告警信号时应采取的动作。这个动作可能会指示系统工作队列去执行一个处理函数，将告警标记为挂起，以使其随后能被线程处理或忽略。 挂起计数(pending count)：">
+<meta property="og:type" content="website">
+<meta property="og:title" content="告警">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_sync_alert.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="告警（alert） 是一个当用户感兴趣的条件发生时允许应用程序执行一个异步信号的内核对象。 概念可以定义任意数量的告警。每个告警通过其内存地址进行引用。 告警的关键属性如下：  告警处理者(alert handler)：用于指明当捕捉到告警信号时应采取的动作。这个动作可能会指示系统工作队列去执行一个处理函数，将告警标记为挂起，以使其随后能被线程处理或忽略。 挂起计数(pending count)：">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-13T11:54:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="告警">
+<meta name="twitter:description" content="告警（alert） 是一个当用户感兴趣的条件发生时允许应用程序执行一个异步信号的内核对象。 概念可以定义任意数量的告警。每个告警通过其内存地址进行引用。 告警的关键属性如下：  告警处理者(alert handler)：用于指明当捕捉到告警信号时应采取的动作。这个动作可能会指示系统工作队列去执行一个处理函数，将告警标记为挂起，以使其随后能被线程处理或忽略。 挂起计数(pending count)：">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_sync_alert.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">告警</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_sync_alert.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p><strong>告警（alert）</strong> 是一个当用户感兴趣的条件发生时允许应用程序执行一个异步信号的内核对象。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>可以定义任意数量的告警。每个告警通过其内存地址进行引用。</p>
+<p>告警的关键属性如下：</p>
+<ul>
+<li><strong>告警处理者(alert handler)</strong>：用于指明当捕捉到告警信号时应采取的动作。这个动作可能会指示系统工作队列去执行一个处理函数，将告警标记为挂起，以使其随后能被线程处理或忽略。</li>
+<li><strong>挂起计数(pending count)</strong>：记录被挂起的、未被接收的告警数量。</li>
+<li><strong>计数界限(count limit)</strong>：挂起计数的最大值。</li>
+</ul>
+<p>告警必须先初始化再使用。初始化时会建立一个告警处理者，并将挂机计数设为零。</p>
+<h2 id="告警的生命周期" class="article-heading"><a href="#告警的生命周期" class="headerlink" title="告警的生命周期"></a>告警的生命周期<a class="article-anchor" href="#告警的生命周期" aria-hidden="true"></a></h2><p>当某个感兴趣的但又不能被检测者处理的条件发生时，ISR 或者线程可以 <strong>发送</strong> 告警信号。</p>
+<p>每次有告警被发出时，内核都会检查它的告警处理函数，以决定采取何种动作。</p>
+<ul>
+<li><p>K_ALERT_IGNORE 将导致告警被忽略。</p>
+</li>
+<li><p>K_ALERT_DEFAULT 将导致挂起的告警计数递增（除非计数已达上限）。</p>
+</li>
+<li><p>其它任何值都会被认为是一个告警处理函数的地址，并会被系统工作队列线程调用。如果该函数返回零，则认为该信号已经被消费；否则，挂起的告警计数递增（除非计数已达上限）。</p>
+<p>内核假设，每次告警被发送时，告警处理函数会被执行一次。（即使在连续的时间内告警被多次发送）。</p>
+</li>
+</ul>
+<p>内核可以 <strong>接收</strong> 告警而接受一个挂起的告警。如果当前的挂起计数是零，线程可以等待该告警被挂起。多个线程可以同时等待一个挂起告警；当告警被挂起时，它会被优先级最高的、等待时间最久的线程所接受。</p>
+<blockquote>
+<p>线程在同一个时刻只能处理一个挂起告警。线程在一个操作中不能接收多个挂起告警。</p>
+</blockquote>
+<h2 id="与-Unix-风格的信号的比较" class="article-heading"><a href="#与-Unix-风格的信号的比较" class="headerlink" title="与 Unix 风格的信号的比较"></a>与 Unix 风格的信号的比较<a class="article-anchor" href="#与-Unix-风格的信号的比较" aria-hidden="true"></a></h2><p>Zephyr 的告警在某种程度上类似于 Unix 风格的信号，但是也有一些显著的区别，最主要包括：</p>
+<ul>
+<li>Zephyr 告警不能被锁定；它总是立即被传递给告警处理者。</li>
+<li>Zephyr 告警被传递给告警处理者 后 会处于挂起状态，直到- 告警处理函数消费了该告警。</li>
+<li>Zephyr 没有预定义的告警或行为。所有的告警都是由应用程序- 定义的，其默认行为是挂起告警。</li>
+</ul>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="定义告警" class="article-heading"><a href="#定义告警" class="headerlink" title="定义告警"></a>定义告警<a class="article-anchor" href="#定义告警" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_alert</code> 的变量可以定义告警。告警在被定义后必须使用函数 <code>k_alert_init()</code> 进行初始化。</p>
+<p>下面的代码定义并初始化了一个告警。该告警在开始忽略新的挂起告警前，最多能够允许 10 个未接收的告警信号被挂起。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">my_alert_handler</span><span class="params">(struct k_alert *alert)</span></span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">k_alert</span> <span class="title">my_alert</span>;</span></div><div class="line"></div><div class="line">k_alert_init(&amp;my_alert, my_alert_handler, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<p>也可以使用宏 <code>K_ALERT_DEFINE</code> 在编译时定义并初始化一个告警。</p>
+<p>下面的代码与上面的代码段具有系统的效果。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">my_alert_handler</span><span class="params">(struct k_alert *alert)</span></span>;</div><div class="line"></div><div class="line">K_ALERT_DEFINE(my_alert, my_alert_handler, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h2 id="发出告警" class="article-heading"><a href="#发出告警" class="headerlink" title="发出告警"></a>发出告警<a class="article-anchor" href="#发出告警" aria-hidden="true"></a></h2><p>函数 <code>k_alert_send()</code> 可用于发出告警。</p>
+<p>下面的代码展示了当有新的按键发生时 ISR 是如何发出告警信号的。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">my_alert_handler</span><span class="params">(struct k_alert *alert)</span></span>;</div><div class="line"></div><div class="line">K_ALERT_DEFINE(my_alert, my_alert_handler);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">keypress_interrupt_handler</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">    k_alert_send(&amp;my_alert);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="处理告警" class="article-heading"><a href="#处理告警" class="headerlink" title="处理告警"></a>处理告警<a class="article-anchor" href="#处理告警" aria-hidden="true"></a></h2><p>当接收到的告警信号不能被忽略或者理解挂起时，内核会使用告警处理函数。告警处理函数的格式如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span> &lt;function_name&gt;(struct k_alert *alert)</div><div class="line">&#123;</div><div class="line">    <span class="comment">/* catch the alert signal; return zero if the signal is consumed, */</span></div><div class="line">    <span class="comment">/* or non-zero to let the alert pend                              */</span></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面的代码描述了当 ISR 检测到按键被按下时的告警处理函数。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">my_alert_handler</span><span class="params">(struct k_alert *alert_id_is_unused)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">/* determine what key was pressed */</span></div><div class="line">    <span class="keyword">char</span> c = get_keypress();</div><div class="line"></div><div class="line">    <span class="comment">/* do complex processing of the keystroke */</span></div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="comment">/* signalled alert has been consumed */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="接受告警" class="article-heading"><a href="#接受告警" class="headerlink" title="接受告警"></a>接受告警<a class="article-anchor" href="#接受告警" aria-hidden="true"></a></h2><p>函数 <code>k_alert_recv()</code> 可用于让线程接受一个挂起的告警。</p>
+<p>下面的代码是对上一节的功能的另一种实现形式。它使用一个专用的线程去做复杂的按键处理（否则会独占系统工作队列）。告警处理函数只用于过滤未知的按键告警，这样可以使专用线程去唤醒并处理已知按键的告警。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">my_alert_handler</span><span class="params">(struct k_alert *alert_id_is_unused)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">/* determine what key was pressed */</span></div><div class="line">    <span class="keyword">char</span> c = get_keypress();</div><div class="line"></div><div class="line">    <span class="comment">/* signal thread only if key pressed was a digit */</span></div><div class="line">    <span class="keyword">if</span> ((c &gt;= <span class="string">'0'</span>) &amp;&amp; (c &lt;= <span class="string">'9'</span>)) &#123;</div><div class="line">        <span class="comment">/* save key press information */</span></div><div class="line">        ...</div><div class="line">        <span class="comment">/* signaled alert should be pended */</span></div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">/* signaled alert has been consumed */</span></div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">keypress_thread</span><span class="params">(<span class="keyword">void</span> *unused1, <span class="keyword">void</span> *unused2, <span class="keyword">void</span> *unused3)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">/* consume numeric key presses */</span></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">        <span class="comment">/* wait for a key press alert to pend */</span></div><div class="line">        k_alert_recv(&amp;my_alert, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* process saved key press, which must be a digit */</span></div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>使用告警将 ISR 中中断相关的工作推迟到线程中，这样可以最简化 ISR 的处理工作，从而减小了中断被锁定的时间。</p>
+<p>可以让内核的系统工作队列去处理告警，而不需要应用程序线程去处理。</p>
+<p>可以让内核的系统工作队列去预处理告警，抢在应用程序线程处理之前。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li>无。</li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p>头文件 <code>kernel.h</code> 提供了如下的告警 API：</p>
+<ul>
+<li><code>K_ALERT_DEFINE</code></li>
+<li><code>k_alert_init()</code></li>
+<li><code>k_alert_send()</code></li>
+<li><code>k_alert_recv()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-13T11:54:18.000Z" itemprop="dateModified">上次更新：2017-08-13</time>
+                <a href="k_sync_mutex.html" class="article-footer-prev" title="　>互斥量"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_datapassing.html" class="article-footer-next" title="数据传递"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#告警的生命周期"><span class="toc-text">告警的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与-Unix-风格的信号的比较"><span class="toc-text">与 Unix 风格的信号的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义告警"><span class="toc-text">定义告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发出告警"><span class="toc-text">发出告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理告警"><span class="toc-text">处理告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接受告警"><span class="toc-text">接受告警</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_memory_slab.html" class="sidebar-link">　>内存片</a><a href="k_memory_pool.html" class="sidebar-link">　>内存池</a><a href="k_memory_heap.html" class="sidebar-link">　>堆内存池</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_sync_sem.html" class="sidebar-link">　>信号量</a><a href="k_sync_mutex.html" class="sidebar-link">　>互斥量</a><a href="k_sync_alert.html" class="sidebar-link current">　>告警</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_datapass_fifo.html" class="sidebar-link">　>fifo</a><a href="k_datapass_lifo.html" class="sidebar-link">　>lifo</a><a href="k_datapass_stack.html" class="sidebar-link">　>栈</a><a href="k_datapass_msgqueue.html" class="sidebar-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="sidebar-link">　>邮筒</a><a href="k_datapass_pipe.html" class="sidebar-link">　>管道</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_memory_slab.html" class="mobile-nav-link">　>内存片</a><a href="k_memory_pool.html" class="mobile-nav-link">　>内存池</a><a href="k_memory_heap.html" class="mobile-nav-link">　>堆内存池</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_sync_sem.html" class="mobile-nav-link">　>信号量</a><a href="k_sync_mutex.html" class="mobile-nav-link">　>互斥量</a><a href="k_sync_alert.html" class="mobile-nav-link current">　>告警</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_datapass_fifo.html" class="mobile-nav-link">　>fifo</a><a href="k_datapass_lifo.html" class="mobile-nav-link">　>lifo</a><a href="k_datapass_stack.html" class="mobile-nav-link">　>栈</a><a href="k_datapass_msgqueue.html" class="mobile-nav-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="mobile-nav-link">　>邮筒</a><a href="k_datapass_pipe.html" class="mobile-nav-link">　>管道</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_sync_alert.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

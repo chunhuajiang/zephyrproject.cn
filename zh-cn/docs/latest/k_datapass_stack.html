@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>栈 | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_stack.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_datapass_stack.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_stack.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="栈（stack） 是一个内核对象，它实现了传统的后进先出（last in first out）队列，允许线程和 ISR 添加大小为 32 比特的数据值。 概念可以定义任意数量的栈。每个栈通过其内存地址进行引用。 栈的关键属性包括：  队列(queue)： 它包含了已被添加但还未被移除的长度为 32 比特的数据值。队列使用整型数组实现，且必须在 4 字节边界上对齐。 最大数量(maximum qua">
+<meta property="og:type" content="website">
+<meta property="og:title" content="栈">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_stack.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="栈（stack） 是一个内核对象，它实现了传统的后进先出（last in first out）队列，允许线程和 ISR 添加大小为 32 比特的数据值。 概念可以定义任意数量的栈。每个栈通过其内存地址进行引用。 栈的关键属性包括：  队列(queue)： 它包含了已被添加但还未被移除的长度为 32 比特的数据值。队列使用整型数组实现，且必须在 4 字节边界上对齐。 最大数量(maximum qua">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-13T12:23:07.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="栈">
+<meta name="twitter:description" content="栈（stack） 是一个内核对象，它实现了传统的后进先出（last in first out）队列，允许线程和 ISR 添加大小为 32 比特的数据值。 概念可以定义任意数量的栈。每个栈通过其内存地址进行引用。 栈的关键属性包括：  队列(queue)： 它包含了已被添加但还未被移除的长度为 32 比特的数据值。队列使用整型数组实现，且必须在 4 字节边界上对齐。 最大数量(maximum qua">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_datapass_stack.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">栈</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_datapass_stack.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p><strong>栈（stack）</strong> 是一个内核对象，它实现了传统的后进先出（last in first out）队列，允许线程和 ISR 添加大小为 32 比特的数据值。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>可以定义任意数量的栈。每个栈通过其内存地址进行引用。</p>
+<p>栈的关键属性包括：</p>
+<ul>
+<li><strong>队列(queue)</strong>： 它包含了已被添加但还未被移除的长度为 32 比特的数据值。队列使用整型数组实现，且必须在 4 字节边界上对齐。</li>
+<li><strong>最大数量(maximum quantity)</strong>：栈的容量。</li>
+</ul>
+<p>栈必须先初始化再使用。初始化时会将栈的队列设为空。</p>
+<p>数据可以被线程或者 ISR <strong>添加</strong> 到栈中。如果有线程在该栈上等待数据，则该数据直接被传递该线程；否则，该数据会被添加到栈的队列中。内核在添加数据到栈时，不会检测该栈的队列值是否已达到最大数量。</p>
+<blockquote>
+<p>向一个已满的栈添加数据会导致数组越界，最终会产生不可预料的行为。</p>
+</blockquote>
+<p>数据项可以被线程从栈中 <strong>移除</strong>。如果该栈的队列为空，线程在这个栈上进行等待。多个线程可以同时在某个空栈上等待，当一个新的数据项被添加时，它会被给予优先级最高的、等待时间最久的线程。</p>
+<blockquote>
+<p>ISR 虽然也可以从栈中移除数据，但是如果栈为空，ISR 不能进行等待。</p>
+</blockquote>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="定义栈" class="article-heading"><a href="#定义栈" class="headerlink" title="定义栈"></a>定义栈<a class="article-anchor" href="#定义栈" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_stack</code> 的变量可以定义一个栈。栈定义后必须使用函数 <code>k_stack_init()</code> 对其进行初始化。</p>
+<p>下面的代码定义并初始化了一个可以容纳 10 个值的空栈。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#define MAX_ITEMS 10</div><div class="line"></div><div class="line">uint32_t my_stack_array[MAX_ITEMS];</div><div class="line">struct k_stack my_stack;</div><div class="line"></div><div class="line">k_stack_init(&amp;my_stack, my_stack_array, MAX_ITEMS);</div></pre></td></tr></table></figure>
+<p>也可以使用宏 <code>K_STACK_DEFINE</code> 在编译时定义并初始化一个栈。</p>
+<p>下面的代码与上面的代码段具有相同的效果。注意，该宏既定义了栈又定义了数组。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">K_STACK_DEFINE(my_stack, MAX_ITEMS);</div></pre></td></tr></table></figure>
+<h2 id="压栈" class="article-heading"><a href="#压栈" class="headerlink" title="压栈"></a>压栈<a class="article-anchor" href="#压栈" aria-hidden="true"></a></h2><p>函数 <code>k_stack_push()</code> 可用于将数据项压栈。</p>
+<p>下面的代码基于上面的例程之上，它展示了线程是如何通过保存数据结构池的内存地址到栈中来创建数据结构池的过程。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="comment">/* define array of data structures */</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_buffer_type</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> field1;</div><div class="line">    ...</div><div class="line">    &#125;;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_buffer_type</span> <span class="title">my_buffers</span>[<span class="title">MAX_ITEMS</span>];</span></div><div class="line"></div><div class="line"><span class="comment">/* save address of each data structure in a stack */</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX_ITEMS; i++) &#123;</div><div class="line">    k_stack_push(&amp;my_stack, (<span class="keyword">u32_t</span>)&amp;my_buffers[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="出栈" class="article-heading"><a href="#出栈" class="headerlink" title="出栈"></a>出栈<a class="article-anchor" href="#出栈" aria-hidden="true"></a></h2><p>函数 <code>k_stack_pop()</code> 可以用于从栈中弹出一个数据项。</p>
+<p>下面的代码基于上面的例程之上，它展示了线程是如何动态地分配一个未使用的数据结构的过程。当不再需要数据结构时，线程必须将它的地址压入到栈中，以允许该数据结构能被重复利用。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_buffer_type</span> *<span class="title">new_buffer</span>;</span></div><div class="line"></div><div class="line">k_stack_pop(&amp;buffer_stack, (<span class="keyword">u32_t</span> *)&amp;new_buffer, K_FOREVER);</div><div class="line">new_buffer-&gt;field1 = ...</div></pre></td></tr></table></figure>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>当已知待存储的数据项的数量时，可以使用栈以后进先出的方式保存和恢复大小为 32 比特的数据。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置学习：</p>
+<ul>
+<li>无。</li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p>头文件 <code>kernel.h</code> 中提供了如下的栈相关的 API：</p>
+<ul>
+<li><code>K_STACK_DEFINE</code></li>
+<li><code>k_stack_init()</code></li>
+<li><code>k_stack_push()</code></li>
+<li><code>k_stack_pop()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-13T12:23:07.418Z" itemprop="dateModified">上次更新：2017-08-13</time>
+                <a href="k_datapass_lifo.html" class="article-footer-prev" title="　>lifo"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_datapass_msgqueue.html" class="article-footer-next" title="　>消息队列"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义栈"><span class="toc-text">定义栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压栈"><span class="toc-text">压栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#出栈"><span class="toc-text">出栈</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_memory_slab.html" class="sidebar-link">　>内存片</a><a href="k_memory_pool.html" class="sidebar-link">　>内存池</a><a href="k_memory_heap.html" class="sidebar-link">　>堆内存池</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_sync_sem.html" class="sidebar-link">　>信号量</a><a href="k_sync_mutex.html" class="sidebar-link">　>互斥量</a><a href="k_sync_alert.html" class="sidebar-link">　>告警</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_datapass_fifo.html" class="sidebar-link">　>fifo</a><a href="k_datapass_lifo.html" class="sidebar-link">　>lifo</a><a href="k_datapass_stack.html" class="sidebar-link current">　>栈</a><a href="k_datapass_msgqueue.html" class="sidebar-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="sidebar-link">　>邮筒</a><a href="k_datapass_pipe.html" class="sidebar-link">　>管道</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_memory_slab.html" class="mobile-nav-link">　>内存片</a><a href="k_memory_pool.html" class="mobile-nav-link">　>内存池</a><a href="k_memory_heap.html" class="mobile-nav-link">　>堆内存池</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_sync_sem.html" class="mobile-nav-link">　>信号量</a><a href="k_sync_mutex.html" class="mobile-nav-link">　>互斥量</a><a href="k_sync_alert.html" class="mobile-nav-link">　>告警</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_datapass_fifo.html" class="mobile-nav-link">　>fifo</a><a href="k_datapass_lifo.html" class="mobile-nav-link">　>lifo</a><a href="k_datapass_stack.html" class="mobile-nav-link current">　>栈</a><a href="k_datapass_msgqueue.html" class="mobile-nav-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="mobile-nav-link">　>邮筒</a><a href="k_datapass_pipe.html" class="mobile-nav-link">　>管道</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_datapass_stack.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

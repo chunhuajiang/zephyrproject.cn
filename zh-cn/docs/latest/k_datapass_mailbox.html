@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>邮筒 | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_mailbox.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/docs/latest/k_datapass_mailbox.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_mailbox.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="邮筒（mailbox） 是一个内核对象，它提供了对消息队列对象的增强功能。邮筒允许线程以同步或异步的方式发送和接收任意尺寸的消息。 概念可以定义任意数量的邮筒。邮筒通过内存地址对其进行引用。 邮筒的关键属性包括：  发送队列(send queue)：包含已被发送但还未被接收的消息。 接收队列(receive queue)：包含正在等待接收数据的线程。  邮筒必须先初始化再使用。初始化时会将它的所有">
+<meta property="og:type" content="website">
+<meta property="og:title" content="邮筒">
+<meta property="og:url" content="http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_mailbox.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="邮筒（mailbox） 是一个内核对象，它提供了对消息队列对象的增强功能。邮筒允许线程以同步或异步的方式发送和接收任意尺寸的消息。 概念可以定义任意数量的邮筒。邮筒通过内存地址对其进行引用。 邮筒的关键属性包括：  发送队列(send queue)：包含已被发送但还未被接收的消息。 接收队列(receive queue)：包含正在等待接收数据的线程。  邮筒必须先初始化再使用。初始化时会将它的所有">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-13T14:07:27.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="邮筒">
+<meta name="twitter:description" content="邮筒（mailbox） 是一个内核对象，它提供了对消息队列对象的增强功能。邮筒允许线程以同步或异步的方式发送和接收任意尺寸的消息。 概念可以定义任意数量的邮筒。邮筒通过内存地址对其进行引用。 邮筒的关键属性包括：  发送队列(send queue)：包含已被发送但还未被接收的消息。 接收队列(receive queue)：包含正在等待接收数据的线程。  邮筒必须先初始化再使用。初始化时会将它的所有">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/latest/k_datapass_mailbox.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">邮筒</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/latest/k_datapass_mailbox.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>邮筒（mailbox） 是一个内核对象，它提供了对消息队列对象的增强功能。邮筒允许线程以同步或异步的方式发送和接收任意尺寸的消息。</p>
+<h1 id="概念" class="article-heading"><a href="#概念" class="headerlink" title="概念"></a>概念<a class="article-anchor" href="#概念" aria-hidden="true"></a></h1><p>可以定义任意数量的邮筒。邮筒通过内存地址对其进行引用。</p>
+<p>邮筒的关键属性包括：</p>
+<ul>
+<li><strong>发送队列(send queue)</strong>：包含已被发送但还未被接收的消息。</li>
+<li><strong>接收队列(receive queue)</strong>：包含正在等待接收数据的线程。</li>
+</ul>
+<p>邮筒必须先初始化再使用。初始化时会将它的所有队列设为空。</p>
+<p>邮筒只允许线程（不包括 ISR）交换消息。发送消息的线程叫做 <strong>发送线程</strong>，接收消息的线程叫做 <strong>接收线程</strong>。每个消息只能被一个线程接收（即不支持单点对多点消息和广播消息）。</p>
+<p>使用邮筒交换的消息被处理时时非匿名的，它允许参与交换的线程知道（甚至指定）其它线程的标识符。</p>
+<h2 id="消息格式" class="article-heading"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式<a class="article-anchor" href="#消息格式" aria-hidden="true"></a></h2><p><strong>消息描述符(message descriptor)</strong> 是一个数据结构，它指定了消息的位置，以及消息是如何被邮筒处理的。发现线程和接收线程在访问邮筒时都会提供一个消息描述符。邮筒使用消息描述符在相兼容的发送和接收线程间交换消息。在交换期间，邮筒可以更新消息描述符的某些字段，以告诉线程在此期间发生了什么。</p>
+<p>一个邮筒消息包含零字节或多个字节的 <strong>消息数据</strong>。消息数据的尺寸和格式是由应用程序指定的，且不同消息的格式也可以不一样。消息数据存在两种形式：</p>
+<ul>
+<li><strong>消息缓冲</strong>：它是一个由线程提供的一段内存区域，用于发送和接收消息。消息缓冲多数都是由数组变量或结构体变量实现的。</li>
+<li><strong>消息块</strong>：它是一段从内存池分配的内存区域。</li>
+</ul>
+<p>一个消息 <em>不能</em> 同时是消息缓冲和消息块。这两种形式都不是的消息别叫做 <strong>空消息</strong>。</p>
+<blockquote>
+<p>如果一个消息存在消息缓冲或者消息块，但是它包含零字节的实际数据，则这样的消息 不是 空消息。</p>
+</blockquote>
+<h2 id="消息的生命周期" class="article-heading"><a href="#消息的生命周期" class="headerlink" title="消息的生命周期"></a>消息的生命周期<a class="article-anchor" href="#消息的生命周期" aria-hidden="true"></a></h2><p>消息的生命周期是明确的。在发送线程将数据递交给邮筒时，消息就被创建了。之后，消息属于邮筒。再之后，消息被递交给接收线程。接收线程可以在它从邮筒接收到消息时恢复消息数据，也可以在随后的第二次从邮筒接收到消息时才恢复数据。只有当数据被恢复时，邮筒才会删除消息。</p>
+<h2 id="线程兼容性" class="article-heading"><a href="#线程兼容性" class="headerlink" title="线程兼容性"></a>线程兼容性<a class="article-anchor" href="#线程兼容性" aria-hidden="true"></a></h2><p>发送线程可以指定接收消息的线程的地址，或者可以通过指定 <code>K_ANY</code> 将消息发送给任意线程。类似的，接收线程可以指定从哪个线程接收地址，或者可以通过指定 <code>K_ANY</code> 从任何线程接收消息。只有当发送线程和接收线程的需求都被满足时，消息才会被成功地交换；这样的线程被叫做 <strong>兼容的</strong>。</p>
+<p>例如，如果线程 A （只）发送给线程 B 发送一个消息，则只有线程 B 希望从线程 A 接收消息或者希望从任意线程接收消息时，消息才会被接收。如果线程 B 希望从线程 C 接收消息，则该消息不会被接收。这个消息不会被线程 C 接收（即使他希望从线程 A 或者任意线程接收消息）。</p>
+<h2 id="消息流控制" class="article-heading"><a href="#消息流控制" class="headerlink" title="消息流控制"></a>消息流控制<a class="article-anchor" href="#消息流控制" aria-hidden="true"></a></h2><p>邮筒消息可以被 <strong>同步</strong> 或者 <strong>异步</strong> 交换。在同步交换中，发送线程在消息被接收线程完全处理前会一直阻塞。在异步交换中，发送线程不会等待消息被另一个线程接收，它会直接继续执行；这样能允许发送线程在将消息给接收线程并完全处理 前 执行其它工作（例如收集在下一个消息中需要使用的数据）。</p>
+<p>同步交换技术提供了一个隐式的流控制形式，即能阻止发哦是哪个线程产生消息的速度快于接收线程消费的速度。异步交换技术也提供给了一个隐式的流控制形式，即发送消息的线程需要在发送后续消息时判断前一个消息是否仍然存在。</p>
+<h1 id="实现" class="article-heading"><a href="#实现" class="headerlink" title="实现"></a>实现<a class="article-anchor" href="#实现" aria-hidden="true"></a></h1><h2 id="定义邮筒" class="article-heading"><a href="#定义邮筒" class="headerlink" title="定义邮筒"></a>定义邮筒<a class="article-anchor" href="#定义邮筒" aria-hidden="true"></a></h2><p>使用类型为 <code>struct k_mbox</code> 的变量可以定义一个邮筒。邮筒定义后必须使用函数 <code>k_mbox_init()</code> 对其进行初始化。</p>
+<p>下面的代码定义并初始化了一个空邮筒。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">k_mbox</span> <span class="title">my_mailbox</span>;</span></div><div class="line"></div><div class="line">k_mbox_init(&amp;my_mailbox);</div></pre></td></tr></table></figure>
+<p>也可以使用宏 K_MBOX_DEFINE 在编译时定义和初始化一个邮筒。</p>
+<p>下面的代码与上面的代码片段具有相同的作用。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line">K_MBOX_DEFINE(my_mailbox);</div></pre></td></tr></table></figure>
+<h2 id="消息描述符" class="article-heading"><a href="#消息描述符" class="headerlink" title="消息描述符"></a>消息描述符<a class="article-anchor" href="#消息描述符" aria-hidden="true"></a></h2><p>消息描述符是一个结构为 struct k_mbox_msg 的类型。只能使用下面所列举的字段；其它的字段仅限于邮筒内部所用。</p>
+<ul>
+<li><p><strong>info</strong><br>  <br>被消息发送者和接收者所交换的一个 32 比特的值，它的意义由应用程序定义。这种交换是双向的，即允许发送者在任何消息交换时给接收者传递数据，也允许接收者在同步消息交换时给发送者传递数据。</p>
+<p>  <br></p>
+</li>
+<li><p><strong>size</strong></p>
+<p>  <br>消息数据的尺寸，单位是字节。零表示发送一个空的消息或者发送一个无实际数据的消息缓冲或消息块。接收时，将其设为所希望接收数据的最大值，或者如果消息数据不是自己想要的时候将其设为零。当消息被接收后，邮筒会更新这个字段为实际所交换的字节数。</p>
+<p>  <br></p>
+</li>
+<li><p><strong>tx_data</strong></p>
+<p>  <br>一个执行发送线程消息缓冲的指针。当发送一个内存块或者一个空消息时，将其设为 NULL。当接收消息时，让该字段保持未初始化。</p>
+<p>  <br></p>
+</li>
+<li><p><strong>tx_block</strong></p>
+<p>  <br>发送线程的内存块的描述符。当发送一个空消息时，将 tx_block.pool_id 设为 NULL。当发送一个消息缓冲或者接收一个消息时，将该字段保持未初始化。</p>
+<p>  <br></p>
+</li>
+<li><p><strong>tx_target_thread</strong></p>
+<p>  <br>希望接收消息的线程的地址。将其设为 K_ANY 可允许任何线程接收该消息。当接收消息时，让该字段保持未初始化。当消息被接收后，邮筒会将该字段更新为实际接收者的地址。</p>
+<p>  <br></p>
+</li>
+<li><p><strong>rx_source_thread</strong></p>
+<p>  <br>希望发送线程的地址。将其设为 K_ANY 可允许接收任何线程发送的消息。当发送消息时，让该字段保持未初始化。当消息被接收后，邮筒会将该字段更新为实际发送者的地址。</p>
+<p>  <br></p>
+</li>
+</ul>
+<h2 id="发送消息" class="article-heading"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息<a class="article-anchor" href="#发送消息" aria-hidden="true"></a></h2><p>线程发送消息时需要先创建消息数据。当数据量很小，且拷贝数据的代价少于分配、释放内存块的代价时，通常会使用消息缓冲。</p>
+<p>接着，发送下才能会创建一个用于描述待发送消息的消息描述符，如前一节所述。</p>
+<p>最后，发送线程会调用邮筒发送 API 去初始化消息交换的过程。如果存在一个兼容的接收线程，消息会被立即递交给它；否则，消息会被添加的邮筒的发送队列中。</p>
+<p>多个消息可以同时存在发送队列中。发送队列中的消息按照发送线程的优先级进行存储。相同优先级的消息按照先进先出的顺序进行存储。</p>
+<p>对于同步发送，相关操作会在接收线程接收完消息且恢复完消息数据后完成。如果消息在发送线程所指定的等待时间到达后还未被接收，该消息会被移除邮筒的发送队列，发送失败。当发送成功后，发送线程会检查消息描述符，然后判断是哪个线程接收了消息，有多少数据被交换，以及由接收线程提供的应用程序定义的信息值。</p>
+<blockquote>
+<p>同步发送可以导致发送线程被无限期地阻塞（甚至当线程指定了最大等待时间）。等待时间只是限定了邮筒在消息被另一个线程接收前的等待时间。消息被接收后，接收线程恢复消息数据并解除发送线程阻塞状态的时间是 无限制 的。</p>
+</blockquote>
+<p>对于异步发送，操作总是立即完成。这样可以让发送线程不用理会消息是否立即给了接收线程或者被添加到发送队列中，而继续做其它工作。发送线程可以指定一个信号量，当消息被邮筒删除时（例如消息被接收接收线程所接收，且数据被恢复），邮筒会释放信号量。信号量的使用可以让发送线程轻松实现流控制，确保邮筒在任何时间段都不会持有一个发送线程（或者一系列发送线程）的应用程序所指定的消息数量。</p>
+<blockquote>
+<p>以异步方式发送消息的线程没有办法判断哪个线程接收了消息，由多数消息被交换，以及由接收线程所提供的应用程序定义的信息值。</p>
+</blockquote>
+<h3 id="发送空消息" class="article-heading"><a href="#发送空消息" class="headerlink" title="发送空消息"></a>发送空消息<a class="article-anchor" href="#发送空消息" aria-hidden="true"></a></h3><p>这段代码使用邮筒给任何想要数据的线程异步传递了 4 字节的随机数值。消息的 “info” 字段足够运载被交换的消息，因此消息的数据部分不会被使用。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">send_msg</span>;</span></div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">        <span class="comment">/* generate random value to send */</span></div><div class="line">        <span class="keyword">u32_t</span> random_value = sys_rand32_get();</div><div class="line"></div><div class="line">        <span class="comment">/* prepare to send empty message */</span></div><div class="line">        send_msg.info = random_value;</div><div class="line">        send_msg.size = <span class="number">0</span>;</div><div class="line">        send_msg.tx_data = <span class="literal">NULL</span>;</div><div class="line">        send_msg.tx_block.pool_id = <span class="literal">NULL</span>;</div><div class="line">        send_msg.tx_target_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* send message and wait until a consumer receives it */</span></div><div class="line">        k_mbox_put(&amp;my_mailbox, &amp;send_msg, K_FOREVER);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用消息缓冲发送数据" class="article-heading"><a href="#使用消息缓冲发送数据" class="headerlink" title="使用消息缓冲发送数据"></a>使用消息缓冲发送数据<a class="article-anchor" href="#使用消息缓冲发送数据" aria-hidden="true"></a></h3><p>这段代码使用邮筒从生产线程给任何想要数据的消费线程同步传递了尺寸可变的请求。消息的 “info” 字段用于传输每个线程可以处理的最大尺寸的消息缓冲。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line">    <span class="keyword">int</span> buffer_bytes_used;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">send_msg</span>;</span></div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">        <span class="comment">/* generate data to send */</span></div><div class="line">        ...</div><div class="line">        buffer_bytes_used = ... ;</div><div class="line">        <span class="built_in">memcpy</span>(buffer, source, buffer_bytes_used);</div><div class="line"></div><div class="line">        <span class="comment">/* prepare to send message */</span></div><div class="line">        send_msg.info = buffer_bytes_used;</div><div class="line">        send_msg.size = buffer_bytes_used;</div><div class="line">        send_msg.tx_data = buffer;</div><div class="line">        send_msg.tx_target_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* send message and wait until a consumer receives it */</span></div><div class="line">        k_mbox_put(&amp;my_mailbox, &amp;send_msg, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* info, size, and tx_target_thread fields have been updated */</span></div><div class="line"></div><div class="line">        <span class="comment">/* verify that message data was fully received */</span></div><div class="line">        <span class="keyword">if</span> (send_msg.size &lt; buffer_bytes_used) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"some message data dropped during transfer!"</span>);</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"receiver only had room for %d bytes"</span>, send_msg.info);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用消息块发送数据" class="article-heading"><a href="#使用消息块发送数据" class="headerlink" title="使用消息块发送数据"></a>使用消息块发送数据<a class="article-anchor" href="#使用消息块发送数据" aria-hidden="true"></a></h3><p>这段代码使用邮筒发送异步消息。它使用了一个信号量，让之前的消息被消费后再发送新消息，因此当消费线程不能够消费时，积压的消息不会增加。</p>
+<p>消息数据储存于从内存池中获取的内存块中，因此当交换大消息时能消除不必要的数据拷贝。内存池只包含两块：其中一块被填充着数据，先前被发送的另一块则正在被处理。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="comment">/* define a semaphore, indicating that no message has been sent */</span></div><div class="line">K_SEM_DEFINE(my_sem, <span class="number">1</span>, <span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="comment">/* define a memory pool containing 2 blocks of 4096 bytes */</span></div><div class="line">K_MEM_POOL_DEFINE(my_pool, <span class="number">4096</span>, <span class="number">4096</span>, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">send_msg</span>;</span></div><div class="line"></div><div class="line">    <span class="keyword">volatile</span> <span class="keyword">char</span> *hw_buffer;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">/* allocate a memory block to hold the message data */</span></div><div class="line">        k_mem_pool_alloc(&amp;mp_pool, &amp;send_msg.tx_block, <span class="number">4096</span>, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* keep overwriting the hardware-generated data in the block    */</span></div><div class="line">        <span class="comment">/* until the previous message has been received by the consumer */</span></div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="built_in">memcpy</span>(send_msg.tx_block.data, hw_buffer, <span class="number">4096</span>);</div><div class="line">        &#125; <span class="keyword">while</span> (k_sem_take(&amp;my_sem, K_NO_WAIT) != <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">/* finish preparing to send message */</span></div><div class="line">        send_msg.size = <span class="number">4096</span>;</div><div class="line">        send_msg.tx_target_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* send message containing most current data and loop around */</span></div><div class="line">        k_mbox_async_put(&amp;my_mailbox, &amp;send_msg, &amp;my_sem);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="接收消息" class="article-heading"><a href="#接收消息" class="headerlink" title="接收消息"></a>接收消息<a class="article-anchor" href="#接收消息" aria-hidden="true"></a></h2><p>线程通过接收消息时，它会先创建一个用于描述它所希望接收的消息的消息描述符，然后调用某个邮筒接收 API。邮筒会搜索它的发送队列，并从它搜索到的第一个兼容线程中取出消息。如果没有兼容线程，接收线程可以等待。如果在接收线程所指定的等待时间到达之前仍然没有兼容线程出现，则接收失败。接收完成后，接收线程可以检查消息的描述符，以查看是哪个线程发送的消息，有多少数据被交互，以及发送线程提供的应用程序相关的信息值。</p>
+<p>多个接收线程可以同时等待在一个邮筒的接收队列上。这些线程以优先级进行排序；相同优先级的线程以先进先出的顺序进行排序。</p>
+<blockquote>
+<p>由于消息描述符会指定线程兼容性，所以接收线程并非总是按照先进先出（FIFO）的顺序接收到数据的。例如，如果线程 A 希望从线程 X 接收消息，线程 B 希望从线程 Y 接收线程，此时如果有一个来自线程 Y 的发送给任意线程的消息到来，这线程 B 会接收到该消息，线程 A 则继续等待。</p>
+</blockquote>
+<p>接收线程会同时控制从到达消息恢复数据时的数据数量和数据的结束之处。线程可以获取消息中的所有数据，也可以获取部分数据或者不获取任何数据。类似地，线程也可以让数据拷贝到某个消息缓冲中，也可以让数据放到某个消息块中。消息缓冲通常用于当数据量很小导致拷贝数据的代价小于分配、释放内存池块的代码时。</p>
+<p>下面几小结总结了接收线程在恢复消息数据时的各种方法。</p>
+<h3 id="在接收时恢复数据" class="article-heading"><a href="#在接收时恢复数据" class="headerlink" title="在接收时恢复数据"></a>在接收时恢复数据<a class="article-anchor" href="#在接收时恢复数据" aria-hidden="true"></a></h3><p>线程恢复消息数据的最直接的方法是当消息到达时指定一个消息缓冲：该缓冲的位置（不能是 NULL ）和尺寸。</p>
+<p>邮筒会将消息的数据拷贝到这个消息缓冲中。如果消息缓冲不够容纳所有的消息数据，未被拷贝的将被丢失。如果消息缓冲大于消息数据的尺寸，则消息缓冲中未被使用的部分将保持不变。无论是在那种情况下，邮筒都会更新接收线程的消息描述符，以指示具体有多少字节的数据被拷贝。</p>
+<p>立即数据恢复技术通常用于消息量很小（能提前知道消息的最大尺寸）的情况。</p>
+<blockquote>
+<p>当发送线程提供的消息数据位于内存块时，也可以使用这种技术。邮筒会将数据拷贝到接收线程所指定的消息缓冲中，然后将消息块释放回内存池。这样的好处是接收线程不需要知道数据是由消息块发送的还是由消息缓冲发送的。</p>
+</blockquote>
+<p>下面的代码利用了数据立即恢复技术，它使用邮筒来处理来自生产线程的尺寸可变的请求。消息的 “info” 字段用于交换每个线程可以处理的消息缓冲的最大尺寸。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">consumer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">recv_msg</span>;</span></div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">100</span>];</div><div class="line"></div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> total;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">/* prepare to receive message */</span></div><div class="line">        recv_msg.info = <span class="number">100</span>;</div><div class="line">        recv_msg.size = <span class="number">100</span>;</div><div class="line">        recv_msg.rx_source_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* get a data item, waiting as long as needed */</span></div><div class="line">        k_mbox_get(&amp;my_mailbox, &amp;recv_msg, buffer, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* info, size, and rx_source_thread fields have been updated */</span></div><div class="line"></div><div class="line">        <span class="comment">/* verify that message data was fully received */</span></div><div class="line">        <span class="keyword">if</span> (recv_msg.info != recv_msg.size) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"some message data dropped during transfer!"</span>);</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"sender tried to send %d bytes"</span>, recv_msg.info);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/* compute sum of all message bytes (from 0 to 100 of them) */</span></div><div class="line">        total = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; recv_msg.size; i++) &#123;</div><div class="line">            total += buffer[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="随后使用消息缓冲恢复数据" class="article-heading"><a href="#随后使用消息缓冲恢复数据" class="headerlink" title="随后使用消息缓冲恢复数据"></a>随后使用消息缓冲恢复数据<a class="article-anchor" href="#随后使用消息缓冲恢复数据" aria-hidden="true"></a></h3><p>当消息被接收后，接收先可以推迟恢复消息数据的时间，即它可以在随后的一段时间再将数据恢复到消息缓冲中。要利用这种功能，线程需要指定消息缓冲的位置为 NULL，以及它所希望恢复的数据的最大尺寸。</p>
+<p>邮筒不会拷贝任何消息数据。不过，邮筒仍然会更新接收线程的消息描述符，以指示有多少字节的数据可用于恢复。</p>
+<p>接收线程必须按如下方式进行响应：</p>
+<pre><code>如果消息描述符的尺寸是零，表示发送者的消息没包含任何数据或者接收线程不需要接收任何数据。接收线程不需要做任何动作，因为邮筒内部已经完成了数据恢复和消息删除。
+如果消息描述符的尺寸非零，且接收线程仍然希望恢复数据，则该线程必须调用 k_mbox_data_get()，并提供一个足够容纳数据的消息缓冲。邮筒会将数据拷贝到消息缓冲并删除消息。
+如果消息描述符的尺寸非零，且接收线程 不 向接收数据，则该线程必须调用 k_mbox_data_get()，并将消息缓冲指定为 NULL。邮筒不会拷贝数据，会直接删除消息。
+</code></pre><p>数据的随后恢复技术适用于当应用程序不适合立即恢复的场景。例如，当由于内存限制导致接收线程不能够提供一个能够容纳达到消息数据的消息缓冲时。</p>
+<blockquote>
+<p>当发送线程提供的消息数据位于内存块时，也可以使用这种技术。邮筒会将数据拷贝到接收线程所指定的消息缓冲中，然后将消息块释放回内存池。这样的好处是接收线程不需要知道数据是由消息块发送的还是由消息缓冲发送的。</p>
+</blockquote>
+<p>下面的代码使用了邮筒的数据延迟恢复计数来获取从生产线程发送的消息数据。由于只有当消息满足某个标准时才会恢复数据，因此能减小不必要的数据拷贝。发送者指定的消息的 “info” 字段用于区分消息的类别。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">consumer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">recv_msg</span>;</span></div><div class="line">    <span class="keyword">char</span> buffer[<span class="number">10000</span>];</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">/* prepare to receive message */</span></div><div class="line">        recv_msg.size = <span class="number">10000</span>;</div><div class="line">        recv_msg.rx_source_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* get message, but not its data */</span></div><div class="line">        k_mbox_get(&amp;my_mailbox, &amp;recv_msg, <span class="literal">NULL</span>, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* get message data for only certain types of messages */</span></div><div class="line">        <span class="keyword">if</span> (is_message_type_ok(recv_msg.info)) &#123;</div><div class="line">            <span class="comment">/* retrieve message data and delete the message */</span></div><div class="line">            k_mbox_data_get(&amp;recv_msg, buffer);</div><div class="line"></div><div class="line">            <span class="comment">/* process data in "buffer" */</span></div><div class="line">            ...</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">/* ignore message data and delete the message */</span></div><div class="line">            k_mbox_data_get(&amp;recv_msg, <span class="literal">NULL</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="随后使用消息块恢复数据" class="article-heading"><a href="#随后使用消息块恢复数据" class="headerlink" title="随后使用消息块恢复数据"></a>随后使用消息块恢复数据<a class="article-anchor" href="#随后使用消息块恢复数据" aria-hidden="true"></a></h3><p>接收线程可以将消息数据恢复到一个内存块（而非消息缓冲）中。这种方法与在随后使用消息缓冲恢复数据的方法基本 —— 接收线程先接收消息（不带数据），然后调用函数 <code>k_mbox_data_block_get()</code> 恢复数据。邮筒会填充接收线程提供的消息描述符，允许线程访问数据。当数据被恢复后，邮筒会删除消息。然后，接收线程在不需要数据时负责释放将消息块释放回内存池中。</p>
+<p>这种技术更适用于消息数据由内存块发送的应用程序。</p>
+<blockquote>
+<p>当发送线程的消息数据位于消息缓冲时，也可以利用这种技术。邮筒会自动分配一个内存块并将数据拷贝到里面。不过，这种方法比直接将数据恢复到由接收线程提供的消息缓冲更低效。此外，接收线程在必须够处理当由于邮筒不能分配到内存块而导致数据恢复失败的情形。如果这种情况发送了，接收线程必须尝试在随后再次恢复数据，或者指示邮筒删除消息（没有恢复数据）。</p>
+</blockquote>
+<p>下面的代码使用邮筒来接收一个由内存块发送的消息，因此可以消除不必要的内存拷贝（尤其是大消息）。消息可能被同步发送，也可能被异步发送。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="comment">/* define a memory pool containing 1 block of 10000 bytes */</span></div><div class="line">K_MEM_POOL_DEFINE(my_pool, <span class="number">10000</span>, <span class="number">10000</span>, <span class="number">1</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">consumer_thread</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mbox_msg</span> <span class="title">recv_msg</span>;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">k_mem_block</span> <span class="title">recv_block</span>;</span></div><div class="line"></div><div class="line">    <span class="keyword">int</span> total;</div><div class="line">    <span class="keyword">char</span> *data_ptr;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">/* prepare to receive message */</span></div><div class="line">        recv_msg.size = <span class="number">10000</span>;</div><div class="line">        recv_msg.rx_source_thread = K_ANY;</div><div class="line"></div><div class="line">        <span class="comment">/* get message, but not its data */</span></div><div class="line">        k_mbox_get(&amp;my_mailbox, &amp;recv_msg, <span class="literal">NULL</span>, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* get message data as a memory block and discard message */</span></div><div class="line">        k_mbox_data_block_get(&amp;recv_msg, &amp;my_pool, &amp;recv_block, K_FOREVER);</div><div class="line"></div><div class="line">        <span class="comment">/* compute sum of all message bytes in memory block */</span></div><div class="line">        total = <span class="number">0</span>;</div><div class="line">        data_ptr = (<span class="keyword">char</span> *)(recv_block.data);</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; recv_msg.size; i++) &#123;</div><div class="line">            total += data_ptr++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/* release memory block containing data */</span></div><div class="line">        k_mem_pool_free(&amp;recv_block);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这种算法也能正确地处理使用消息缓冲发送的消息，以为邮筒会自动从内存池中分配一个内存块，并使用消息数据填充它。不过，这样的会丢失性能。</p>
+</blockquote>
+<h1 id="建议的用法" class="article-heading"><a href="#建议的用法" class="headerlink" title="建议的用法"></a>建议的用法<a class="article-anchor" href="#建议的用法" aria-hidden="true"></a></h1><p>当消息队列不足以在两个线程间传递数据时，使用邮筒。</p>
+<h1 id="配置选项" class="article-heading"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项<a class="article-anchor" href="#配置选项" aria-hidden="true"></a></h1><p>相关的配置选项：</p>
+<ul>
+<li><code>CONFIG_NUM_MBOX_ASYNC_MSGS</code></li>
+</ul>
+<h1 id="API" class="article-heading"><a href="#API" class="headerlink" title="API"></a>API<a class="article-anchor" href="#API" aria-hidden="true"></a></h1><p>头文件 <code>kernel.h</code> 提供了如下的邮筒 API：</p>
+<ul>
+<li><code>K_MBOX_DEFINE</code></li>
+<li><code>k_mbox_init()</code></li>
+<li><code>k_mbox_put()</code></li>
+<li><code>k_mbox_async_put()</code></li>
+<li><code>k_mbox_get()</code></li>
+<li><code>k_mbox_data_get()</code></li>
+<li><code>k_mbox_data_block_get()</code></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-13T14:07:27.265Z" itemprop="dateModified">上次更新：2017-08-13</time>
+                <a href="k_datapass_msgqueue.html" class="article-footer-prev" title="　>消息队列"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="k_datapass_pipe.html" class="article-footer-next" title="　>管道"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消息格式"><span class="toc-text">消息格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息的生命周期"><span class="toc-text">消息的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程兼容性"><span class="toc-text">线程兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息流控制"><span class="toc-text">消息流控制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义邮筒"><span class="toc-text">定义邮筒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息描述符"><span class="toc-text">消息描述符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发送消息"><span class="toc-text">发送消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发送空消息"><span class="toc-text">发送空消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用消息缓冲发送数据"><span class="toc-text">使用消息缓冲发送数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用消息块发送数据"><span class="toc-text">使用消息块发送数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接收消息"><span class="toc-text">接收消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在接收时恢复数据"><span class="toc-text">在接收时恢复数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随后使用消息缓冲恢复数据"><span class="toc-text">随后使用消息缓冲恢复数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随后使用消息块恢复数据"><span class="toc-text">随后使用消息块恢复数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议的用法"><span class="toc-text">建议的用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置选项"><span class="toc-text">配置选项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">前言</strong><a href="introduce.html" class="sidebar-link">Zephyr简介</a><strong class="sidebar-title">入门指导</strong><a href="start_index.html" class="sidebar-link">搭建开发环境</a><a href="start_linux.html" class="sidebar-link">　>Linux平台</a><a href="start_mac.html" class="sidebar-link">　>Mac平台</a><a href="start_win.html" class="sidebar-link">　>Win平台</a><strong class="sidebar-title">内核入门</strong><a href="k_overview_index.html" class="sidebar-link">概述</a><a href="k_overview_change.html" class="sidebar-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="sidebar-link">　>与第1版内核的改动</a><a href="k_thread.html" class="sidebar-link">线程</a><a href="k_thread_lifecycle.html" class="sidebar-link">　>生命周期</a><a href="k_thread_scheduling.html" class="sidebar-link">　>调度</a><a href="k_thread_customdata.html" class="sidebar-link">　>自定义数据</a><a href="k_thread_systhread.html" class="sidebar-link">　>系统线程</a><a href="k_thread_workqueue.html" class="sidebar-link">　>工作队列线程</a><a href="k_timing.html" class="sidebar-link">定时</a><a href="k_timing_kernelclock.html" class="sidebar-link">　>内核时钟</a><a href="k_timing_timers.html" class="sidebar-link">　>定时器</a><a href="k_memory.html" class="sidebar-link">内存分配</a><a href="k_memory_slab.html" class="sidebar-link">　>内存片</a><a href="k_memory_pool.html" class="sidebar-link">　>内存池</a><a href="k_memory_heap.html" class="sidebar-link">　>堆内存池</a><a href="k_sync.html" class="sidebar-link">同步</a><a href="k_sync_sem.html" class="sidebar-link">　>信号量</a><a href="k_sync_mutex.html" class="sidebar-link">　>互斥量</a><a href="k_sync_alert.html" class="sidebar-link">　>告警</a><a href="k_datapassing.html" class="sidebar-link">数据传递</a><a href="k_datapass_fifo.html" class="sidebar-link">　>fifo</a><a href="k_datapass_lifo.html" class="sidebar-link">　>lifo</a><a href="k_datapass_stack.html" class="sidebar-link">　>栈</a><a href="k_datapass_msgqueue.html" class="sidebar-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="sidebar-link current">　>邮筒</a><a href="k_datapass_pipe.html" class="sidebar-link">　>管道</a><a href="k_other.html" class="sidebar-link">其它服务</a><strong class="sidebar-title">应用程序开发入门</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">移植指导</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备驱动和设备模型</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">设备树</strong><a href="null" class="sidebar-link">概述</a><strong class="sidebar-title">子系统</strong><a href="null" class="sidebar-link">概述</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">前言</strong><a href="introduce.html" class="mobile-nav-link">Zephyr简介</a><strong class="mobile-nav-title">入门指导</strong><a href="start_index.html" class="mobile-nav-link">搭建开发环境</a><a href="start_linux.html" class="mobile-nav-link">　>Linux平台</a><a href="start_mac.html" class="mobile-nav-link">　>Mac平台</a><a href="start_win.html" class="mobile-nav-link">　>Win平台</a><strong class="mobile-nav-title">内核入门</strong><a href="k_overview_index.html" class="mobile-nav-link">概述</a><a href="k_overview_change.html" class="mobile-nav-link">　>源代码目录结构</a><a href="k_overview_tree.html" class="mobile-nav-link">　>与第1版内核的改动</a><a href="k_thread.html" class="mobile-nav-link">线程</a><a href="k_thread_lifecycle.html" class="mobile-nav-link">　>生命周期</a><a href="k_thread_scheduling.html" class="mobile-nav-link">　>调度</a><a href="k_thread_customdata.html" class="mobile-nav-link">　>自定义数据</a><a href="k_thread_systhread.html" class="mobile-nav-link">　>系统线程</a><a href="k_thread_workqueue.html" class="mobile-nav-link">　>工作队列线程</a><a href="k_timing.html" class="mobile-nav-link">定时</a><a href="k_timing_kernelclock.html" class="mobile-nav-link">　>内核时钟</a><a href="k_timing_timers.html" class="mobile-nav-link">　>定时器</a><a href="k_memory.html" class="mobile-nav-link">内存分配</a><a href="k_memory_slab.html" class="mobile-nav-link">　>内存片</a><a href="k_memory_pool.html" class="mobile-nav-link">　>内存池</a><a href="k_memory_heap.html" class="mobile-nav-link">　>堆内存池</a><a href="k_sync.html" class="mobile-nav-link">同步</a><a href="k_sync_sem.html" class="mobile-nav-link">　>信号量</a><a href="k_sync_mutex.html" class="mobile-nav-link">　>互斥量</a><a href="k_sync_alert.html" class="mobile-nav-link">　>告警</a><a href="k_datapassing.html" class="mobile-nav-link">数据传递</a><a href="k_datapass_fifo.html" class="mobile-nav-link">　>fifo</a><a href="k_datapass_lifo.html" class="mobile-nav-link">　>lifo</a><a href="k_datapass_stack.html" class="mobile-nav-link">　>栈</a><a href="k_datapass_msgqueue.html" class="mobile-nav-link">　>消息队列</a><a href="k_datapass_mailbox.html" class="mobile-nav-link current">　>邮筒</a><a href="k_datapass_pipe.html" class="mobile-nav-link">　>管道</a><a href="k_other.html" class="mobile-nav-link">其它服务</a><strong class="mobile-nav-title">应用程序开发入门</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">移植指导</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备驱动和设备模型</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">设备树</strong><a href="null" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">子系统</strong><a href="null" class="mobile-nav-link">概述</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/latest/k_datapass_mailbox.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

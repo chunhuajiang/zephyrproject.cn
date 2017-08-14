@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_fifo.html</loc>
+    
+    <lastmod>2017-08-13T14:21:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapassing.html</loc>
+    
+    <lastmod>2017-08-13T14:20:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_pipe.html</loc>
+    
+    <lastmod>2017-08-13T14:14:35.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_mailbox.html</loc>
+    
+    <lastmod>2017-08-13T14:07:27.265Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_msgqueue.html</loc>
+    
+    <lastmod>2017-08-13T12:46:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_stack.html</loc>
+    
+    <lastmod>2017-08-13T12:23:07.418Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_datapass_lifo.html</loc>
+    
+    <lastmod>2017-08-13T12:17:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_sync_alert.html</loc>
+    
+    <lastmod>2017-08-13T11:54:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_sync_mutex.html</loc>
+    
+    <lastmod>2017-08-13T11:21:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_sync_sem.html</loc>
+    
+    <lastmod>2017-08-13T11:09:14.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_sync.html</loc>
+    
+    <lastmod>2017-08-13T11:00:49.828Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zephyrproject.cn/zh-cn/docs/latest/k_memory_heap.html</loc>
     
     <lastmod>2017-08-13T02:38:19.000Z</lastmod>
@@ -30,14 +107,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/zh-cn/index.html</loc>
+    <loc>http://zephyrproject.cn/index.html</loc>
     
     <lastmod>2017-08-12T23:40:50.280Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/index.html</loc>
+    <loc>http://zephyrproject.cn/zh-cn/index.html</loc>
     
     <lastmod>2017-08-12T23:40:50.280Z</lastmod>
     
@@ -191,6 +268,13 @@
   </url>
   
   <url>
+    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
+    
+    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zephyrproject.cn/t_guide/overview.html</loc>
     
     <lastmod>2017-08-08T10:02:12.773Z</lastmod>
@@ -198,9 +282,9 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/qemu.html</loc>
+    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
     
-    <lastmod>2017-08-08T10:02:12.773Z</lastmod>
+    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
     
   </url>
   
@@ -219,21 +303,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/t_guide/index.html</loc>
-    
-    <lastmod>2017-08-08T09:57:41.785Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zephyrproject.cn/tutorial/guide/index.html</loc>
+    <loc>http://zephyrproject.cn/blog/index.html</loc>
     
     <lastmod>2017-08-08T09:57:20.737Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/blog/index.html</loc>
+    <loc>http://zephyrproject.cn/tutorial/guide/index.html</loc>
     
     <lastmod>2017-08-08T09:57:20.737Z</lastmod>
     
@@ -268,14 +345,14 @@
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
+    <loc>http://zephyrproject.cn/about/index.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zephyrproject.cn/about/index.html</loc>
+    <loc>http://zephyrproject.cn/docs/configuration.html</loc>
     
     <lastmod>2017-08-08T09:36:52.757Z</lastmod>
     
