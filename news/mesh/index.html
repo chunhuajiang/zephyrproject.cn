@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Zephyr™ 宣布支持蓝牙 Mesh | Zephyr Project 中文社区</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://zephyrproject.cn/news/mesh/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://zephyrproject.cn/news/mesh/index.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://zephyrproject.cn/zh-cn/news/mesh/index.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="Zephyr Project 中文社区">
+  <!-- Open Graph -->
+  <meta name="description" content="翻译：tidyjiang8  2017 年 7 月底，蓝牙组织联盟 SIG 发布了 蓝牙 Mesh 协议规范 ；今天，Zephyr 宣布已经实现了该规范(感谢 Intel 的积极贡献)。相关代码目前位于 Zephyr 官方的 master 上游分支代码仓库中，这部分代码也会在 2017 年 9 月初的 Zephyr OS 1.9 版本中发布。 您可以在 这里 查看蓝牙 Mesh 的公用 API">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zephyr™ 宣布支持蓝牙 Mesh">
+<meta property="og:url" content="http://zephyrproject.cn/news/mesh/index.html">
+<meta property="og:site_name" content="Zephyr Project 中文社区">
+<meta property="og:description" content="翻译：tidyjiang8  2017 年 7 月底，蓝牙组织联盟 SIG 发布了 蓝牙 Mesh 协议规范 ；今天，Zephyr 宣布已经实现了该规范(感谢 Intel 的积极贡献)。相关代码目前位于 Zephyr 官方的 master 上游分支代码仓库中，这部分代码也会在 2017 年 9 月初的 Zephyr OS 1.9 版本中发布。 您可以在 这里 查看蓝牙 Mesh 的公用 API">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://zephyrproject.cn/news/mesh/mesh.jpg">
+<meta property="og:updated_time" content="2017-08-24T13:36:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zephyr™ 宣布支持蓝牙 Mesh">
+<meta name="twitter:description" content="翻译：tidyjiang8  2017 年 7 月底，蓝牙组织联盟 SIG 发布了 蓝牙 Mesh 协议规范 ；今天，Zephyr 宣布已经实现了该规范(感谢 Intel 的积极贡献)。相关代码目前位于 Zephyr 官方的 master 上游分支代码仓库中，这部分代码也会在 2017 年 9 月初的 Zephyr OS 1.9 版本中发布。 您可以在 这里 查看蓝牙 Mesh 的公用 API">
+<meta name="twitter:image" content="http://zephyrproject.cn/news/mesh/mesh.jpg">
+<meta name="twitter:site" content="zephyriot">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">Zephyr中文社区</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/latest/" class="main-nav-link">文档</a><a href="/t_guide/" class="main-nav-link">入门教程</a><a href="/t_deep/" class="main-nav-link">进阶教程</a><a href="/opensource/" class="main-nav-link">开源项目</a><a href="/news/" class="main-nav-link">新闻</a><a href="/blog/" class="main-nav-link">博客</a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Zephyr™ 宣布支持蓝牙 Mesh</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/news/mesh/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>翻译：<a href="https://github.com/tidyjiang8" target="_blank" rel="external">tidyjiang8</a></p>
+</blockquote>
+<p>2017 年 7 月底，蓝牙组织联盟 SIG 发布了 <a href="https://www.bluetooth.com/specifications/mesh-specifications" target="_blank" rel="external">蓝牙 Mesh 协议规范</a> ；今天，Zephyr 宣布已经实现了该规范(感谢 Intel 的积极贡献)。相关代码目前位于 Zephyr 官方的 <a href="https://github.com/zephyrproject-rtos/zephyr/tree/master/subsys/bluetooth/host/mesh" target="_blank" rel="external">master</a> 上游分支代码仓库中，这部分代码也会在 2017 年 9 月初的 <a href="https://www.zephyrproject.org/downloads" target="_blank" rel="external">Zephyr OS 1.9</a> 版本中发布。</p>
+<p>您可以在 <a href="https://github.com/zephyrproject-rtos/zephyr/blob/master/include/bluetooth/mesh.h" target="_blank" rel="external">这里</a> 查看蓝牙 Mesh 的公用 API 接口。</p>
+<p>此外，Zephyr 还提供了 <a href="https://github.com/zephyrproject-rtos/zephyr/tree/master/samples/bluetooth" target="_blank" rel="external">示例程序</a> 和 <a href="https://github.com/zephyrproject-rtos/zephyr/tree/master/tests/bluetooth" target="_blank" rel="external">测试程序</a>。</p>
+<h1 id="蓝牙-Mesh-概述" class="article-heading"><a href="#蓝牙-Mesh-概述" class="headerlink" title="蓝牙 Mesh 概述"></a>蓝牙 Mesh 概述<a class="article-anchor" href="#蓝牙-Mesh-概述" aria-hidden="true"></a></h1><p>蓝牙 Mesh 是一个新标准，它开启了一个全新的低功耗无线应用案例。它将通信范围由单一的点对点连接扩展为一个网状拓扑结构，因此可以覆盖范围更广，例如整栋楼宇建筑。这为智能家居以及工业自动化奠定了良好的基础。蓝牙 Mesh 的典型应用场景包括控制公寓里的灯或调节恒温器。尽管去年年底发布了蓝牙5，但蓝牙 Mesh 可以在任何支持蓝牙 4 或更高版本的设备上实现，这意味着我们可能很快就会在市场看到该技术。</p>
+<p><img src="mesh.jpg" alt=""></p>
+<p>您可以在这里查看蓝牙 <a href="https://www.bluetooth.com/specifications/mesh-specifications" target="_blank" rel="external">Mesh 协议规范</a>。</p>
+<h1 id="具体实现" class="article-heading"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现<a class="article-anchor" href="#具体实现" aria-hidden="true"></a></h1><p>Zephyr OS 实现了蓝牙 Mesh 的所有层协议以及大部分的可选功能。下面这个列表列举出了其中一部分可选功能及其对应的源代码：</p>
+<ul>
+<li>GATT &amp; Advertising bearers (proxy.c &amp; adv.c)</li>
+<li>Network Layer (net.c)</li>
+<li>Lower and Upper Transport Layers (transport.c)</li>
+<li>Access Layer (access.c)</li>
+<li>Foundation Models, Server role (health.c &amp; cfg.c)</li>
+<li>Both PB-ADV and PB-GATT based provisioning (prov.c)</li>
+<li>Low Power Node support (lpn.c)</li>
+<li>Relay support (net.c)</li>
+<li>GATT Proxy (proxy.c)</li>
+</ul>
+<p>下面这些可选功能目前还未实现：</p>
+<ul>
+<li>Friend support (initial bits are already in place in friend.c)</li>
+<li>Provisioner support (low-value for typical Zephyr devices)</li>
+<li>Foundation Client models (low-value for typical Zephyr devices)</li>
+<li>GATT Client (low-value for typical Zephyr devices)</li>
+</ul>
+<p>我们将会在今后的发行版本中支持这些功能。</p>
+<h2 id="对-Zephyr-配置" class="article-heading"><a href="#对-Zephyr-配置" class="headerlink" title="对 Zephyr 配置"></a>对 Zephyr 配置<a class="article-anchor" href="#对-Zephyr-配置" aria-hidden="true"></a></h2><p>为了使基于 Zephyr OS 的设备具有 mesh 节点的功能，需要给它配置网络安全密钥以及唯一的单播地址。由于 Zephyr OS 当前不能作为其它设备的供应者(Provisioner)，其它非基于 Zephyr OS 的设备必须手动配置。在原型实现阶段，可以直接将密钥和地址写在应用程序中 —— 您可以参考 <a href="https://github.com/zephyrproject-rtos/zephyr/tree/master/samples/bluetooth/mesh_demo" target="_blank" rel="external"><code>mesh_demo</code></a> 这个例程。</p>
+<p>在实践中，可以通过下面的方法配置基于 Zephyr OS 的设备：</p>
+<ul>
+<li>自配置(只适用于原型设计阶段，还不能用于产品生产阶段)</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.siliconlabs.bluetoothmesh" target="_blank" rel="external">Silicon Labs Android Mesh 应用</a></li>
+<li><a href="https://www.bluetooth.com/develop-with-bluetooth/test-tools/profile-tuning-suite" target="_blank" rel="external">Bluetooth PTS</a> (用于规范的一致性测试)</li>
+<li>BlueZ meshctl 工具。该工具会出现在 BlueZ 的下一个发行版(BlueZ 5.47)中</li>
+</ul>
+<h2 id="集成蓝牙-Mesh" class="article-heading"><a href="#集成蓝牙-Mesh" class="headerlink" title="集成蓝牙 Mesh"></a>集成蓝牙 Mesh<a class="article-anchor" href="#集成蓝牙-Mesh" aria-hidden="true"></a></h2><p>Mesh 网络由一个相当复杂的分层结构组成，加入到这个网络中的每个设备都被叫做一个<strong>节点</strong>。每个节点包含一到多个元素(element)。元素是在 mesh 网络中可唯一寻址的实体。反过来，每个元素都有一套所谓的模型，这个模型既可以是标准模型，也可以由厂家提供。</p>
+<p>从本质上讲，模型定义了特定的状态和行为，这些状态和行为会受到发送/接收消息的影响。Mesh 属性规范包含一个所有节点都必须支持的基础模型。</p>
+<p>Zephyr 已经实现了这些功能，因此应用程序开发者只需要在这方面做非常少的工作。应用程序开发者剩下需要做的就是选择实现合适的标准模型(在 mesh 模型规范中可以找到)或者如果在标准模型不适用时创建自定义的厂商模型。</p>
+<p>在 Zephyr 中，模型是由宏 <code>BT_MESH_MODEL()</code> 进行定义的。应用程序需要提供的参数包括：模型标识符、消息句柄数组、消息发布上下文以及传递给消息句柄的用户数据(可选)。模型反过来又包含在由其它模型构成的数组中，这些模型共同构成元素。在初始化的过程中，应用程序需要调用 API <code>bt_mesh_init()</code> 来进行与 mesh 相关的初始化。</p>
+<p>如果要插入应用程序所需的基础模型，可以使用宏 <code>BT_MESH_MODEL_CFG_SRV()</code> 或者 <code>BT_MESH_MODEL_HEALTH_SRV()</code>　替换之前的宏 <code>BT_MESH_MODEL()</code>。</p>
+<h1 id="更多" class="article-heading"><a href="#更多" class="headerlink" title="更多"></a>更多<a class="article-anchor" href="#更多" aria-hidden="true"></a></h1><p>如果想要更深入地了解 Zephyr 中蓝牙 Mesh 相关的知识，或者想要知道在实际中如何使能这些功能，请查看 <a href="https://github.com/zephyrproject-rtos/zephyr/blob/master/include/bluetooth/mesh.h" target="_blank" rel="external">mesh</a> 的代码以及 <a href="https://github.com/zephyrproject-rtos/zephyr/tree/master/samples/bluetooth/mesh" target="_blank" rel="external">示例程序</a>。</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-24T13:36:10.000Z" itemprop="dateModified">上次更新：2017-08-24</time>
+                
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: window.location.pathname,
+  owner: 'tidyjiang8',
+  repo: 'zephyrproject.cn.comments',
+  oauth: {
+    client_id: 'ad0b343a10e201965ac6',
+    client_secret: '4cc2c3eca459a20aea9720095da3c591685a8986',
+  },
+})
+gitment.render('disqus_thread')
+</script>
+
+<script>
+
+</script>
+
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#蓝牙-Mesh-概述"><span class="toc-text">蓝牙 Mesh 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具体实现"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对-Zephyr-配置"><span class="toc-text">对 Zephyr 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成蓝牙-Mesh"><span class="toc-text">集成蓝牙 Mesh</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多"><span class="toc-text">更多</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://github.com/tidyjiang8/" target="_blank">蒋春华<tidyjiang@163.com></a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zephyriot" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/zephyrproject-rtos/zephyr" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/latest/" class="mobile-nav-link">文档</a><a href="/t_guide/" class="mobile-nav-link">入门教程</a><a href="/t_deep/" class="mobile-nav-link">进阶教程</a><a href="/opensource/" class="mobile-nav-link">开源项目</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/blog/" class="mobile-nav-link">博客</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/zephyrproject-rtos/zephyr" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
